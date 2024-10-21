@@ -1,12 +1,36 @@
-import { useEffect } from "react"
+import React from "react";
+import CustomSidebar from "./components/Sidebar"; 
+import CustomNavbar from "./components/Navbar"; 
 
-function App() {
-  
+// Sidebar component
+export function Sidebar1() {
   return (
-    <h1 className="text-3xl font-bold underline flex justify-center items-center min-h-screen">
-    Hello world!
-    </h1>
-  )
+    <div className="Sidebar" style={{ display: "flex", height: "100vh"}}>
+      <CustomSidebar />
+    </div>
+  );
 }
 
-export default App
+// Navbar component
+export function Navbar1() {
+  return (
+    <div>
+      <CustomNavbar />
+    </div>
+  );
+}
+
+// Main App component
+function App() {
+  return (
+    <div>
+      <Navbar1 />  
+      <Sidebar1 />  
+      <div className="content" style={{ marginLeft: "260px", padding: "20px" }}>
+        <p>yyy</p>  
+      </div>
+    </div>
+  );
+}
+
+export default App;
