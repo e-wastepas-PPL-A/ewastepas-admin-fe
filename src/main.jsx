@@ -1,3 +1,6 @@
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from './App.jsx'
 import Dashboard from './pages/DashboardPage.jsx'
 import Register from './pages/RegisterPage.jsx'
 import PermintaanSampah from './pages/PermintaanSampah.jsx'
