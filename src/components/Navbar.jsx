@@ -2,14 +2,11 @@
 "use client";
 
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { HiBell } from "react-icons/hi";
 
 export default function CustomNavbar() {
   return (
-    <Navbar className="bg-gray-50">
-        <Navbar.Brand href="#">
-        <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">E-Whale</span>
-      </Navbar.Brand>
+    <Navbar className="bg-gray-100 shadow">
       <div className="flex md:order-2">
         <Dropdown
           arrowIcon={false}
@@ -17,10 +14,11 @@ export default function CustomNavbar() {
           label={
             <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
           }
+          
         >
           <Dropdown.Header>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">name@flowbite.com</span>
+            <span className="block text-sm">Rusdi Sigma</span>
+            <span className="block truncate text-sm font-medium">skibidi@ngawi.com</span>
           </Dropdown.Header>
           <Dropdown.Item>Dashboard</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>
@@ -28,14 +26,13 @@ export default function CustomNavbar() {
           <Dropdown.Divider />
           <Dropdown.Item>Sign out</Dropdown.Item>
         </Dropdown>
+        <h3 className="text-black mt-2 ml-5">Rusdi Sigma</h3>
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse className="ml-auto mr-6">
-        <Navbar.Link href="#" active>
-          Home
+        <Navbar.Link href="#">
+          <HiBell className="mr-2 h-5 w-5" />
         </Navbar.Link>
-        <Navbar.Link href="#">Lorem</Navbar.Link>
-        <Navbar.Link href="#">Ipsum</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
