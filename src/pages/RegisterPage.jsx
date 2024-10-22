@@ -1,7 +1,86 @@
+import { useEffect } from "react";
+import { Card } from "flowbite-react";
+import React from "react";
+import CustomSidebar from "../components/Sidebar";
+import CustomNavbar from "../components/Navbar";
+import CustomTableMasyarakat from "../components/TableApproveMasyarakat";
+import CustomSearchbar from "../components/Searchbar";
+
+
+// Sidebar component
+export function Sidebar1() {
+  return (
+    <div className="Sidebar" style={{
+      position: "fixed", 
+      left: 0, 
+      top: 0, 
+      width: "260px", 
+      height: "100vh", 
+      backgroundColor: "#f8f9fa" 
+    }}>
+      <CustomSidebar />
+    </div>
+  );
+}
+
+// Navbar component
+export function Navbar1() {
+  return (
+    <div style={{ position: "fixed", top: 0, left: "260px", right: 0, height: "60px", backgroundColor: "#343a40", color: "#fff" }}>
+      <CustomNavbar />
+    </div>
+  );
+}
+
+
 export default function Register() {
+  useEffect(() => {
+    document.title = "E-Wastepas | Registrasi Masyarakat";
+  }, []);
+
     return (
-      <h1 className="text-3xl font-bold underline flex justify-center items-center min-h-screen">
-      Halaman Register
-      </h1>
+
+      <div className="bg-gray-100">
+        <Navbar1 />
+        <Sidebar1 />
+
+        <div className="content" 
+          style={{ 
+            marginLeft: "260px",
+            marginTop: "60px",
+            padding: "20px", 
+            minHeight: "calc(100vh - 60px)", 
+            display: "flex", 
+            justifyContent: "center", 
+            alignItems: "center" ,
+            flexDirection: "column"
+          }}
+        >
+
+        <div
+          className="flex justify-between items-center w-full"
+          style={{
+            marginBottom: "20px",
+            paddingLeft: "20px",
+            paddingRight: "20px",
+          }}
+        >
+          <h2 className="text-lg font-bold">Approval</h2>
+          <h1 className="text-lg font-bold">Registrasi Masyarakat</h1>
+        </div>
+
+          <Card
+            style={{ 
+              width: "1300px",
+              height: "600px"
+              }}
+          >
+            <CustomSearchbar style={{ marginRight: "sm-7" }}/>
+            <CustomTableMasyarakat/> 
+          </Card>
+
+        </div>
+
+      </div>
     );
 }
