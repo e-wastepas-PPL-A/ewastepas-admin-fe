@@ -92,6 +92,9 @@ export default function CustomSidebar() {
           <Sidebar.Item href="/permintaan-sampah" icon={HiTrash} className="mt-2">
             Permintaan Sampah
           </Sidebar.Item>
+          <Sidebar.Item href="/daftar-penjemputan" icon={HiTruck} className="mt-2">
+            Daftar Penjemputan
+          </Sidebar.Item>
           <Sidebar.Item href="/dropbox" icon={FaBoxOpen} className="mt-2">
             Dropbox
           </Sidebar.Item>

@@ -5,6 +5,7 @@ import Dashboard from './pages/DashboardPage.jsx'
 import Register from './pages/RegisterPage.jsx'
 import RegisterKurir from './pages/RegisterKurirPage.jsx'
 import PermintaanSampah from './pages/PermintaanSampah.jsx'
+import DaftarPenjemputan from './pages/DaftarPenjemputan.jsx'
 import KonversiPoin from './pages/KonversiPoin.jsx'
 import JenisKategori from './pages/JenisKategoriPage.jsx'
 import Dropbox from './pages/DropboxPage.jsx'
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/permintaan-sampah",
     element: <PermintaanSampah />,
+  },
+  {
+    path: "/daftar-penjemputan",
+    element: <DaftarPenjemputan />,
   },
   {
     path: "/konversi-poin",

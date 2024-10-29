@@ -6,7 +6,7 @@ import { HiBell, HiEye } from "react-icons/hi";
 import CustomPopUp from "../components/PopUpPermintaanSampah";
 import { useState } from "react";
 
-export default function CustomTable() {
+export default function CustomTableKurir() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -24,6 +24,12 @@ export default function CustomTable() {
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Status Permintaan
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nama Kurir
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            No Telp
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Aksi
@@ -44,7 +50,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -64,7 +75,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -84,7 +100,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -104,7 +125,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -124,7 +150,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -144,7 +175,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -164,7 +200,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -184,7 +225,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -204,7 +250,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -224,7 +275,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -244,7 +300,12 @@ export default function CustomTable() {
                         <td class="px-6 py-4 text-black">
                             Diproses
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            Rusdi Sigma
+                        </td>
+                        <td class="px-6 py-4 text-black">
+                            08123456789
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
