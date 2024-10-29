@@ -3,7 +3,7 @@ import { Card } from "flowbite-react";
 import React from "react";
 import CustomSidebar from "../components/Sidebar";
 import CustomNavbar from "../components/Navbar";
-import CustomTable from "../components/Table";
+import CustomTable from "../components/TablePermintaanSampah";
 import CustomSearchbar from "../components/Searchbar";
 
 
