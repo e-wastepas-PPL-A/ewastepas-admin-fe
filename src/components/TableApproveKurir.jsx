@@ -7,7 +7,7 @@ export default function CourierApprovalTable() {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <Table className="w-full text-sm text-left rtl:text-right text-black dark:text-black">
-        <thead className="text-xs text-white uppercase bg-green-600 border-b border-green-400 dark:text-white">
+        <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#106EBE', borderBottom: '2px solid #106EBE' }}>
           <tr>
             <th scope="col" className="px-6 py-3">Nama</th>
             <th scope="col" className="px-6 py-3">No Telepon</th>
@@ -21,7 +21,7 @@ export default function CourierApprovalTable() {
         </thead>
         <tbody>
           {Array(10).fill().map((_, index) => (
-            <tr key={index} className="bg-white border-b border-grey hover:bg-green-100">
+            <tr key={index} className="bg-white border-b border-grey hover:bg-blue-100">
               <td className="py-2 px-4 border-b">Nama Kurir {index + 1}</td>
               <td className="py-2 px-4 border-b">085765656{index}</td>
               <td className="py-2 px-4 border-b">Bandung, 12/08/198{index}</td>

@@ -7,7 +7,7 @@ export default function CustomTable() {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
     <Table className="w-full text-sm text-left rtl:text-right text-black dark:text-black">
-      <thead className="text-xs text-white uppercase bg-green-600 border-b border-green-400 dark:text-white">
+      <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#106EBE', borderBottom: '2px solid #106EBE' }}>
         <tr>
           <th scope="col" className="px-6 py-2 text-center">Foto</th>
           <th scope="col" className="px-6 py-3">Nama Pelanggan</th>
@@ -19,7 +19,7 @@ export default function CustomTable() {
       </thead>
       <tbody>
         {Array(10).fill().map((_, index) => (
-          <tr key={index} className="bg-white border-b border-grey hover:bg-green-100">
+          <tr key={index} className="bg-white border-b border-grey hover:bg-blue-100">
             <td className="py-2 px-4 border-b text-center">
               <input type="checkbox" className="mr-2" />
               <HiUser className="inline-block text-gray-600" size={40} />
