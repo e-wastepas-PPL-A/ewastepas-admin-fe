@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Sidebar } from "flowbite-react";
 import { SiDropbox } from "react-icons/si";
 import { FaBoxOpen } from "react-icons/fa";
-import { HiTruck, HiChip, HiCloud, HiArchive, HiCurrencyDollar, HiGift , HiUser, HiUserGroup, HiTrash, HiChevronDown, HiOutlineTrash } from "react-icons/hi";
+import { HiTruck, HiChip, HiCloud, HiArchive, HiCurrencyDollar, HiGift , HiUser, HiUserGroup, HiTrash, HiChevronDown, HiOutlineTrash, HiLogout, HiViewList } from "react-icons/hi";
 import Logo from "../assets/ewhale.svg"; 
 
 const customTheme = {
@@ -87,17 +87,44 @@ export default function CustomSidebar() {
               </Sidebar.Item>
             </Sidebar.ItemGroup>
           )}
-
-          {/* Item Permintaan Sampah dan Penjemputan Sampah */}
-          <Sidebar.Item href="/permintaan-sampah" icon={HiTrash} className="mt-2">
-            Permintaan Sampah
-          </Sidebar.Item>
-          <Sidebar.Item href="/daftar-penjemputan" icon={HiTruck} className="mt-2">
-            Daftar Penjemputan
-          </Sidebar.Item>
           <Sidebar.Item href="/dropbox" icon={FaBoxOpen} className="mt-2">
             Dropbox
           </Sidebar.Item>
+
+          {/* Dropdown for Permintaan Sampah and Daftar Penjemputan */}
+      <h2 className="text-lg font-semibold my-2">REQUEST</h2>
+      <Sidebar.Item
+        href="#"
+        icon={HiArchive}
+        onClick={() => toggleItem('permintaan')}
+        className="flex items-center justify-between"
+      >
+        <div className="flex items-center">
+          <span>E-Waste Data</span>
+          <HiChevronDown className={`ml-2 transition-transform ${openItems.permintaan ? 'rotate-180' : ''}`} />
+        </div>
+      </Sidebar.Item>
+      {openItems.permintaan && (
+        <Sidebar.ItemGroup className="pl-4">
+          <Sidebar.Item href="/permintaan-sampah" icon={HiTrash}>
+            Pick Up Request
+          </Sidebar.Item>
+          <Sidebar.Item href="/daftar-penjemputan" icon={HiTruck}>
+            Pick Up Reception
+          </Sidebar.Item>
+          <Sidebar.Item href="/total-waste-point" icon={HiCurrencyDollar}>
+            Total Waste & Point
+          </Sidebar.Item>
+          <Sidebar.Item href="/daftar-penjemputan" icon={HiViewList}>
+            Pick Up History
+          </Sidebar.Item>
+        </Sidebar.ItemGroup>
+      )}
+
+          {/* Log out Item */}
+      <Sidebar.Item href="/logout" icon={HiLogout} className="mt-2">
+        Log out
+      </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
