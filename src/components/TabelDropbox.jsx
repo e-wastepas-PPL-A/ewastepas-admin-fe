@@ -6,8 +6,9 @@ import { Table } from "flowbite-react";
 export default function CustomTable() {
   return (
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+
         <Table className="w-full text-sm text-left text-gray-900">
-          <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#106EBE', borderBottom: '2px solid #106EBE' }}>
+          <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
             <tr>
               <th scope="col" className="px-4 py-2">
                 <input type="checkbox" />
@@ -22,7 +23,7 @@ export default function CustomTable() {
           </thead>
           <tbody>
             {Array(10).fill().map((_, index) => (
-              <tr key={index} className="bg-white border-b hover:bg-blue-100">
+              <tr key={index} className="bg-white border-b hover:bg-green-100">
                 <td className="py-2 px-4 text-center">
                   <input type="checkbox" />
                 </td>
