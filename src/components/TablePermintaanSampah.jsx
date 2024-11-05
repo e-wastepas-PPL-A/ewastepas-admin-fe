@@ -14,37 +14,42 @@ export default function CustomTable() {
                 <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#106EBE', borderBottom: '2px solid #106EBE' }}>
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Nama Pelanggan
+                            ID
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Tanggal Permintaan
+                            Customer Name
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Jumlah Sampah
+                            Waste Total
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Status Permintaan
+                            Pick Up Location
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Aksi
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
+                            01
+                        </th>
+                        <td class="px-6 py-4 text-black">
                             Faqih Diddy
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            12 September 2024
                         </td>
                         <td class="px-6 py-4 text-black">
                             12
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Diproses
+                            Jl Ngawi No. 12
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            On Progress
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -53,18 +58,20 @@ export default function CustomTable() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            Daffa Skibidi
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            12 September 2024
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
                             12
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Diproses
+                            Jl Ngawi No. 12
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            On Progress
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -73,18 +80,20 @@ export default function CustomTable() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            Muhammad Ambarozi
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            12 September 2024
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
                             12
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Diproses
+                            Jl Ngawi No. 12
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            On Progress
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -93,18 +102,20 @@ export default function CustomTable() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            Syahnan Gyatt
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            12 September 2024
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
                             12
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Diproses
+                            Jl Ngawi No. 12
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            On Progress
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -113,18 +124,20 @@ export default function CustomTable() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            Barra Alkhasyani Permana
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            12 September 2024
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
                             12
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Diproses
+                            Jl Ngawi No. 12
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            On Progress
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -133,18 +146,20 @@ export default function CustomTable() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            Adnan Rizz Purnomo
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            12 September 2024
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
                             12
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Diproses
+                            Jl Ngawi No. 12
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            On Progress
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -153,18 +168,20 @@ export default function CustomTable() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            Gilman Raja Mewing
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            12 September 2024
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
                             12
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Diproses
+                            Jl Ngawi No. 12
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            On Progress
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -173,18 +190,20 @@ export default function CustomTable() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            Raden Sugeng Mulyono
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            12 September 2024
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
                             12
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Diproses
+                            Jl Ngawi No. 12
                         </td>
-                       
+                        <td class="px-6 py-4 text-black">
+                            On Progress
+                        </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />
@@ -193,58 +212,20 @@ export default function CustomTable() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            Kipli
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            12 September 2024
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
                             12
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Diproses
-                        </td>
-                       
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            Fufufafa
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            12 September 2024
+                            Jl Ngawi No. 12
                         </td>
                         <td class="px-6 py-4 text-black">
-                            12
+                            On Progress
                         </td>
-                        <td class="px-6 py-4 text-black">
-                            Diproses
-                        </td>
-                       
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            John Doe
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            12 September 2024
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            Diproses
-                        </td>
-                       
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
                                 <HiEye className="w-5 h-5" />

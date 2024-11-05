@@ -6,7 +6,7 @@ import { HiBell, HiEye } from "react-icons/hi";
 import CustomPopUp from "../components/PopUpPermintaanSampah";
 import { useState } from "react";
 
-export default function CustomTableKurir() {
+export default function TableTWP() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -17,16 +17,10 @@ export default function CustomTableKurir() {
                             ID
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Courier Name
+                            Customer Name
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Pick Up Location
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Phone Number
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
+                            Total Point
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -36,19 +30,13 @@ export default function CustomTableKurir() {
                 <tbody>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            Ambarozi
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
+                            12
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
@@ -58,19 +46,13 @@ export default function CustomTableKurir() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            Ambarozi
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
+                            12
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
@@ -80,19 +62,13 @@ export default function CustomTableKurir() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            Ambarozi
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
+                            12
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
@@ -102,19 +78,13 @@ export default function CustomTableKurir() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            Ambarozi
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
+                            12
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
@@ -124,19 +94,13 @@ export default function CustomTableKurir() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            Ambarozi
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
+                            12
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
@@ -146,19 +110,13 @@ export default function CustomTableKurir() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            Ambarozi
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
+                            12
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
@@ -168,19 +126,13 @@ export default function CustomTableKurir() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            Ambarozi
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
+                            12
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
@@ -190,19 +142,13 @@ export default function CustomTableKurir() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            Ambarozi
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
+                            12
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
@@ -212,19 +158,13 @@ export default function CustomTableKurir() {
                     </tr>
                     <tr class="bg-white border-b border-grey hover:bg-blue-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
+                            01
                         </th>
                         <td class="px-6 py-4 text-black">
-                            Ambarozi
+                            Faqih Diddy
                         </td>
                         <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
+                            12
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>

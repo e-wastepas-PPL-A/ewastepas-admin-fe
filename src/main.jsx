@@ -9,6 +9,7 @@ import DaftarPenjemputan from './pages/DaftarPenjemputan.jsx'
 import KonversiPoin from './pages/KonversiPoin.jsx'
 import JenisKategori from './pages/JenisKategoriPage.jsx'
 import Dropbox from './pages/DropboxPage.jsx'
+import TotalWastePoint from './pages/TotalWastePoint.jsx'
 import './style/index.css'
 
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/dropbox",
     element: <Dropbox />,
+  },
+  {
+    path: "/total-waste-point",
+    element: <TotalWastePoint />,
   }
 ]);
 
