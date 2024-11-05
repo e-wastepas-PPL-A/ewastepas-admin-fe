@@ -11,7 +11,7 @@ export default function TableTWP() {
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
-                <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#106EBE', borderBottom: '2px solid #106EBE' }}>
+                <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             ID
@@ -28,7 +28,7 @@ export default function TableTWP() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
+                    <tr class="bg-white border-b border-grey hover:bg-green-100">
                         <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
                             01
                         </th>
