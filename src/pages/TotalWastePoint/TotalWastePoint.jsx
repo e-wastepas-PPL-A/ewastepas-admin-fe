@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { Card } from "flowbite-react";
 import React from "react";
-import CustomSidebar from "../components/Sidebar";
-import CustomNavbar from "../components/Navbar";
-import CustomSearchbar from "../components/Searchbar";
-import TableTWP from "../components/TableTotalWastePoint";
-import { CardTWP } from "../components/CardTWP";
+import CustomSidebar from "../../components/ComponentsDashboard/Sidebar";
+import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
+import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
+import TableTWP from "../../components/TotalWastePoint/TableTotalWastePoint";
+import { CardTWP } from "../../components/CardTWP";
 
 
 // Sidebar component

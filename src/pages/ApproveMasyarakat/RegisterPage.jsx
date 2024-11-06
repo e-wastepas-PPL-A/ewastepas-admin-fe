@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { Card } from "flowbite-react";
 import React from "react";
-import CustomSidebar from "../components/Sidebar";
-import CustomNavbar from "../components/Navbar";
-import CustomSearchbar from "../components/Searchbar";
-import CustomTabelKonversiPoin from "../components/TableKonversiPoin"
+import CustomSidebar from "../../components/ComponentsDashboard/Sidebar.jsx";
+import CustomNavbar from "../../components/ComponentsDashboard/Navbar.jsx";
+import CustomTableMasyarakat from "../../components/ApproveMasyarakat/TableApproveMasyarakat.jsx";
+import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar.jsx";
+
 
 // Sidebar component
 export function Sidebar1() {
@@ -31,13 +32,14 @@ export function Navbar1() {
   );
 }
 
-  export default function KonversiPoin() {
-    useEffect(() => {
-      document.title = "E-Wastepas | Konversi Poin";
-    }, []);
-  
+
+export default function Register() {
+  useEffect(() => {
+    document.title = "E-Wastepas | Registrasi Masyarakat";
+  }, []);
+
     return (
-  
+
       <div className="bg-gray-100">
         <Navbar1 />
         <Sidebar1 />
@@ -63,7 +65,8 @@ export function Navbar1() {
             paddingRight: "20px",
           }}
         >
-          <h2 className="text-lg font-bold">Konversi Poin Sampah Elektronik</h2>
+          <h2 className="text-lg font-bold">Approval</h2>
+          <h1 className="text-lg font-bold">Registrasi Masyarakat</h1>
         </div>
 
           <Card
@@ -72,19 +75,12 @@ export function Navbar1() {
               height: "600px"
               }}
           >
-            {/* Button "Tambah Data" */}
-            <div className="flex justify-between items-center mb-2">
-              <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700">
-                Tambah Data
-              </button>
-            </div>
-
             <CustomSearchbar style={{ marginRight: "sm-7" }}/>
-            <CustomTabelKonversiPoin/> 
+            <CustomTableMasyarakat/> 
           </Card>
 
         </div>
 
       </div>
     );
-  }
+}

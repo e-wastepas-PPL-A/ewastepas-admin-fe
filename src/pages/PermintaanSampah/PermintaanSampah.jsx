@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Card } from "flowbite-react";
 import React from "react";
-import CustomSidebar from "../components/Sidebar";
-import CustomNavbar from "../components/Navbar";
-import CustomTable from "../components/TableDaftarPenjemputan";
-import CustomSearchbar from "../components/Searchbar";
+import CustomSidebar from "../../components/ComponentsDashboard/Sidebar";
+import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
+import CustomTable from "../../components/PermintaanSampah/TablePermintaanSampah";
+import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
 
 
 // Sidebar component
@@ -34,7 +34,7 @@ export function Navbar1() {
 
 export default function PageName() {
   useEffect(() => {
-    document.title = "E-Wastepas | Daftar Penjemputan";
+    document.title = "E-Wastepas | Permintaan Sampah";
   }, []);
 
 
@@ -50,9 +50,9 @@ export default function PageName() {
          padding: "20px",
          fontSize: "24px", 
          fontWeight: "bold" 
-         }}>Daftar Penjemputan</h1>
+         }}>Permintaan Sampah</h1>
 
-      {/* Konten utama Daftar Penjemputan */}
+      {/* Konten utama Permintaan Sampah */}
       <div className="content" 
         style={{ 
           marginLeft: "260px",

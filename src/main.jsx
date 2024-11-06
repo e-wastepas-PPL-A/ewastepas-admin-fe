@@ -2,14 +2,14 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App.jsx'
 import Dashboard from './pages/DashboardPage.jsx'
-import Register from './pages/RegisterPage.jsx'
-import RegisterKurir from './pages/RegisterKurirPage.jsx'
-import PermintaanSampah from './pages/PermintaanSampah.jsx'
-import DaftarPenjemputan from './pages/DaftarPenjemputan.jsx'
-import KonversiPoin from './pages/KonversiPoin.jsx'
-import JenisKategori from './pages/JenisKategoriPage.jsx'
-import Dropbox from './pages/DropboxPage.jsx'
-import TotalWastePoint from './pages/TotalWastePoint.jsx'
+import Register from './pages/ApproveMasyarakat/RegisterPage.jsx'
+import RegisterKurir from './pages/ApproveKurir/RegisterKurirPage.jsx'
+import PermintaanSampah from './pages/PermintaanSampah/PermintaanSampah.jsx'
+import DaftarPenjemputan from './pages/DaftarPenjemputan/DaftarPenjemputan.jsx'
+import KonversiPoin from './pages/KonversiPoin/KonversiPoin.jsx'
+import JenisKategori from './pages/Jenis&Kategori/JenisKategoriPage.jsx'
+import Dropbox from './pages/Dropbox/DropboxPage.jsx'
+import TotalWastePoint from './pages/TotalWastePoint/TotalWastePoint.jsx'
 import './style/index.css'
 
 const router = createBrowserRouter([

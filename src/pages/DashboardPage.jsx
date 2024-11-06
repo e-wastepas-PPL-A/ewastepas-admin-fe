@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import React from "react";
-import CustomSidebar from "../components/Sidebar";
-import CustomNavbar from "../components/Navbar";
+import CustomSidebar from "../components/ComponentsDashboard/Sidebar";
+import CustomNavbar from "../components/ComponentsDashboard/Navbar";
 
 // Sidebar component
 export function Sidebar1() {

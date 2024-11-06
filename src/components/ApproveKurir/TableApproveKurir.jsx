@@ -2,8 +2,24 @@
 
 import { HiCheck, HiX } from "react-icons/hi";
 import { Table } from "flowbite-react";
+import { useState } from "react";
+import CustomPopUp from "./PopUpApprovalKurir";
+import CUstomPopUpReject from "./PopUpRejectKurir";
 
 export default function CourierApprovalTable() {
+  const [modalType, setModalType] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleApprovalClick = () => {
+    setModalType("approval");
+    setIsModalOpen(true);
+  };
+
+  const handleRejectClick = () => {
+    setModalType("reject");
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <Table className="w-full text-sm text-left rtl:text-right text-black dark:text-black">
@@ -37,12 +53,14 @@ export default function CourierApprovalTable() {
                 <button
                   className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-700"
                   title="Ceklis (Approval)"
+                  onClick={handleApprovalClick}
                 >
                   <HiCheck size={20} />
                 </button>
                 <button
                   className="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700 ml-2"
                   title="Silang (Reject)"
+                  onClick={handleRejectClick}
                 >
                   <HiX size={20} />
                 </button>
@@ -51,6 +69,8 @@ export default function CourierApprovalTable() {
           ))}
         </tbody>
       </Table>
+      {isModalOpen && modalType === "approval" && <CustomPopUp onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && modalType === "reject" && <CUstomPopUpReject onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 }
