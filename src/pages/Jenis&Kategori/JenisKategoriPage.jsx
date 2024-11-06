@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { Card } from "flowbite-react";
 import React from "react";
-import CustomSidebar from "../components/Sidebar";
-import CustomNavbar from "../components/Navbar";
-import CustomSearchbar from "../components/Searchbar";
-import CustomTabelDropbox from "../components/TabelDropbox"
+import CustomSidebar from "../../components/ComponentsDashboard/Sidebar";
+import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
+import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
+import CustomTabelJenisKategori from "../../components/Jenis&Kategori/TabelJenisKategori"
+
 
 // Sidebar component
 export function Sidebar1() {
@@ -31,9 +32,9 @@ export function Sidebar1() {
     );
   }
   
-    export default function Dropbox() {
+    export default function JenisKategori() {
       useEffect(() => {
-        document.title = "E-Wastepas | Dropbox";
+        document.title = "E-Wastepas | Jenis & Kategori";
       }, []);
     
       return (
@@ -63,7 +64,7 @@ export function Sidebar1() {
               paddingRight: "20px",
             }}
           >
-            <h2 className="text-lg font-bold">Dropbox</h2>
+            <h2 className="text-lg font-bold">Sampah Elektronik yang dapat dijemput</h2>
           </div>
   
             <Card
@@ -80,7 +81,7 @@ export function Sidebar1() {
               </div>
   
               <CustomSearchbar style={{ marginRight: "sm-7" }}/>
-              <CustomTabelDropbox/> 
+              <CustomTabelJenisKategori/> 
             </Card>
   
           </div>

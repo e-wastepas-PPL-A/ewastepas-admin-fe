@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { Card } from "flowbite-react";
 import React from "react";
-import CustomSidebar from "../components/Sidebar";
-import CustomNavbar from "../components/Navbar";
-import CustomSearchbar from "../components/Searchbar";
-import CustomTabelJenisKategori from "../components/TabelJenisKategori"
-
+import CustomSidebar from "../../components/ComponentsDashboard/Sidebar.jsx";
+import CustomNavbar from "../../components/ComponentsDashboard/Navbar.jsx";
+import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar.jsx";
+import CustomTabelKurir from "../../components/ApproveKurir/TableApproveKurir.jsx"
 
 // Sidebar component
 export function Sidebar1() {
@@ -31,14 +30,14 @@ export function Sidebar1() {
       </div>
     );
   }
+
+  export default function RegisterKurir() {
+    useEffect(() => {
+      document.title = "E-Wastepas | Registrasi Kurir";
+    }, []);
   
-    export default function JenisKategori() {
-      useEffect(() => {
-        document.title = "E-Wastepas | Jenis & Kategori";
-      }, []);
-    
       return (
-    
+  
         <div className="bg-gray-100">
           <Navbar1 />
           <Sidebar1 />
@@ -64,7 +63,8 @@ export function Sidebar1() {
               paddingRight: "20px",
             }}
           >
-            <h2 className="text-lg font-bold">Sampah Elektronik yang dapat dijemput</h2>
+            <h2 className="text-lg font-bold">Approval</h2>
+            <h1 className="text-lg font-bold">Registrasi Kurir</h1>
           </div>
   
             <Card
@@ -73,19 +73,12 @@ export function Sidebar1() {
                 height: "600px"
                 }}
             >
-              {/* Button "Tambah Data" */}
-              <div className="flex justify-between items-center mb-2">
-                <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700">
-                  Tambah Data
-                </button>
-              </div>
-  
               <CustomSearchbar style={{ marginRight: "sm-7" }}/>
-              <CustomTabelJenisKategori/> 
+              <CustomTabelKurir/> 
             </Card>
   
           </div>
   
         </div>
       );
-    }
+  }

@@ -3,7 +3,7 @@
 
 import { Table } from "flowbite-react";
 import { HiBell, HiEye } from "react-icons/hi";
-import CustomPopUp from "../components/PopUpPermintaanSampah";
+import CustomPopUp from "./PopUpPermintaanSampah";
 import { useState } from "react";
 
 export default function CustomTable() {

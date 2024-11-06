@@ -5,7 +5,7 @@ import { Sidebar } from "flowbite-react";
 import { SiDropbox } from "react-icons/si";
 import { FaBoxOpen } from "react-icons/fa";
 import { HiTruck, HiChip, HiCloud, HiArchive, HiCurrencyDollar, HiGift , HiUser, HiUserGroup, HiTrash, HiChevronDown, HiOutlineTrash, HiLogout, HiViewList } from "react-icons/hi";
-import Logo from "../assets/ewhale.svg"; 
+import Logo from "../../assets/ewhale.svg";
 
 const customTheme = {
   root: {
