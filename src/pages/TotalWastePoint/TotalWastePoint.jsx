@@ -5,7 +5,7 @@ import CustomSidebar from "../../components/ComponentsDashboard/Sidebar";
 import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
 import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
 import TableTWP from "../../components/TotalWastePoint/TableTotalWastePoint";
-import { CardTWP } from "../../components/CardTWP";
+import { CardTWP } from "../../components/TotalWastePoint/CardTWP";
 
 
 // Sidebar component
@@ -51,7 +51,7 @@ export default function PageName() {
             padding: "20px",
             fontSize: "24px", 
             fontWeight: "bold" 
-            }}>Permintaan Sampah</h1>
+            }}>Total Waste & Point</h1>
 
         {/* Konten utama Permintaan Sampah */}
         <div className="content" 

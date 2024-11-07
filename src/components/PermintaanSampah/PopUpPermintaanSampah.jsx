@@ -1,7 +1,8 @@
 "use client";
 
 import { Button, Modal, Select } from "flowbite-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function CustomPopUp({ onClose }) {
   const [openModal, setOpenModal] = useState(true);

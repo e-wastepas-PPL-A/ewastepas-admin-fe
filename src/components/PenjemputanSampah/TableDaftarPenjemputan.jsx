@@ -4,10 +4,25 @@
 import { Table } from "flowbite-react";
 import { HiBell, HiEye } from "react-icons/hi";
 import CustomPopUp from "../PermintaanSampah/PopUpPermintaanSampah";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function CustomTableKurir() {
+    const [pickups, setPickups] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+        axios.get("http://34.16.66.175:8031/api/dashboard/pickup/courier")
+            .then(response => {
+                if (response.data.success) {
+                    setPickups(response.data.data.pickups.data);
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching pickup data:", error);
+            });
+    }, []);
+
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
@@ -34,204 +49,30 @@ export default function CustomTableKurir() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b border-grey hover:bg-green-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            Ambarozi
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            Ambarozi
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            Ambarozi
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            Ambarozi
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            Ambarozi
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            Ambarozi
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            Ambarozi
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            Ambarozi
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b border-grey hover:bg-blue-100">
-                        <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                            0101
-                        </th>
-                        <td class="px-6 py-4 text-black">
-                            Ambarozi
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            Jl Ngawi No. 12
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            081234567890
-                        </td>
-                        <td class="px-6 py-4 text-black">
-                            On Progress
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
-                                <HiEye className="w-5 h-5" />
-                            </a>
-                        </td>
-                    </tr>
+                    {pickups.map(pickup => (
+                        <tr class="bg-white border-b border-grey hover:bg-green-100" key={pickup.pickup_id}>
+                            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
+                                {pickup.pickup_id}
+                            </th>
+                            <td class="px-6 py-4 text-black">
+                                {pickup.courier.name}
+                            </td>
+                            <td class="px-6 py-4 text-black">
+                                {pickup.courier.address}
+                            </td>
+                            <td class="px-6 py-4 text-black">
+                                {pickup.courier.phone}
+                            </td>
+                            <td class="px-6 py-4 text-black">
+                                {pickup.courier.status}
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
+                                    <HiEye className="w-5 h-5" />
+                                </a>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
             {isModalOpen && <CustomPopUp onClose={() => setIsModalOpen(false)} />}
