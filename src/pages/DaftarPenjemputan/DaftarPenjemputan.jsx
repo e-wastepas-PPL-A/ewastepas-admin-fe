@@ -50,7 +50,7 @@ export default function PageName() {
          padding: "20px",
          fontSize: "24px", 
          fontWeight: "bold" 
-         }}>Daftar Penjemputan</h1>
+         }}>Pick Up Reception</h1>
 
       {/* Konten utama Daftar Penjemputan */}
       <div className="content" 

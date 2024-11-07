@@ -50,7 +50,7 @@ export default function PageName() {
          padding: "20px",
          fontSize: "24px", 
          fontWeight: "bold" 
-         }}>Permintaan Sampah</h1>
+         }}>Pick Up Request</h1>
 
       {/* Konten utama Permintaan Sampah */}
       <div className="content" 
