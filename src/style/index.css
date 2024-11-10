@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Untuk layar lebih besar dari 1600px */
+@media (min-width: 1600px) {
+    .table-container {
+      max-width: 90%; /* Sesuaikan lebar tabel agar tidak terlalu besar pada layar besar */
+      margin: 0 auto;  /* Menambahkan margin otomatis untuk memusatkan tabel */
+    }
+  }
+  
+  /* Untuk layar antara 1200px hingga 1600px */
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    .table-container {
+      max-width: 95%; /* Menyesuaikan lebar tabel pada layar medium */
+      margin: 0 auto;
+    }
+  }
+  
+  /* Untuk layar lebih kecil dari 1200px */
+  @media (max-width: 1200px) {
+    .table-container {
+      width: 100%; /* Memastikan tabel mengisi penuh layar pada layar kecil */
+      margin: 0 auto;
+    }
+  }
+
+  .table-container {
+    margin-left: 20px; /* Menambahkan jarak dari sisi kiri */
+    margin-right: 20px; /* Menambahkan jarak dari sisi kanan */
+  }
