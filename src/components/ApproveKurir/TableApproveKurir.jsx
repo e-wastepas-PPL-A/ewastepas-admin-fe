@@ -1,9 +1,9 @@
-import { HiCheck, HiX } from "react-icons/hi";
+import { HiUser, HiCheck, HiX } from "react-icons/hi";
 import { Table } from "flowbite-react";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import CustomPopUp from "./PopUpApprovalKurir";
 import CustomPopUpReject from "./PopUpRejectKurir";
+import axios from "axios";
 
 function ImageModal({ url, onClose }) {
   return (
@@ -17,23 +17,38 @@ function ImageModal({ url, onClose }) {
 }
 
 export default function CourierApprovalTable() {
-  const [couriers, setCouriers] = useState([]);
   const [modalType, setModalType] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dataKurir, setDataKurir] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("")
+  const itemsPerPage = 10;
+
+  const fetchDataKurir = async (page = 1) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get(`http://34.16.66.175:8031/api/courier/?page=${page}`);
+      if (response.data.success) {
+        setDataKurir(response.data.data.Courier.data);
+        setTotalPages(Math.ceil(response.data.data.Courier.total / itemsPerPage));
+      } else {
+        console.error("Gagal mengambil data kurir:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Terjadi kesalahan saat mengambil data kurir:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    axios.get("http://34.16.66.175:8031/api/courier")
-      .then(response => {
-        if (response.data.success) {
-          setCouriers(response.data.data.Courier.data);
-        }
-      })
-      .catch(error => {
-        console.error("Error fetching courier data:", error);
-      });
-  }, []);
+    fetchDataKurir(currentPage);
+  }, [currentPage]);
+
+  const currentData = dataKurir;
 
   const handleApprovalClick = () => {
     setModalType("approval");
@@ -48,6 +63,18 @@ export default function CourierApprovalTable() {
   const handleViewImageClick = (url) => {
     setImageUrl(url);
     setIsImageModalOpen(true);
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
   };
 
   return (
@@ -66,49 +93,75 @@ export default function CourierApprovalTable() {
           </tr>
         </thead>
         <tbody>
-          {couriers.map((courier) => (
-            <tr key={courier.courier_id} className="bg-white border-b border-grey hover:bg-green-100">
-              <td className="py-2 px-4 border-b">{courier.name}</td>
-              <td className="py-2 px-4 border-b">{courier.phone}</td>
-              <td className="py-2 px-4 border-b">{courier.date_of_birth}</td>
-              <td className="py-2 px-4 border-b">{courier.address}</td>
-              <td className="py-2 px-4 border-b">{courier.account_number}</td>
-              <td className="py-2 px-4 border-b text-center">
-                <button 
-                onClick={() => handleViewImageClick("https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E")}
-                className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                >
-                  View
-                </button>
-              </td>
-              <td className="py-2 px-4 border-b text-center">
-                <button 
-                onClick={() => handleViewImageClick("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR39Hw5ygS0El6mYpFLBqQjUkkbCgTTdIE1yA&s")}
-                className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                >
-                  View
-                </button>
-              </td>
-              <td className="py-2 px-4 border-b text-center flex items-center justify-center">
-                <button
-                  className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-700"
-                  title="Ceklis (Approval)"
-                  onClick={handleApprovalClick}
-                >
-                  <HiCheck size={20} />
-                </button>
-                <button
-                  className="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700 ml-2"
-                  title="Silang (Reject)"
-                  onClick={handleRejectClick}
-                >
-                  <HiX size={20} />
-                </button>
-              </td>
+          {isLoading ? (
+            <tr>
+              <td colSpan="8" className="text-center py-4">Loading...</td>
             </tr>
-          ))}
+          ) : (
+            currentData.map((courier) => (
+              <tr key={courier.courier_id} className="bg-white border-b border-grey hover:bg-green-100">
+                <td className="py-2 px-4 border-b">{courier.name}</td>
+                <td className="py-2 px-4 border-b">{courier.phone}</td>
+                <td className="py-2 px-4 border-b">{courier.date_of_birth}</td>
+                <td className="py-2 px-4 border-b">{courier.address}</td>
+                <td className="py-2 px-4 border-b">{courier.account_number}</td>
+                <td className="py-2 px-4 border-b text-center">
+                  <button 
+                    onClick={() => handleViewImageClick("https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E")}
+                    className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                  >
+                    View
+                  </button>
+                </td>
+                <td className="py-2 px-4 border-b text-center">
+                  <button 
+                    onClick={() => handleViewImageClick("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR39Hw5ygS0El6mYpFLBqQjUkkbCgTTdIE1yA&s")}
+                    className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                  >
+                    View
+                  </button>
+                </td>
+                <td className="py-2 px-4 border-b text-center flex items-center justify-center">
+                  <button
+                    className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-700"
+                    title="Ceklis (Approval)"
+                    onClick={handleApprovalClick}
+                  >
+                    <HiCheck size={20} />
+                  </button>
+                  <button
+                    className="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700 ml-2"
+                    title="Silang (Reject)"
+                    onClick={handleRejectClick}
+                  >
+                    <HiX size={20} />
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </Table>
+
+      {/* Tombol Pagination */}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={goToPreviousPage}
+          disabled={currentPage === 1}
+          className="px-4 py-2 mx-1 bg-gray-300 text-gray-700 rounded disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <span className="px-4 py-2 mx-1">{`Page ${currentPage} of ${totalPages}`}</span>
+        <button
+          onClick={goToNextPage}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 mx-1 bg-gray-300 text-gray-700 rounded disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
+
       {isModalOpen && modalType === "approval" && <CustomPopUp onClose={() => setIsModalOpen(false)} />}
       {isModalOpen && modalType === "reject" && <CustomPopUpReject onClose={() => setIsModalOpen(false)} />}
       {isImageModalOpen && <ImageModal url={imageUrl} onClose={() => setIsImageModalOpen(false)} />}

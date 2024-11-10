@@ -75,6 +75,13 @@ export default function Register() {
               height: "600px"
               }}
           >
+          
+            <div className="table-container" style={{
+              width: "100%",
+              maxWidth: "100%",
+              margin: "0 auto", 
+              overflowX: "auto",
+            }}></div>
             <CustomSearchbar style={{ marginRight: "sm-7" }}/>
             <CustomTableMasyarakat/> 
           </Card>
