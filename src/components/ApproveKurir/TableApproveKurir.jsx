@@ -4,60 +4,17 @@ import { useState, useEffect, useRef } from "react";
 import CustomPopUp from "./PopUpApprovalKurir";
 import CustomPopUpReject from "./PopUpRejectKurir";
 import axios from "axios";
-import { PageTop, PageBottom, PageBreak } from "@fileforge/react-print";
-import { compile } from "@fileforge/react-print";
-
 
 function ImageModal({ url, onClose }) {
-  const componentRef = useRef();
-
-  const handlePrint = async () => {
-    try {
-      const html = await compile(<Document imageUrl={url} />);
-      const printWindow = window.open('', '', 'height=600,width=800');
-      printWindow.document.write(html);
-      printWindow.document.close();
-      printWindow.print();
-    } catch (error) {
-      console.error("Error generating PDF:", error);
-    }
-  };
-
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-4 rounded-lg shadow-lg max-w-lg w-full">
         <button onClick={onClose} className="text-red-500 float-right">X</button>
-        <img src={url} alt="KTP/KK" className="w-full h-auto mb-4" />
-        <button
-          onClick={handlePrint}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Cetak PDF
-        </button>
+        <img src={url} alt="KTP/KK" className="w-full h-auto" />
       </div>
     </div>
   );
 }
-
-// Document component for PDF generation
-const Document = ({ imageUrl }) => {
-  return (
-    <div>
-      <PageTop>
-        <span>Document Title: Courier Image</span>
-      </PageTop>
-      <div className="text-center">
-        <h2>Image of Courier Document</h2>
-        <img src={imageUrl} alt="Courier Document" className="w-full h-auto mb-4" />
-      </div>
-      <PageBreak />
-      <div className="text-gray-400 text-sm">This is a PDF generated from the courier document.</div>
-      <PageBottom>
-        <div className="text-center text-sm">End of Document</div>
-      </PageBottom>
-    </div>
-  );
-};
 
 export default function CourierApprovalTable() {
   const [modalType, setModalType] = useState(null);
