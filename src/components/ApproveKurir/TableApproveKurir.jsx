@@ -1,20 +1,63 @@
 import { HiUser, HiCheck, HiX } from "react-icons/hi";
 import { Table } from "flowbite-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import CustomPopUp from "./PopUpApprovalKurir";
 import CustomPopUpReject from "./PopUpRejectKurir";
 import axios from "axios";
+import { PageTop, PageBottom, PageBreak } from "@fileforge/react-print";
+import { compile } from "@fileforge/react-print";
+
 
 function ImageModal({ url, onClose }) {
+  const componentRef = useRef();
+
+  const handlePrint = async () => {
+    try {
+      const html = await compile(<Document imageUrl={url} />);
+      const printWindow = window.open('', '', 'height=600,width=800');
+      printWindow.document.write(html);
+      printWindow.document.close();
+      printWindow.print();
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    }
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-4 rounded-lg shadow-lg max-w-lg w-full">
         <button onClick={onClose} className="text-red-500 float-right">X</button>
-        <img src={url} alt="KTP/KK" className="w-full h-auto" />
+        <img src={url} alt="KTP/KK" className="w-full h-auto mb-4" />
+        <button
+          onClick={handlePrint}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Cetak PDF
+        </button>
       </div>
     </div>
   );
 }
+
+// Document component for PDF generation
+const Document = ({ imageUrl }) => {
+  return (
+    <div>
+      <PageTop>
+        <span>Document Title: Courier Image</span>
+      </PageTop>
+      <div className="text-center">
+        <h2>Image of Courier Document</h2>
+        <img src={imageUrl} alt="Courier Document" className="w-full h-auto mb-4" />
+      </div>
+      <PageBreak />
+      <div className="text-gray-400 text-sm">This is a PDF generated from the courier document.</div>
+      <PageBottom>
+        <div className="text-center text-sm">End of Document</div>
+      </PageBottom>
+    </div>
+  );
+};
 
 export default function CourierApprovalTable() {
   const [modalType, setModalType] = useState(null);
@@ -24,7 +67,7 @@ export default function CourierApprovalTable() {
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [imageUrl, setImageUrl] = useState("")
+  const [imageUrl, setImageUrl] = useState("");
   const itemsPerPage = 10;
 
   const fetchDataKurir = async (page = 1) => {
@@ -48,8 +91,6 @@ export default function CourierApprovalTable() {
     fetchDataKurir(currentPage);
   }, [currentPage]);
 
-  const currentData = dataKurir;
-
   const handleApprovalClick = () => {
     setModalType("approval");
     setIsModalOpen(true);
@@ -63,18 +104,6 @@ export default function CourierApprovalTable() {
   const handleViewImageClick = (url) => {
     setImageUrl(url);
     setIsImageModalOpen(true);
-  };
-
-  const goToNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const goToPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
   };
 
   return (
@@ -98,7 +127,7 @@ export default function CourierApprovalTable() {
               <td colSpan="8" className="text-center py-4">Loading...</td>
             </tr>
           ) : (
-            currentData.map((courier) => (
+            dataKurir.map((courier) => (
               <tr key={courier.courier_id} className="bg-white border-b border-grey hover:bg-green-100">
                 <td className="py-2 px-4 border-b">{courier.name}</td>
                 <td className="py-2 px-4 border-b">{courier.phone}</td>
@@ -107,7 +136,7 @@ export default function CourierApprovalTable() {
                 <td className="py-2 px-4 border-b">{courier.account_number}</td>
                 <td className="py-2 px-4 border-b text-center">
                   <button 
-                    onClick={() => handleViewImageClick("https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E")}
+                    onClick={() => handleViewImageClick("https://example.com/kk-image-url")}
                     className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
                   >
                     View
@@ -115,7 +144,7 @@ export default function CourierApprovalTable() {
                 </td>
                 <td className="py-2 px-4 border-b text-center">
                   <button 
-                    onClick={() => handleViewImageClick("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR39Hw5ygS0El6mYpFLBqQjUkkbCgTTdIE1yA&s")}
+                    onClick={() => handleViewImageClick("https://example.com/ktp-image-url")}
                     className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
                   >
                     View
@@ -143,10 +172,9 @@ export default function CourierApprovalTable() {
         </tbody>
       </Table>
 
-      {/* Tombol Pagination */}
       <div className="flex justify-center mt-4">
         <button
-          onClick={goToPreviousPage}
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
           className="px-4 py-2 mx-1 bg-gray-300 text-gray-700 rounded disabled:opacity-50"
         >
@@ -154,7 +182,7 @@ export default function CourierApprovalTable() {
         </button>
         <span className="px-4 py-2 mx-1">{`Page ${currentPage} of ${totalPages}`}</span>
         <button
-          onClick={goToNextPage}
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
           className="px-4 py-2 mx-1 bg-gray-300 text-gray-700 rounded disabled:opacity-50"
         >
