@@ -2,6 +2,7 @@
 
 import { Button, Modal, Select } from "flowbite-react";
 import { useState, useEffect } from "react";
+import { HiChat, HiEye, HiLocationMarker, HiPhone } from "react-icons/hi";
 import axios from "axios";
 
 export default function CustomPopUp({ onClose }) {
@@ -20,69 +21,156 @@ export default function CustomPopUp({ onClose }) {
         position={modalPlacement}
         onClose={handleClose}
       >
-        <Modal.Header>Detail Penjemputan Sampah</Modal.Header>
+        <Modal.Header>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
+                <img src="https://via.placeholder.com/32" alt="Profile" className="w-full h-full object-cover" />
+              </div>
+              <span className="text-xl font-bold">Faqih</span>
+            </div>
+          </div>
+        </Modal.Header>
+
         <Modal.Body>
-          <div className="space-y-6 p-6">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Nama Customer: <span className="font-bold text-black">Rusdi Skibidi Ohio</span>
-            </p>
+          <div className="border-b border-gray-200 pb-4 mb-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <span className="text-xl font-bold">#1</span>
+              </div>
+              <button className="bg-green-500 text-white px-4 py-2 rounded-md">Accepted</button>
+            </div>
+          </div>
 
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                No Telp: <span className="font-bold text-black">08123456789</span>
-            </p>
+          <div className="space-y-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="font-bold">Phone Number</p>
+                <p>0812343567</p>
+              </div>
+              <div>
+                <p className="font-bold">Category</p>
+                <p>Electronic</p>
+              </div>
+              <div>
+                <p className="font-bold">Purchase Date</p>
+                <p>20/10/2024</p>
+              </div>
+              <div>
+                <p className="font-bold">Quantity</p>
+                <p>5</p>
+              </div>
+              <div>
+                <p className="font-bold">Address</p>
+                <p>Jl. Ngawi no 111</p>
+              </div>
+              <div>
+                <p className="font-bold">Destination</p>
+                <p>Dropbox Setiabudhi</p>
+              </div>
+            </div>
 
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Tanggal Permintaan: <span className="font-bold text-black">12 September 2024</span>
-            </p>
+            <div className="border-t border-gray-200 pt-4 mt-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <span className="text-xl font-bold mr-2">John</span>
+                  <p>(Driver)</p>
+                </div>
+                <div>
+                  <button className="bg-green-500 text-white px-4 py-2 rounded-md mr-2">
+                    <HiPhone className="w-5 h-5" />
+                  </button>
+                  <button className="bg-green-500 text-white px-4 py-2 rounded-md">
+                    <HiChat className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <p>08123456789</p>
+              </div>
+            </div>
 
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Nama Sampah: <span className="font-bold text-black">Acer Aspire E-15</span>
-            </p>
+            <div className="mt-4">
+              <div className="bg-[#005B96] text-white py-2 px-4">
+                <p className="font-bold">DESCRIPTION</p>
+              </div>
+            </div>
 
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Jenis Sampah: <span className="font-bold text-black">Laptop / PC</span>
-            </p>
+            <div className="mt-4">
+              <div className="flex items-center justify-between mt-4">
+                <div className="flex items-center">
+                  <div className="mr-4">
+                    <img src="monitor.png" alt="" className="w-20 h-20" />
+                  </div>
+                  <div>
+                    <p className="font-bold">Handphone</p>
+                    <p className="text-sm">Qty: 2</p>
+                  </div>
+                </div>
+                <button className="bg-green-500 text-white px-4 py-2 rounded-md">
+                  <span className="font-bold">20 Point</span>
+                </button>
+              </div>              
+              <div className="flex items-center justify-between mt-4">
+                <div className="flex items-center">
+                  <div className="mr-4">
+                    <img src="monitor.png" alt="" className="w-20 h-20" />
+                  </div>
+                  <div>
+                    <p className="font-bold">Monitor</p>
+                    <p className="text-sm">Qty: 2</p>
+                  </div>
+                </div>
+                <button className="bg-green-500 text-white px-4 py-2 rounded-md">
+                  <span className="font-bold">20 Point</span>
+                </button>
+              </div>
 
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Jumlah Sampah: <span className="font-bold text-black">1 pcs</span>
-            </p>
+              <div className="border-t border-gray-200 pt-4 mt-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <span className="text-xl font-bold mr-2">Total Points</span>
+                  </div>
+                  <div>
+                    <button className="bg-green-500 text-white px-4 py-2 rounded-md">
+                      <span className="font-bold">40 Point</span>
+                    </button>
+                  </div>
+                </div>
+              </div>      
 
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Berat Sampah: <span className="font-bold text-black">2 kg</span>
-            </p>
+              <div className="border-t border-gray-200 pt-4 mt-4">
+              </div>   
 
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Point: <span className="font-bold text-black">5 Point</span>
-            </p>
+              <div className="mt-4">
+                <div className="bg-[#005B96] text-white py-2 px-4">
+                  <p className="font-bold">TRACKING</p>
+                </div>
+              </div>      
 
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Total Point: <span className="font-bold text-black">25 Point</span>
-            </p>
-
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Nama Kurir: <span className="font-bold text-black">Rusdi Ambatron</span>
-            </p>
-
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                No Telp Kurir: <span className="font-bold text-black">08123456789</span>
-            </p>
-
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Alamat Jemput: <span className="font-bold text-black">Jl. Jomokerto No. 1</span>
-            </p>
-
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Alamat Dropbox: <span className="font-bold text-black">TPA</span>
-            </p>
-
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                Status: <span className="font-bold text-black">Diproses</span>
-            </p>
-
-
+              <div class="flex items-center p-4">
+                <button className="bg-[#005B96] text-white px-4 py-2 rounded-md mr-5">
+                  <HiLocationMarker className="w-5 h-5" />
+                </button>
+                <div>
+                  <p class="font-bold">Courier to the location</p>
+                  <p>Waiting for Pickup</p>
+                </div>
+              </div>
+              <div class="flex items-center p-4">
+                <button className="bg-[#005B96] text-white px-4 py-2 rounded-md mr-5">
+                  <HiLocationMarker className="w-5 h-5" />
+                </button>
+                <div>
+                  <p class="font-bold">In Delivery</p>
+                  <p>On the way</p>
+                </div>
+              </div>
+            </div>
           </div>
         </Modal.Body>
       </Modal>
+
     </>
   );
 }
