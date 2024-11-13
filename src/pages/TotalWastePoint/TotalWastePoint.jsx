@@ -64,16 +64,22 @@ export default function PageName() {
                 justifyContent: "center", 
                 alignItems: "center" 
             }}>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <CardTWP />
-                <Card style={{ width: "1200px", height: "600px", marginTop: "20px" }}>
+
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <CardTWP />
+            <div className="mt-8">
+              <Card style={{ width: "1200px", height: "600px" }}>
+                <div className="flex flex-col h-full">
+                  <div className="mt-4 ml-4">
                     <CustomSearchbar style={{ marginRight: "sm-7" }} />
+                  </div>
+                  <div className="flex-grow overflow-auto">
                     <TableTWP />
-                </Card>
+                  </div>
+                </div>
+              </Card>
             </div>
-
-
-
+          </div>
         </div>
     </div>
   );
