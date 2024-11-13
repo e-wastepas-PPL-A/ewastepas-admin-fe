@@ -64,13 +64,15 @@ export default function PageName() {
           alignItems: "center" 
         }}>
 
-        <Card
-          style={{ 
-            width: "1300px",
-            height: "600px"
-            }}>
-          <CustomSearchbar style={{ marginRight: "sm-7" }}/>
-          <CustomTable /> 
+        <Card style={{ width: "1300px", height: "600px" }}>
+          <div className="flex flex-col h-full">
+            <div className="mt-4 ml-4">
+              <CustomSearchbar style={{ marginRight: "sm-7" }} />
+            </div>
+            <div className="flex-grow overflow-auto">
+              <CustomTable />
+            </div>
+          </div>
         </Card>
 
       </div>

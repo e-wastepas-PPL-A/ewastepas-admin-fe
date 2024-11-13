@@ -2,7 +2,7 @@
 
 import { Label, TextInput } from "flowbite-react";
 import { HiSearch } from "react-icons/hi";
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function CustomSearchbar() {
   const [entries, setEntries] = useState(10);
