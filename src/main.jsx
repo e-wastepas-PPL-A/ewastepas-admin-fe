@@ -10,6 +10,7 @@ import KonversiPoin from './pages/KonversiPoin/KonversiPoin.jsx'
 import JenisKategori from './pages/Jenis&Kategori/JenisKategoriPage.jsx'
 import Dropbox from './pages/Dropbox/DropboxPage.jsx'
 import TotalWastePoint from './pages/TotalWastePoint/TotalWastePoint.jsx'
+import DetailPoint from './pages/DetailPoint/DetailPoint.jsx'
 import './style/index.css'
 
 const router = createBrowserRouter([
@@ -51,6 +52,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/total-waste-point",
+    element: <TotalWastePoint />,
+  },
+  {
+    path: "/detail-point/:pickup_id",
+    element: <DetailPoint />,
+  },
+  {
+    path: "/back-to-point",
     element: <TotalWastePoint />,
   }
 ]);
