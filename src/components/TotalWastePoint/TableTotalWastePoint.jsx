@@ -44,23 +44,46 @@ export default function TableTWP() {
                 <tbody>
                     {pickups.map(pickup => (
                         <tr className="bg-white border-b border-grey hover:bg-green-100" key={pickup.pickup_id}>
-                            <th scope="row" className="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                                {pickup.pickup_id}
-                            </th>
-                            <td className="px-6 py-4 text-black">
-                                {pickup.name} {/* Accessing customer name directly */}
+                            <td>
+                                <a 
+                                    href={`/detail-point/${pickup.pickup_id}`} 
+                                    className="block px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black"
+                                >
+                                    {pickup.pickup_id}
+                                </a>
                             </td>
                             <td className="px-6 py-4 text-black">
-                                {pickup.pickup_detail.length > 0 ? pickup.pickup_detail[0].points : 0} {/* Accessing points from pickup_detail */}
+                                <a 
+                                    href={`/detail-point/${pickup.pickup_id}`} 
+                                    className="block text-black"
+                                >
+                                    {pickup.name} {/* Accessing customer name directly */}
+                                </a>
+                            </td>
+                            <td className="px-6 py-4 text-black">
+                                <a 
+                                    href={`/detail-point/${pickup.pickup_id}`} 
+                                    className="block text-black"
+                                >
+                                    {pickup.pickup_detail.length > 0 ? pickup.pickup_detail[0].points : 0} {/* Accessing points from pickup_detail */}
+                                </a>
                             </td>
                             <td className="px-6 py-4">
-                                <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
+                                <a 
+                                    href="#" 
+                                    className="font-medium text-black hover:underline" 
+                                    onClick={(e) => { 
+                                        e.stopPropagation(); // Prevent link navigation
+                                        setIsModalOpen(true); // Open modal
+                                    }}
+                                >
                                     <HiEye className="w-5 h-5" />
                                 </a>
                             </td>
                         </tr>
                     ))}
                 </tbody>
+
             </table>
             {isModalOpen && <CustomPopUp onClose={() => setIsModalOpen(false)} />}
         </div>
