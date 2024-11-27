@@ -37,8 +37,8 @@ export default function CustomPopUp({ onClose }) {
             <div className="flex justify-between">
               <button
                 onClick={handleCloseConfirmation}
-                className="flex items-center px-4 py-2 rounded-md font-semibold"
-                style={{ color: '#005B96', border: '0.5px solid #989898' }}
+                className="flex items-center text-white px-4 py-2 rounded-md font-semibold"
+                style={{ backgroundColor: '#E72929'}}
               >
                 Tidak
               </button>

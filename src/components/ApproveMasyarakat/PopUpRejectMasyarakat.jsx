@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Modal } from "flowbite-react";
-import StickerImage from '../../assets/Sticker.png'; // Sesuaikan path sesuai dengan struktur direktori Anda
+import StickerReject from '../../assets/StickerReject.png';
 
 export default function CustomPopUp({ onClose }) {
   const [openConfirmationModal, setOpenConfirmationModal] = useState(true);
@@ -35,10 +35,10 @@ export default function CustomPopUp({ onClose }) {
               Apakah Anda yakin ingin menolak masyarakat ini?
             </p>
             <div className="flex justify-between">
-              <button
+            <button
                 onClick={handleCloseConfirmation}
-                className="flex items-center px-4 py-2 rounded-md font-semibold"
-                style={{ color: '#005B96', border: '0.5px solid #989898' }}
+                className="flex items-center text-white px-4 py-2 rounded-md font-semibold"
+                style={{ backgroundColor: '#E72929'}}
               >
                 Tidak
               </button>
@@ -61,7 +61,7 @@ export default function CustomPopUp({ onClose }) {
             <div className="flex flex-col items-center p-6 text-center">
               {/* Gambar "Berhasil Menolak" */}
               <div className="mb-4">
-                <img src={StickerImage} alt="Berhasil" className="w-16 h-16" /> {/* Sesuaikan ukuran jika diperlukan */}
+                <img src={StickerReject} alt="Berhasil" className="w-16 h-16" /> {/* Sesuaikan ukuran jika diperlukan */}
               </div>
               <h2 className="text-lg font-semibold text-red-700 mb-2">Berhasil Menolak</h2>
               <p className="text-gray-600 mb-6">Anda telah menolak masyarakat ini</p>
