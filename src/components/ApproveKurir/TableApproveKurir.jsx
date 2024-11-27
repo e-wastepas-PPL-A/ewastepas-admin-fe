@@ -1,16 +1,32 @@
-import { HiUser, HiCheck, HiX } from "react-icons/hi";
+import { HiUser, HiCheck, HiX, HiEye } from "react-icons/hi";
 import { Table } from "flowbite-react";
 import { useState, useEffect } from "react";
 import CustomPopUp from "./PopUpApprovalKurir";
+import { Modal, Button } from "flowbite-react";
 import CustomPopUpReject from "./PopUpRejectKurir";
 import axios from "axios";
 
 function ImageModal({ url, onClose }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-4 rounded-lg shadow-lg max-w-lg w-full">
-        <button onClick={onClose} className="text-red-500 float-right">X</button>
-        <img src={url} alt="KTP/KK" className="w-full h-auto" />
+      <div className="bg-white rounded-lg shadow-lg max-w-lg w-full">
+        <div className="flex justify-between items-center p-4 border-b">
+          <h2 className="text-lg font-bold">Kartu Keluarga</h2>
+          <button onClick={onClose} className="text-gray-500 hover:text-red-500">
+            ✕
+          </button>
+        </div>
+        <div className="p-4">
+          <img src={url} alt="KTP/KK" className="w-full h-auto rounded-md" />
+        </div>
+        <div className="flex justify-end p-4 border-t">
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            onClick={() => alert("Fitur Cetak PDF belum diimplementasikan.")}
+          >
+            Cetak PDF
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -18,13 +34,14 @@ function ImageModal({ url, onClose }) {
 
 export default function CourierApprovalTable() {
   const [modalType, setModalType] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [dataKurir, setDataKurir] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState("")
+  const [modalHeader, setModalHeader] = useState("");
   const itemsPerPage = 10;
 
   const fetchDataKurir = async (page = 1) => {
@@ -60,7 +77,8 @@ export default function CourierApprovalTable() {
     setIsModalOpen(true);
   };
 
-  const handleViewImageClick = (url) => {
+  const handleViewImageClick = (type, url) => {
+    setModalHeader(type);
     setImageUrl(url);
     setIsImageModalOpen(true);
   };
@@ -75,6 +93,10 @@ export default function CourierApprovalTable() {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -107,18 +129,18 @@ export default function CourierApprovalTable() {
                 <td className="py-2 px-4 border-b">{courier.account_number}</td>
                 <td className="py-2 px-4 border-b text-center">
                   <button 
-                    onClick={() => handleViewImageClick("https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E")}
-                    className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                    onClick={() => handleViewImageClick("Kartu Keluarga", courier.kk_url ||"https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E")}
+                    className="text-blue-500 hover:text-blue-600 p-0 m-0 bg-transparent border-none"
                   >
-                    View
+                     <HiEye size={24} />
                   </button>
                 </td>
                 <td className="py-2 px-4 border-b text-center">
                   <button 
-                    onClick={() => handleViewImageClick("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR39Hw5ygS0El6mYpFLBqQjUkkbCgTTdIE1yA&s")}
-                    className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                    onClick={() => handleViewImageClick("KTP", courier.ktp_url || "https://c4.wallpaperflare.com/wallpaper/224/829/129/digital-digital-art-artwork-illustration-simple-hd-wallpaper-preview.jpg")}
+                    className="text-blue-500 hover:text-blue-600 p-0 m-0 bg-transparent border-none"
                   >
-                    View
+                     <HiEye size={24} />
                   </button>
                 </td>
                 <td className="py-2 px-4 border-b text-center flex items-center justify-center">
@@ -164,7 +186,30 @@ export default function CourierApprovalTable() {
 
       {isModalOpen && modalType === "approval" && <CustomPopUp onClose={() => setIsModalOpen(false)} />}
       {isModalOpen && modalType === "reject" && <CustomPopUpReject onClose={() => setIsModalOpen(false)} />}
-      {isImageModalOpen && <ImageModal url={imageUrl} onClose={() => setIsImageModalOpen(false)} />}
+      {isImageModalOpen && (
+        <Modal show={ImageModal} onClose={() => setIsImageModalOpen(false)}>
+          <Modal.Header>{modalHeader}</Modal.Header>
+          <Modal.Body>
+            <img
+              src={imageUrl}
+              alt={modalHeader}
+              className="w-full h-auto rounded-lg"
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <div className="flex p-4 border-t">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                onClick={() => alert("Fitur Cetak PDF belum diimplementasikan.")}
+              >
+                Cetak PDF
+              </button>
+            </div>
+            {/* <Button onClick={onClose={() => setIsImageModalOpen(false)}}>Close</Button> */}
+          </Modal.Footer>
+        </Modal>
+      )}
+      {/* {isImageModalOpen && <ImageModal url={imageUrl} onClose={() => setIsImageModalOpen(false)} />} */}
     </div>
   );
 }
