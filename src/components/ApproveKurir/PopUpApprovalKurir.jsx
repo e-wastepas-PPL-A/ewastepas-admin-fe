@@ -2,21 +2,45 @@
 
 import { useState } from "react";
 import { Modal } from "flowbite-react";
-import { FaCheck, FaTimes } from "react-icons/fa";
-import StickerImage from '../../assets/Sticker.png'; // Pastikan path sesuai
+import StickerImage from '../../assets/Sticker.png';
+import axios from "axios";
 
-export default function ApproveKurirPopUp({ onClose }) {
+export default function ApproveKurirPopUp({ onClose, courierId, onSuccess }) {
   const [openConfirmationModal, setOpenConfirmationModal] = useState(true);
   const [openApproveSuccessModal, setOpenApproveSuccessModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCloseConfirmation = () => {
     setOpenConfirmationModal(false);
     onClose();
   };
 
-  const handleApprove = () => {
-    setOpenConfirmationModal(false);
-    setOpenApproveSuccessModal(true);
+  const handleApprove = async () => {
+    setIsLoading(true);
+    try {
+      // const updateData = {
+      //   status: "Approved", 
+      // };
+
+      const formData = new FormData();
+      formData.append("status", "Approved");
+
+      const response = await axios.post(`http://127.0.0.1:8000/api/courier/update-status/${courierId}`, formData);
+      if (response.data.success) {
+        // Tutup modal konfirmasi dan buka modal sukses
+        setOpenConfirmationModal(false);
+        setOpenApproveSuccessModal(true);
+        // Callback untuk memperbarui data
+        onSuccess();
+      } else {
+        alert("Gagal menyetujui data kurir: " + response.data.message);
+      }
+    } catch (error) {
+      console.error("Terjadi kesalahan saat mengirim permintaan approval:", error);
+      alert("Terjadi kesalahan saat menyetujui data kurir.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleCloseApproveSuccess = () => {
@@ -39,16 +63,18 @@ export default function ApproveKurirPopUp({ onClose }) {
                 onClick={handleCloseConfirmation}
                 className="flex items-center text-white px-4 py-2 rounded-md font-semibold"
                 style={{ backgroundColor: '#E72929'}}
-
               >
                 Tidak
               </button>
               <button
                 onClick={handleApprove}
-                className="flex items-center text-white px-4 py-2 rounded-md font-semibold"
-                style={{ backgroundColor: '#005B96' }}
+                className={`flex items-center text-white px-4 py-2 rounded-md font-semibold ${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                style={{ backgroundColor: "#005B96" }}
+                disabled={isLoading}
               >
-                Ya
+                {isLoading ? "Loading..." : "Ya"}
               </button>
             </div>
           </Modal.Body>

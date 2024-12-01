@@ -13,15 +13,20 @@ export default function CustomTable() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedMasyarakatId, setSelectedMasyarakatId] = useState(null);
   const itemsPerPage = 10;
 
   const fetchDataMasyarakat = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://34.16.66.175:8031/api/community/?page=${page}`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/community/?page=${page}`);
       if (response.data.success) {
-        setDataMasyarakat(response.data.data.Community.data);
-        setTotalPages(Math.ceil(response.data.data.Community.total / itemsPerPage)); // Update total pages based on API response
+        // Ubah objek Community menjadi array
+        const communityData = response.data.data.Community.data;
+        // const formattedData = Object.values(communityData); // Konversi objek ke array
+  
+        setDataMasyarakat(communityData);
+        setTotalPages(Math.ceil(response.data.data.Community.total / itemsPerPage)); // Sesuaikan jika ada informasi total
       } else {
         console.error("Gagal mengambil data masyarakat:", response.data.message);
       }
@@ -31,17 +36,23 @@ export default function CustomTable() {
       setIsLoading(false);
     }
   };
+  
 
   useEffect(() => {
-    fetchDataMasyarakat(currentPage); // Fetch data when page changes
+    fetchDataMasyarakat(currentPage);
   }, [currentPage]);
 
   // Mendapatkan data yang akan ditampilkan pada halaman saat ini
   const currentData = dataMasyarakat;
 
-  const handleApprovalClick = () => {
+  const handleApprovalClick = (masyarakatId) => {
     setModalType("approval");
     setIsModalOpen(true);
+    setSelectedMasyarakatId(masyarakatId);
+  };
+
+  const fetchUpdatedData = () => {
+    fetchDataMasyarakat(currentPage);
   };
 
   const handleRejectClick = () => {
@@ -85,7 +96,7 @@ export default function CustomTable() {
                 <td className="py-2 px-4 border-b text-center">
                   <input type="checkbox" className="mr-2" />
                   {masyarakat.photo ? (
-                    <img src={masyarakat.photo} alt="Foto" className="w-10 h-10 rounded-full inline-block" />
+                    <img src={masyarakat.photo ||"https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E"} alt="Foto" className="w-10 h-10 rounded-full inline-block" />
                   ) : (
                     <HiUser className="inline-block text-gray-600" size={40} />
                   )}
@@ -100,7 +111,7 @@ export default function CustomTable() {
                   <button
                     className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-700"
                     title="Ceklis (Approval)"
-                    onClick={handleApprovalClick}
+                    onClick={() => handleApprovalClick(masyarakat.Community_id)}
                   >
                     <HiCheck size={20} />
                   </button>
@@ -137,7 +148,13 @@ export default function CustomTable() {
         </button>
       </div>
 
-      {isModalOpen && modalType === "approval" && <CustomPopUp onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && modalType === "approval" && (
+      <CustomPopUp
+        onClose={() => setIsModalOpen(false)}
+        masyarakatId={selectedMasyarakatId}
+        onSuccess={fetchUpdatedData}
+      />
+      )}
       {isModalOpen && modalType === "reject" && <CustomPopUpReject onClose={() => setIsModalOpen(false)} />}
     </div>
   );

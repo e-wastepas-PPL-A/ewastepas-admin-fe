@@ -34,14 +34,14 @@ export default function CustomSidebar() {
   }, []);
 
   return (
-    <Sidebar aria-label="Sidebar dengan logo" className="bg-white" theme={customTheme}>
-      <Sidebar.Logo href="#">
-        <img src={Logo} alt="E-WHALE Logo" className="w-32 h-24" />
-      </Sidebar.Logo>
+    <Sidebar aria-label="Sidebar dengan logo" className="flex-1 overflow-y-auto" theme={customTheme} style={{ backgroundColor: '#005B96'}}>
+      <div className="bg-white py-[27.5px]">
+        <img src={Logo} alt="E-WHALE Logo" className="mx-auto" />
+      </div>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
           {/* Title REGISTRASI */}
-          <h2 className="text-lg font-semibold my-2">REGISTRASI</h2>
+          <h2 className="text-lg font-semibold my-2 text-white">REGISTRASI</h2>
           <Sidebar.Item
             href="#"
             icon={HiUser}
@@ -49,23 +49,23 @@ export default function CustomSidebar() {
             className="flex items-center justify-between"
           >
             <div className="flex items-center">
-              <span>Approval Registrasi</span>
-              <HiChevronDown className={`ml-2 transition-transform ${openItems.approval ? 'rotate-180' : ''}`} />
+              <span className="text-white">Approval Registrasi</span>
+              <HiChevronDown style={{ color: '#FFFFFF'}} className={`ml-2 transition-transform ${openItems.approval ? 'rotate-180' : ''}`} />
             </div>
           </Sidebar.Item>
           {openItems.approval && (
             <Sidebar.ItemGroup className="pl-4">
-              <Sidebar.Item href="/register-masyarakat" icon={HiUserGroup}>
+              <Sidebar.Item className="text-white" href="/register-masyarakat" icon={HiUserGroup}>
                 Registrasi Masyarakat
               </Sidebar.Item>
-              <Sidebar.Item href="/register-kurir" icon={HiTruck}>
+              <Sidebar.Item className="text-white" href="/register-kurir" icon={HiTruck}>
                 Registrasi Kurir
               </Sidebar.Item>
             </Sidebar.ItemGroup>
           )}
 
           {/* Title DATAMASTER */}
-          <h2 className="text-lg font-semibold my-2">DATAMASTER</h2>
+          <h2 className="text-lg font-semibold my-2 text-white">DATAMASTER</h2>
           <Sidebar.Item
             href="#"
             icon={HiOutlineTrash}
@@ -73,26 +73,26 @@ export default function CustomSidebar() {
             className="flex items-center justify-between"
           >
             <div className="flex items-center">
-              <span>E-waste</span>
-              <HiChevronDown className={`ml-2 transition-transform ${openItems.ewaste ? 'rotate-180' : ''}`} />
+              <span className="text-white">E-waste</span>
+              <HiChevronDown style={{ color: '#FFFFFF'}} className={`ml-2 transition-transform ${openItems.ewaste ? 'rotate-180' : ''}`} />
             </div>
           </Sidebar.Item>
           {openItems.ewaste && (
             <Sidebar.ItemGroup className="pl-4">
-              <Sidebar.Item href="/jenis-kategori" icon={HiChip}>
+              <Sidebar.Item className="text-white" href="/jenis-kategori" icon={HiChip}>
                 Jenis & Kategori
               </Sidebar.Item>
-              <Sidebar.Item href="/konversi-poin" icon={HiCurrencyDollar}>
+              <Sidebar.Item className="text-white" href="/konversi-poin" icon={HiCurrencyDollar}>
                 Konversi Poin
               </Sidebar.Item>
             </Sidebar.ItemGroup>
           )}
-          <Sidebar.Item href="/dropbox" icon={FaBoxOpen} className="mt-2">
+          <Sidebar.Item href="/dropbox" icon={FaBoxOpen} className="text-white mt-2">
             Dropbox
           </Sidebar.Item>
 
           {/* Dropdown for Permintaan Sampah and Daftar Penjemputan */}
-      <h2 className="text-lg font-semibold my-2">REQUEST</h2>
+      <h2 className="text-lg font-semibold my-2 text-white">REQUEST</h2>
       <Sidebar.Item
         href="#"
         icon={HiArchive}
@@ -100,31 +100,31 @@ export default function CustomSidebar() {
         className="flex items-center justify-between"
       >
         <div className="flex items-center">
-          <span>E-Waste Data</span>
-          <HiChevronDown className={`ml-2 transition-transform ${openItems.permintaan ? 'rotate-180' : ''}`} />
+          <span className="text-white">E-Waste Data</span>
+          <HiChevronDown style={{ color: '#FFFFFF'}} className={`ml-2 transition-transform ${openItems.permintaan ? 'rotate-180' : ''}`} />
         </div>
       </Sidebar.Item>
       {openItems.permintaan && (
         <Sidebar.ItemGroup className="pl-4">
-          <Sidebar.Item href="/permintaan-sampah" icon={HiTrash}>
+          <Sidebar.Item className="text-white" href="/permintaan-sampah" icon={HiTrash}>
             Pick Up Request
           </Sidebar.Item>
-          <Sidebar.Item href="/daftar-penjemputan" icon={HiTruck}>
+          <Sidebar.Item className="text-white" href="/daftar-penjemputan" icon={HiTruck}>
             Pick Up Reception
           </Sidebar.Item>
-          <Sidebar.Item href="/total-waste-point" icon={HiCurrencyDollar}>
+          <Sidebar.Item className="text-white" href="/total-waste-point" icon={HiCurrencyDollar}>
             Total Waste & Point
           </Sidebar.Item>
-          <Sidebar.Item href="/daftar-penjemputan" icon={HiViewList}>
+          <Sidebar.Item className="text-white" href="/daftar-penjemputan" icon={HiViewList}>
             Pick Up History
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       )}
 
           {/* Log out Item */}
-      <Sidebar.Item href="/logout" icon={HiLogout} className="mt-2">
+      {/* <Sidebar.Item href="/logout" icon={HiLogout} className="mt-2">
         Log out
-      </Sidebar.Item>
+      </Sidebar.Item> */}
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
