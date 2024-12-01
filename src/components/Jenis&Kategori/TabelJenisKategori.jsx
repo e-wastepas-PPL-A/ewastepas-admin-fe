@@ -1,9 +1,48 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { HiPencil, HiTrash } from "react-icons/hi";
 import { Table } from "flowbite-react";
+import axios from "axios";
 
 export default function CustomTable() {
+
+  const [wastes, setWastes] = useState([]);
+  const [categories, setCategories] = useState({});
+
+  useEffect(() => {
+    const fetchListWaste = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/waste");
+        const wasteData = response.data.data.waste.data;
+
+        // Fetch categories for each waste type
+        const categoryPromises = wasteData.map(async (waste) => {
+          if (waste.waste_type_id) {
+            const categoryResponse = await axios.get(
+              `http://127.0.0.1:8000/api/waste_type/${waste.waste_type_id}`
+            );
+            return { id: waste.waste_type_id, name: categoryResponse.data.data.waste_type_name };
+          }
+          return { id: waste.waste_type_id, name: "Unknown" };
+        });
+
+        const categoryData = await Promise.all(categoryPromises);
+        const categoryMap = categoryData.reduce((acc, category) => {
+          acc[category.id] = category.name;
+          return acc;
+        }, {});
+
+        setCategories(categoryMap);
+        setWastes(wasteData);
+      } catch (error) {
+        console.error("Error fetching waste data:", error);
+      }
+    };
+
+    fetchListWaste();
+  }, []);
+
   return (
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <Table className="w-full text-sm text-left text-gray-900">
@@ -14,27 +53,27 @@ export default function CustomTable() {
               </th>
               <th scope="col" className="px-6 py-3">Jenis Sampah Elektronik</th>
               <th scope="col" className="px-6 py-3">Kategori Sampah Elektronik</th>
-              <th scope="col" className="px-6 py-3 text-center">Action</th>
+              <th scope="col" className="px-6 py-3 text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
-            {Array(10).fill().map((_, index) => (
+            {wastes.map((waste, index) => (
               <tr key={index} className="bg-white border-b hover:bg-green-100">
                 <td className="py-2 px-4 text-center">
                   <input type="checkbox" />
                 </td>
-                <td className="py-2 px-4">Jenis Sampah</td>
-                <td className="py-2 px-4">Kategori</td>
+                <td className="py-2 px-4">{waste.waste_name}</td>
+                <td className="py-2 px-4">{categories[waste.waste_type_id] || "Loading..."}</td>
                 <td className="py-2 px-4 text-center flex items-center justify-center space-x-2">
                   <button
                     className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-700"
-                    title="Approve"
+                    title="Add"
                   >
                     <HiPencil size={20} />
                   </button>
                   <button
                     className="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700"
-                    title="Reject"
+                    title="Delete"
                   >
                     <HiTrash size={20} />
                   </button>

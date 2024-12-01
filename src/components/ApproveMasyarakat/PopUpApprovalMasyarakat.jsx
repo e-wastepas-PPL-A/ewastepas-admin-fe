@@ -3,20 +3,41 @@
 import { useState } from "react";
 import { Modal } from "flowbite-react";
 import StickerImage from "../../assets/Sticker.png"; // Pastikan path ini sesuai dengan struktur folder Anda
+import axios from "axios";
 
-export default function CustomPopUp({ onClose }) {
+export default function CustomPopUp({ onClose, masyarakatId, onSuccess }) {
   const [openConfirmationModal, setOpenConfirmationModal] = useState(true);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCloseConfirmation = () => {
     setOpenConfirmationModal(false);
     onClose();
   };
 
-  const handleApprove = () => {
-    // Tutup modal konfirmasi dan buka modal "Berhasil"
-    setOpenConfirmationModal(false);
-    setOpenSuccessModal(true);
+  const handleApprove = async () => {
+    setIsLoading(true);
+    try {
+      const updateData = {
+        is_verified: 1,
+      };
+
+      const response = await axios.post(`http://127.0.0.1:8000/api/community/update-status/${masyarakatId}`, updateData);
+      if (response.data.success) {
+        // Tutup modal konfirmasi dan buka modal sukses
+        setOpenConfirmationModal(false);
+        setOpenSuccessModal(true);
+        // Callback untuk memperbarui data
+        onSuccess();
+      } else {
+        alert("Gagal menyetujui data masyarakat: " + response.data.message);
+      }
+    } catch (error) {
+      console.error("Terjadi kesalahan saat mengirim permintaan approval:", error);
+      alert("Terjadi kesalahan saat menyetujui masyarakat.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleCloseSuccess = () => {
@@ -44,10 +65,13 @@ export default function CustomPopUp({ onClose }) {
               </button>
               <button
                 onClick={handleApprove}
-                className="flex items-center text-white px-4 py-2 rounded-md font-semibold"
-                style={{ backgroundColor: '#005B96' }}
+                className={`flex items-center text-white px-4 py-2 rounded-md font-semibold ${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                style={{ backgroundColor: "#005B96" }}
+                disabled={isLoading}
               >
-                Ya
+                {isLoading ? "Loading..." : "Ya"}
               </button>
             </div>
           </Modal.Body>

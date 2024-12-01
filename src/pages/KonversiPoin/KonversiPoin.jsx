@@ -6,31 +6,6 @@ import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
 import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
 import CustomTabelKonversiPoin from "../../components/KonversiPoin/TableKonversiPoin"
 
-// Sidebar component
-export function Sidebar1() {
-  return (
-    <div className="Sidebar" style={{
-      position: "fixed", 
-      left: 0, 
-      top: 0, 
-      width: "260px", 
-      height: "100vh", 
-      backgroundColor: "#f8f9fa" 
-    }}>
-      <CustomSidebar />
-    </div>
-  );
-}
-
-// Navbar component
-export function Navbar1() {
-  return (
-    <div style={{ position: "fixed", top: 0, left: "260px", right: 0, height: "60px", backgroundColor: "#343a40", color: "#fff" }}>
-      <CustomNavbar />
-    </div>
-  );
-}
-
   export default function KonversiPoin() {
     useEffect(() => {
       document.title = "E-Wastepas | Konversi Poin";
@@ -38,29 +13,32 @@ export function Navbar1() {
   
     return (
   
-      <div className="bg-gray-100">
-        <Navbar1 />
-        <Sidebar1 />
+      <div 
+        className="flex w-full"
+        style={{
+          position: "fixed", 
+          left: 0, 
+          top: 0, 
+          width: "260px", 
+          height: "100vh", 
+          backgroundColor: "#f8f9fa",
+          overflowY: "auto"
+        }}
+      >
+        <CustomSidebar />
 
-        <div className="content" 
-          style={{ 
-            marginLeft: "260px",
-            marginTop: "60px",
-            padding: "20px", 
-            minHeight: "calc(100vh - 60px)", 
-            display: "flex", 
-            justifyContent: "center", 
-            alignItems: "center" ,
-            flexDirection: "column"
-          }}
+        <div 
+          className="flex-1"
+          style={{ position: "fixed", top: 0, left: "260px", right: 0, height: "60px" }}
         >
-
+          <CustomNavbar/>
         <div
           className="flex justify-between items-center w-full"
           style={{
             marginBottom: "20px",
             paddingLeft: "20px",
             paddingRight: "20px",
+            paddingTop: "20px"
           }}
         >
           <h2 className="text-lg font-bold">Konversi Poin Sampah Elektronik</h2>
@@ -68,19 +46,24 @@ export function Navbar1() {
 
           <Card
             style={{ 
-              width: "1300px",
+              width: "1335px",
               height: "600px"
               }}
           >
-            {/* Button "Tambah Data" */}
+
+            <div className="flex flex-col h-full">
             <div className="flex justify-between items-center mb-2">
               <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700">
                 Tambah Data
               </button>
             </div>
-
-            <CustomSearchbar style={{ marginRight: "sm-7" }}/>
-            <CustomTabelKonversiPoin/> 
+              <div className="mt-4 ml-4">
+                <CustomSearchbar style={{ marginRight: "sm-7" }} />
+              </div>
+              <div className="flex-grow overflow-auto">
+                <CustomTabelKonversiPoin/> 
+              </div>
+            </div>
           </Card>
 
         </div>

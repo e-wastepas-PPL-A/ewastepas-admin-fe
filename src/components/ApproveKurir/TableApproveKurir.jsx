@@ -42,14 +42,18 @@ export default function CourierApprovalTable() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState("")
   const [modalHeader, setModalHeader] = useState("");
+  const [selectedCourierId, setSelectedCourierId] = useState(null);
   const itemsPerPage = 10;
 
   const fetchDataKurir = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://34.16.66.175:8031/api/courier/?page=${page}`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/courier/?page=${page}`);
       if (response.data.success) {
-        setDataKurir(response.data.data.Courier.data);
+        const courierData = response.data.data.Courier.data;
+        // const formattedData = Object.values(courierData); // Konversi objek ke array
+        
+        setDataKurir(courierData);
         setTotalPages(Math.ceil(response.data.data.Courier.total / itemsPerPage));
       } else {
         console.error("Gagal mengambil data kurir:", response.data.message);
@@ -67,9 +71,14 @@ export default function CourierApprovalTable() {
 
   const currentData = dataKurir;
 
-  const handleApprovalClick = () => {
+  const handleApprovalClick = (courierId) => {
     setModalType("approval");
     setIsModalOpen(true);
+    setSelectedCourierId(courierId)
+  };
+
+  const fetchUpdatedData = () => {
+    fetchDataKurir(currentPage);
   };
 
   const handleRejectClick = () => {
@@ -147,7 +156,7 @@ export default function CourierApprovalTable() {
                   <button
                     className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-700"
                     title="Ceklis (Approval)"
-                    onClick={handleApprovalClick}
+                    onClick={() => handleApprovalClick(courier.courier_id)}
                   >
                     <HiCheck size={20} />
                   </button>
@@ -184,7 +193,13 @@ export default function CourierApprovalTable() {
         </button>
       </div>
 
-      {isModalOpen && modalType === "approval" && <CustomPopUp onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && modalType === "approval" && (
+      <CustomPopUp
+        onClose={() => setIsModalOpen(false)}
+        courierId={selectedCourierId}
+        onSuccess={fetchUpdatedData}
+      />
+      )}
       {isModalOpen && modalType === "reject" && <CustomPopUpReject onClose={() => setIsModalOpen(false)} />}
       {isImageModalOpen && (
         <Modal show={ImageModal} onClose={() => setIsImageModalOpen(false)}>

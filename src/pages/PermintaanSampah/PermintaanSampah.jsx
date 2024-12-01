@@ -6,32 +6,6 @@ import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
 import CustomTable from "../../components/PermintaanSampah/TablePermintaanSampah";
 import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
 
-
-// Sidebar component
-export function Sidebar1() {
-  return (
-    <div className="Sidebar" style={{
-      position: "fixed", 
-      left: 0, 
-      top: 0, 
-      width: "260px", 
-      height: "100vh", 
-      backgroundColor: "#f8f9fa" 
-    }}>
-      <CustomSidebar />
-    </div>
-  );
-}
-
-// Navbar component
-export function Navbar1() {
-  return (
-    <div style={{ position: "fixed", top: 0, left: "260px", right: 0, height: "60px", backgroundColor: "#343a40", color: "#fff" }}>
-      <CustomNavbar />
-    </div>
-  );
-}
-
 export default function PageName() {
   useEffect(() => {
     document.title = "E-Wastepas | Permintaan Sampah";
@@ -39,32 +13,44 @@ export default function PageName() {
 
 
   return (
-    <div className="bg-gray-100">
-      <Navbar1 />
-      <Sidebar1 />
+    <div 
+      className="flex w-full"
+      style={{
+        position: "fixed", 
+        left: 0, 
+        top: 0, 
+        width: "260px", 
+        height: "100vh", 
+        backgroundColor: "#f8f9fa",
+        overflowY: "auto"
+      }}
+    >
+      <CustomSidebar />
 
-      <h1 style={{
-         marginLeft: "1200px", 
-         marginTop: "60px", 
-         marginBottom: "-80px",
-         padding: "20px",
-         fontSize: "24px", 
-         fontWeight: "bold" 
-         }}>Pick Up Request</h1>
+      <div 
+        className="flex-1"
+        style={{ position: "fixed", top: 0, left: "260px", right: 0, height: "60px" }}
+      >
+        <CustomNavbar/>
 
-      {/* Konten utama Permintaan Sampah */}
-      <div className="content" 
-        style={{ 
-          marginLeft: "260px",
-          marginTop: "60px",
-          padding: "20px", 
-          minHeight: "calc(100vh - 60px)", 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center" 
-        }}>
+        <div
+           className="flex justify-between items-center w-full"
+           style={{
+             marginBottom: "20px",
+             paddingLeft: "20px",
+             paddingRight: "20px",
+             paddingTop: "20px"
+           }}
+        >
+          <h1 className="text-lg font-bold">Pick Up Request</h1>
+        </div>
 
-        <Card style={{ width: "1300px", height: "600px" }}>
+        <Card 
+          style={{ 
+            width: "1335px",
+            height: "600px",
+            }}
+        >
           <div className="flex flex-col h-full">
             <div className="mt-4 ml-4">
               <CustomSearchbar style={{ marginRight: "sm-7" }} />
@@ -74,8 +60,6 @@ export default function PageName() {
             </div>
           </div>
         </Card>
-
-
       </div>
     </div>
   );
