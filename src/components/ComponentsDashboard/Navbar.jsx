@@ -76,14 +76,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const CustomNavbar = () => {
-  // const [user, setUser] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState(false); // State for notification dropdown
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const userData = localStorage.getItem("users");
-  //   setUser(JSON.parse(userData));
-  // }, []);
 
   const handleLogout = () => {
     // Destroy the PHPSESSID cookie
@@ -107,11 +102,53 @@ const CustomNavbar = () => {
   return (
     <>
       <nav className="text-revamp-neutral-10 p-4 border-b border-revamp-neutral-10/20">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">   
           <div className="text-xl font-bold">
             {greetings()},{"Rusdi Sigma"}
           </div>
           <div className="flex items-center gap-3">
+            {/* Notification Dropdown */}
+            <div className="relative">
+              <button
+                className="inline-flex items-center p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700"
+                onClick={() => setNotificationOpen(!notificationOpen)}>
+                <span className="sr-only">Notifications</span>
+                <HiBell className="mr-2 h-5 w-5" />
+              </button>
+
+              <div
+                className={`${
+                  !notificationOpen && "hidden"
+                } transition-all duration-200 absolute end-0 z-10 mt-2 w-56 rounded-md border-1 border-revamp-neutral-8 bg-white shadow-lg`}
+                role="menu">
+                <div className="p-2">
+                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
+                    Order No. 1 is waiting for collection
+                    <p className="text-gray-500 text-sm mt-1 text-left">15 Minutes ago</p>
+                  </div>
+                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
+                    Order No. 2 is on its way
+                    <p className="text-gray-500 text-sm mt-1 text-left">15 Minutes ago</p>
+                  </div>
+                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
+                    Order No. 3 trash has been picked up
+                    <p className="text-gray-500 text-sm mt-1 text-left">15 Minutes ago</p>
+                  </div>
+                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
+                    Order No. 4 trash has been picked up
+                    <p className="text-gray-500 text-sm mt-1 text-left">15 Minutes ago</p>
+                  </div>
+                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
+                    Order No. 1 has been completed
+                    <p className="text-gray-500 text-sm mt-1 text-left">15 menit yang lalu</p>
+                  </div>
+                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
+                    See All
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* User button dropdown */}
             <div className="relative">
               <div
