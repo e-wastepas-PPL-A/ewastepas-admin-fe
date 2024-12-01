@@ -11,6 +11,7 @@ import JenisKategori from './pages/Jenis&Kategori/JenisKategoriPage.jsx'
 import Dropbox from './pages/Dropbox/DropboxPage.jsx'
 import TotalWastePoint from './pages/TotalWastePoint/TotalWastePoint.jsx'
 import DetailPoint from './pages/DetailPoint/DetailPoint.jsx'
+import RiwayatPenjemputan from './pages/RiwayatPenjemputan/RiwayatPenjemputan.jsx'
 import './style/index.css'
 
 const router = createBrowserRouter([
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
   {
     path: "/detail-point/:pickup_id",
     element: <DetailPoint />,
+  },
+  {
+    path: "/riwayat-penjemputan",
+    element: <RiwayatPenjemputan />,
   },
   {
     path: "/back-to-point",

@@ -9,7 +9,7 @@ import Logo from "../../assets/ewhale.svg";
 
 const customTheme = {
   root: {
-    inner: 'h-full overflow-y-auto overflow-x-hidden bg-white-1000 px-3 py-4'
+    inner: 'h-full overflow-y-auto overflow-x-hidden bg-white-1000'
   }
 };
 
@@ -34,11 +34,11 @@ export default function CustomSidebar() {
   }, []);
 
   return (
-    <Sidebar aria-label="Sidebar dengan logo" className="flex-1 overflow-y-auto" theme={customTheme} style={{ backgroundColor: '#005B96'}}>
-      <div className="bg-white py-[27.5px]">
-        <img src={Logo} alt="E-WHALE Logo" className="mx-auto" />
-      </div>
-      <Sidebar.Items>
+    <Sidebar aria-label="Sidebar with logo" className="flex-1 overflow-y-auto" theme={customTheme} style={{ backgroundColor: '#005B96' }}>
+    <div className="bg-white w-full h-[94px] flex items-center justify-center">
+      <img src={Logo} alt="E-WHALE Logo" className="max-h-[50px]" />
+    </div>
+      <Sidebar.Items className="px-3 py-4">
         <Sidebar.ItemGroup>
           {/* Title REGISTRASI */}
           <h2 className="text-lg font-semibold my-2 text-white">REGISTRASI</h2>
@@ -115,7 +115,7 @@ export default function CustomSidebar() {
           <Sidebar.Item className="text-white" href="/total-waste-point" icon={HiCurrencyDollar}>
             Total Waste & Point
           </Sidebar.Item>
-          <Sidebar.Item className="text-white" href="/daftar-penjemputan" icon={HiViewList}>
+          <Sidebar.Item className="text-white" href="/riwayat-penjemputan" icon={HiViewList}>
             Pick Up History
           </Sidebar.Item>
         </Sidebar.ItemGroup>

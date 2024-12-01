@@ -3,8 +3,9 @@ import { Card } from "flowbite-react";
 import React from "react";
 import CustomSidebar from "../../components/ComponentsDashboard/Sidebar";
 import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
-import CustomTable from "../../components/PenjemputanSampah/TableDaftarPenjemputan";
+import CustomTable from "../../components/RiwayatPenjemputan/TableRiwayatPenjemputan";
 import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
+import CustomTableRiwayat from "../../components/RiwayatPenjemputan/TableRiwayatPenjemputan";
 
 export default function PageName() {
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function PageName() {
              paddingTop: "20px"
            }}
         >
-          <h1 className="text-lg font-bold">Pick Up Reception</h1>
+          <h1 className="text-lg font-bold">Pick Up History</h1>
         </div>
 
         <Card 
@@ -56,7 +57,7 @@ export default function PageName() {
               <CustomSearchbar style={{ marginRight: "sm-7" }} />
             </div>
             <div className="flex-grow overflow-auto">
-              <CustomTable />
+              <CustomTableRiwayat />
             </div>
           </div>
         </Card>

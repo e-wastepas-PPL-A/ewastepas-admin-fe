@@ -47,8 +47,9 @@ export default function PageName() {
 
         <Card 
           style={{ 
-            width: "1335px",
+            width: "1200px",
             height: "600px",
+            marginLeft: "20px",
             }}
         >
           <div className="flex flex-col h-full">
