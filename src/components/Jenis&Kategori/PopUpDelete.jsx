@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { Modal } from "flowbite-react";
-import StickerImage from '../../assets/Sticker.png';
+import StickerImage from "../../assets/StickerDelete.png";
 import axios from "axios";
 
-export default function ApproveKurirPopUp({ onClose, courierId, onSuccess }) {
+export default function PopUpDelete({ onClose, wasteId, onSuccess }) {
   const [openConfirmationModal, setOpenConfirmationModal] = useState(true);
-  const [openApproveSuccessModal, setOpenApproveSuccessModal] = useState(false);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCloseConfirmation = () => {
@@ -15,59 +15,61 @@ export default function ApproveKurirPopUp({ onClose, courierId, onSuccess }) {
     onClose();
   };
 
-  const handleApprove = async () => {
+  const handleDelete = async () => {
     setIsLoading(true);
+
     try {
-      // const updateData = {
-      //   status: "Approved", 
-      // };
+      const deleteJenisSampah = axios.delete(
+        `http://127.0.0.1:8000/api/waste/delete/${wasteId}`
+      );
 
-      const formData = new FormData();
-      formData.append("status", "Approved");
+      const [responseJenis] = await Promise.all([
+        deleteJenisSampah
+      ]);
 
-      const response = await axios.post(`http://127.0.0.1:8000/api/courier/update-status/${courierId}`, formData);
-      if (response.data.success) {
-        // Tutup modal konfirmasi dan buka modal sukses
+      if (responseJenis.data.success) {
         setOpenConfirmationModal(false);
-        setOpenApproveSuccessModal(true);
-        // Callback untuk memperbarui data
+        setOpenSuccessModal(true);
         onSuccess();
       } else {
-        alert("Gagal menyetujui data kurir: " + response.data.message);
+        alert(
+          "Gagal menghapus data: " +
+            (responseJenis.data.message)
+        );
       }
     } catch (error) {
-      console.error("Terjadi kesalahan saat mengirim permintaan approval:", error);
-      alert("Terjadi kesalahan saat menyetujui data kurir.");
+      console.error("Terjadi kesalahan saat menghapus data:", error);
+      alert("Terjadi kesalahan saat menghapus data.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleCloseApproveSuccess = () => {
-    setOpenApproveSuccessModal(false);
+  const handleCloseSuccess = () => {
+    setOpenSuccessModal(false);
     onClose();
   };
 
   return (
     <>
-      {/* Modal Konfirmasi Approve */}
+      {/* Modal Konfirmasi */}
       {openConfirmationModal && (
         <Modal show={openConfirmationModal} position="center" onClose={handleCloseConfirmation}>
-          <Modal.Header>Registrasi Kurir</Modal.Header>
+          <Modal.Header>Hapus Data</Modal.Header>
           <Modal.Body>
             <p className="text-center mb-6">
-              Apakah Anda yakin ingin menerima kurir ini?
+            Apakah Anda yakin ingin menghapus data ini?
             </p>
             <div className="flex justify-between">
               <button
                 onClick={handleCloseConfirmation}
                 className="flex items-center text-white px-4 py-2 rounded-md font-semibold"
-                style={{ backgroundColor: '#E72929'}}
+                style={{ backgroundColor: "#E72929" }}
               >
                 Tidak
               </button>
               <button
-                onClick={handleApprove}
+                onClick={handleDelete}
                 className={`flex items-center text-white px-4 py-2 rounded-md font-semibold ${
                   isLoading ? "opacity-50 cursor-not-allowed" : ""
                 }`}
@@ -81,18 +83,20 @@ export default function ApproveKurirPopUp({ onClose, courierId, onSuccess }) {
         </Modal>
       )}
 
-      {/* Modal Berhasil Approve */}
-      {openApproveSuccessModal && (
-        <Modal show={openApproveSuccessModal} position="center" onClose={handleCloseApproveSuccess}>
+      {/* Modal Berhasil */}
+      {openSuccessModal && (
+        <Modal show={openSuccessModal} position="center" onClose={handleCloseSuccess}>
           <Modal.Body>
             <div className="flex flex-col items-center p-6 text-center">
-              <img src={StickerImage} alt="Berhasil" className="w-24 h-24 mb-4" />
-              <h2 className="text-lg font-semibold text-green-700 mb-2">Berhasil</h2>
-              <p className="text-gray-600 mb-6">Anda telah menerima kurir ini</p>
+              <div className="mb-4">
+                <img src={StickerImage} alt="Berhasil" className="w-24 h-24 mb-4" />
+              </div>
+              <h2 className="text-lg font-semibold text-green-700 mb-2" style={{ color: '#E72929'}}>Berhasil Menghapus Data</h2>
+              <p className="text-gray-600 mb-6">Anda telah menghapus data sampah</p>
               <button
-                onClick={handleCloseApproveSuccess}
+                onClick={handleCloseSuccess}
                 className="px-4 py-2 text-white font-semibold rounded-md"
-                style={{ backgroundColor: '#005B96' }}
+                style={{ backgroundColor: "#005B96" }}
               >
                 Kembali ke menu
               </button>
