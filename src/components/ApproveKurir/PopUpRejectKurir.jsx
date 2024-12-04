@@ -2,21 +2,41 @@
 
 import { useState } from "react";
 import { Modal } from "flowbite-react";
-import { FaCheck, FaTimes } from "react-icons/fa";
+import axios from "axios";
 import StickerReject from '../../assets/StickerReject.png';
 
-export default function RejectKurirPopUp({ onClose }) {
+export default function RejectKurirPopUp({ onClose, courierId, onSuccess }) {
   const [openConfirmationModal, setOpenConfirmationModal] = useState(true);
   const [openRejectSuccessModal, setOpenRejectSuccessModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCloseConfirmation = () => {
     setOpenConfirmationModal(false);
     onClose();
   };
 
-  const handleReject = () => {
-    setOpenConfirmationModal(false);
-    setOpenRejectSuccessModal(true);
+  const handleReject = async () => {
+    setIsLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("status", "Reject");
+
+      const response = await axios.post(`http://127.0.0.1:8000/api/courier/update-status/${courierId}`, formData);
+      if (response.data.success) {
+        // Tutup modal konfirmasi dan buka modal sukses
+        setOpenConfirmationModal(false);
+        setOpenRejectSuccessModal(true);
+        // Callback untuk memperbarui data
+        onSuccess();
+      } else {
+        alert("Gagal menolak data kurir: " + response.data.message);
+      }
+    } catch (error) {
+      console.error("Terjadi kesalahan saat mengirim permintaan reject:", error);
+      alert("Terjadi kesalahan saat menolak data kurir.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleCloseRejectSuccess = () => {
@@ -44,10 +64,13 @@ export default function RejectKurirPopUp({ onClose }) {
               </button>
               <button
                 onClick={handleReject}
-                className="flex items-center text-white px-4 py-2 rounded-md font-semibold"
-                style={{ backgroundColor: '#005B96' }}
+                className={`flex items-center text-white px-4 py-2 rounded-md font-semibold ${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                style={{ backgroundColor: "#005B96" }}
+                disabled={isLoading}
               >
-                Ya
+                {isLoading ? "Loading..." : "Ya"}
               </button>
             </div>
           </Modal.Body>

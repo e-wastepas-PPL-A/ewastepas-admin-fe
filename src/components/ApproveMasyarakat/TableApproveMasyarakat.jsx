@@ -94,7 +94,7 @@ export default function CustomTable() {
             currentData.map((masyarakat) => (
               <tr key={masyarakat.Community_id} className="bg-white border-b border-grey hover:bg-green-100">
                 <td className="py-2 px-4 border-b text-center">
-                  <input type="checkbox" className="mr-2" />
+                  {/* <input type="checkbox" className="mr-2" /> */}
                   {masyarakat.photo ? (
                     <img src={masyarakat.photo ||"https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E"} alt="Foto" className="w-10 h-10 rounded-full inline-block" />
                   ) : (
