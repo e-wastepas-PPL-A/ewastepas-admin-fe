@@ -47,12 +47,7 @@ export default function Register() {
           <h1 className="text-lg font-bold">Registrasi Masyarakat</h1>
         </div>
 
-          <Card
-            style={{ 
-              width: "1335px",
-              height: "600px",
-              }}
-          > 
+          <Card> 
             <div className="flex flex-col h-full">
               <div className="mt-4 ml-4">
                 <CustomSearchbar style={{ marginRight: "sm-7" }} />
@@ -61,9 +56,7 @@ export default function Register() {
                 <CustomTableMasyarakat/> 
               </div>
             </div>
-        
           </Card>
-
         </div>
       </div>
     );

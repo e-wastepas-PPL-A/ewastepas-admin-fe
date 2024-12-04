@@ -85,7 +85,7 @@ export default function CustomTable() {
 
   return (
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <Table className="w-full text-sm text-left text-gray-900">
+        <Table className="w-full text-sm text-left text-gray-900 max-w-full">
           <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
             <tr>
               {/* <th scope="col" className="px-4 py-2">

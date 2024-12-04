@@ -45,13 +45,7 @@ export default function PageName() {
           <h1 className="text-lg font-bold">Pick Up History</h1>
         </div>
 
-        <Card 
-          style={{ 
-            width: "1200px",
-            height: "600px",
-            marginLeft: "20px",
-            }}
-        >
+        <Card>
           <div className="flex flex-col h-full">
             <div className="mt-4 ml-4">
               <CustomSearchbar style={{ marginRight: "sm-7" }} />

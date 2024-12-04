@@ -102,7 +102,7 @@ const CustomNavbar = () => {
   return (
     <>
       <nav className="text-revamp-neutral-10 p-4 border-b border-revamp-neutral-10/20">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">   
+        <div className="mx-auto flex justify-between items-center">   
           <div className="text-xl font-bold">
             {greetings()},{"Rusdi Sigma"}
           </div>
