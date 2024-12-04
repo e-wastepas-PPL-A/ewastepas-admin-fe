@@ -68,9 +68,9 @@ export default function CustomTable() {
         <Table className="w-full text-sm text-left text-gray-900">
           <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
             <tr>
-              <th scope="col" className="px-4 py-2">
+              {/* <th scope="col" className="px-4 py-2">
                 <input type="checkbox" />
-              </th>
+              </th> */}
               <th scope="col" className="px-6 py-3">Nama Dropbox</th>
               <th scope="col" className="px-6 py-3">Alamat</th>
               <th scope="col" className="px-6 py-3">Kuantitas</th>
@@ -86,9 +86,9 @@ export default function CustomTable() {
             ) : (
               dataDropbox.map((dropbox, index) => (
               <tr key={index} className="bg-white border-b hover:bg-green-100">
-                <td className="py-2 px-4 text-center">
+                {/* <td className="py-2 px-4 text-center">
                   <input type="checkbox" />
-                </td>
+                </td> */}
                 <td className="py-2 px-4">{dropbox.name}</td>
                 <td className="py-2 px-4">{dropbox.address}</td>
                 <td className="py-2 px-4">{dropbox.capacity}/100</td>

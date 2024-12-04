@@ -88,9 +88,9 @@ export default function CustomTable() {
         <Table className="w-full text-sm text-left text-gray-900">
           <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
             <tr>
-              <th scope="col" className="px-4 py-2">
+              {/* <th scope="col" className="px-4 py-2">
                 <input type="checkbox" />
-              </th>
+              </th> */}
               <th scope="col" className="px-6 py-3">Jenis Sampah Elektronik</th>
               <th scope="col" className="px-6 py-3">Kategori Sampah Elektronik</th>
               <th scope="col" className="px-6 py-3">Poin</th>
@@ -105,9 +105,9 @@ export default function CustomTable() {
             ) : (
               wastes.map((waste, index) => (
                 <tr key={index} className="bg-white border-b hover:bg-green-100">
-                  <td className="py-2 px-4 text-center">
+                  {/* <td className="py-2 px-4 text-center">
                     <input type="checkbox" />
-                  </td>
+                  </td> */}
                   <td className="py-2 px-4">{waste.waste_name}</td>
                   <td className="py-2 px-4">{categories[waste.waste_type_id] || "Loading..."}</td>
                   <td className="py-2 px-4">{waste.point}</td>

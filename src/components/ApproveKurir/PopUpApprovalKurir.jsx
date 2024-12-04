@@ -18,10 +18,6 @@ export default function ApproveKurirPopUp({ onClose, courierId, onSuccess }) {
   const handleApprove = async () => {
     setIsLoading(true);
     try {
-      // const updateData = {
-      //   status: "Approved", 
-      // };
-
       const formData = new FormData();
       formData.append("status", "Approved");
 

@@ -130,7 +130,7 @@ export default function PopUpEdit({ wasteId, onClose, onSuccess }) {
                         <div className="mb-4">
                             <img src={StickerImage} alt="Berhasil" className="w-24 h-24 mb-4" />
                         </div>
-                        <h2 className="text-lg font-semibold text-green-700 mb-2" style={{ color: '#E72929'}}>Berhasil Mengubah Data</h2>
+                        <h2 className="text-lg font-semibold text-green-700 mb-2">Berhasil Mengubah Data</h2>
                         <p className="text-gray-600 mb-6">Anda telah mengubah poin sampah</p>
                         <button
                             onClick={handleCloseSuccess}

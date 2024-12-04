@@ -81,9 +81,10 @@ export default function CourierApprovalTable() {
     fetchDataKurir(currentPage);
   };
 
-  const handleRejectClick = () => {
+  const handleRejectClick = (courierId) => {
     setModalType("reject");
     setIsModalOpen(true);
+    setSelectedCourierId(courierId)
   };
 
   const handleViewImageClick = (type, url) => {
@@ -163,7 +164,7 @@ export default function CourierApprovalTable() {
                   <button
                     className="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700 ml-2"
                     title="Silang (Reject)"
-                    onClick={handleRejectClick}
+                    onClick={() => handleRejectClick(courier.courier_id)}
                   >
                     <HiX size={20} />
                   </button>
@@ -200,7 +201,14 @@ export default function CourierApprovalTable() {
         onSuccess={fetchUpdatedData}
       />
       )}
-      {isModalOpen && modalType === "reject" && <CustomPopUpReject onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && modalType === "reject" && (
+      <CustomPopUpReject
+        onClose={() => setIsModalOpen(false)}
+        courierId={selectedCourierId}
+        onSuccess={fetchUpdatedData}
+      />
+      )}
+      {/* {isModalOpen && modalType === "reject" && <CustomPopUpReject onClose={() => setIsModalOpen(false)} />} */}
       {isImageModalOpen && (
         <Modal show={ImageModal} onClose={() => setIsImageModalOpen(false)}>
           <Modal.Header>{modalHeader}</Modal.Header>
