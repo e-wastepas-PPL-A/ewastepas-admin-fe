@@ -3,7 +3,6 @@ import { Card } from "flowbite-react";
 import React from "react";
 import CustomSidebar from "../../components/ComponentsDashboard/Sidebar";
 import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
-import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
 import CustomTabelDropbox from "../../components/Dropbox/TabelDropbox"
   
     export default function Dropbox() {
@@ -44,17 +43,8 @@ import CustomTabelDropbox from "../../components/Dropbox/TabelDropbox"
           >
             <h2 className="text-lg font-bold">Dropbox</h2>
           </div>
-  
             <Card>        
               <div className="flex flex-col h-full">
-                <div className="flex justify-between items-center mb-2">
-                  <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700">
-                    Tambah Data
-                  </button>
-                </div>
-                <div className="mt-4 ml-4">
-                  <CustomSearchbar style={{ marginRight: "sm-7" }} />
-                </div>
                 <div className="flex-grow overflow-auto">
                   <CustomTabelDropbox/> 
                 </div>
@@ -62,7 +52,6 @@ import CustomTabelDropbox from "../../components/Dropbox/TabelDropbox"
             </Card>
   
           </div>
-  
         </div>
       );
     }

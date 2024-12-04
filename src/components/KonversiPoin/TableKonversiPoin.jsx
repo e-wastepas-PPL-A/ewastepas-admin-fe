@@ -6,6 +6,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import PopUpDelete from "../Jenis&Kategori/PopUpDelete"
 import PopUpEdit from "./PopUpEdit";
+import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
 
 export default function CustomTable() {
   const [modalType, setModalType] = useState(null);
@@ -85,6 +86,14 @@ export default function CustomTable() {
 
   return (
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div className="flex justify-between items-center mb-2">
+          <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700">
+            Tambah Data
+          </button>
+        </div>
+        <div className="mt-4 ml-4">
+          <CustomSearchbar style={{ marginRight: "sm-7" }} />
+        </div>
         <Table className="w-full text-sm text-left text-gray-900 max-w-full">
           <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
             <tr>

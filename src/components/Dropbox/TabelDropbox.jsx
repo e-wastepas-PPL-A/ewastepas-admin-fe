@@ -5,6 +5,9 @@ import { Table } from "flowbite-react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PopUpDelete from "./PopUpDeleteDropbox"
+import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
+import PopUpAddDropbox from "./PopUpAddDropbox";
+import PopUpEditDropbox from "./PopUpEditDropbox";
 
 export default function CustomTable() {
   const [modalType, setModalType] = useState(null);
@@ -13,6 +16,7 @@ export default function CustomTable() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedDropboxId, setSelectedDropboxId] = useState(null);
   const itemsPerPage = 10;
 
@@ -26,7 +30,7 @@ export default function CustomTable() {
         // const formattedData = Object.values(communityData); // Konversi objek ke array
   
         setDataDropbox(dropboxData);
-        setTotalPages(Math.ceil(response.data.data.Dropbox.total / itemsPerPage)); // Sesuaikan jika ada informasi total
+        setTotalPages(Math.ceil(response.data.data.dropbox.total / itemsPerPage)); // Sesuaikan jika ada informasi total
       } else {
         console.error("Gagal mengambil data dropbox:", response.data.message);
       }
@@ -43,6 +47,12 @@ export default function CustomTable() {
 
   const handleDelete = (dropboxId) => {
     setModalType("delete");
+    setIsModalOpen(true);
+    setSelectedDropboxId(dropboxId);
+  };
+
+  const handleEdit = (dropboxId) => {
+    setModalType("edit");
     setIsModalOpen(true);
     setSelectedDropboxId(dropboxId);
   };
@@ -65,6 +75,17 @@ export default function CustomTable() {
 
   return (
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div className="flex justify-between items-center mb-2">
+          <button
+            onClick={() => setIsAddModalOpen(true)}
+            className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700"
+          >
+            Tambah Data
+          </button>
+        </div>
+        <div className="mt-4 ml-4">
+          <CustomSearchbar style={{ marginRight: "sm-7" }} />
+        </div>
         <Table className="w-full text-sm text-left text-gray-900">
           <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
             <tr>
@@ -95,15 +116,14 @@ export default function CustomTable() {
                 <td className="py-2 px-4">{dropbox.status}</td>
                 <td className="py-2 px-4 text-center flex items-center justify-center space-x-2">
                   <button
+                    onClick={() => handleEdit(dropbox.dropbox_id)}
                     className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-700"
                     title="Edit"
                   >
                     <HiPencil size={20} />
                   </button>
                   <button
-                    onClick={() =>
-                      handleDelete(dropbox.dropbox_id)
-                    }
+                    onClick={() => handleDelete(dropbox.dropbox_id)}
                     className="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700"
                     title="Delete"
                   >
@@ -139,6 +159,23 @@ export default function CustomTable() {
           <PopUpDelete
             onClose={() => setIsModalOpen(false)}
             dropboxId={selectedDropboxId}
+            onSuccess={fetchUpdatedData}
+          />
+        )}
+
+        {/* PopUpAddDropbox */}
+        {isAddModalOpen && (
+        <PopUpAddDropbox
+          onClose={() => setIsAddModalOpen(false)}
+          onSuccess={fetchUpdatedData}
+        />
+        )}
+
+        {/* PopUpEdit */}
+        {isModalOpen && modalType === "edit" && (
+          <PopUpEditDropbox
+            dropboxId={selectedDropboxId}
+            onClose={() => setIsModalOpen(false)}
             onSuccess={fetchUpdatedData}
           />
         )}

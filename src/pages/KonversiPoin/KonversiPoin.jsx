@@ -3,7 +3,6 @@ import { Card } from "flowbite-react";
 import React from "react";
 import CustomSidebar from "../../components/ComponentsDashboard/Sidebar";
 import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
-import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
 import CustomTabelKonversiPoin from "../../components/KonversiPoin/TableKonversiPoin"
 
   export default function KonversiPoin() {
@@ -46,14 +45,6 @@ import CustomTabelKonversiPoin from "../../components/KonversiPoin/TableKonversi
 
           <Card>
             <div className="flex flex-col h-full">
-            <div className="flex justify-between items-center mb-2">
-              <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700">
-                Tambah Data
-              </button>
-            </div>
-              <div className="mt-4 ml-4">
-                <CustomSearchbar style={{ marginRight: "sm-7" }} />
-              </div>
               <div className="flex-grow overflow-auto">
                 <CustomTabelKonversiPoin/> 
               </div>
