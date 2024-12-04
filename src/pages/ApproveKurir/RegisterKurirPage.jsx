@@ -44,12 +44,7 @@ import CustomTabelKurir from "../../components/ApproveKurir/TableApproveKurir.js
             <h2 className="text-lg font-bold">Approval</h2>
             <h1 className="text-lg font-bold">Registrasi Kurir</h1>
           </div>
-              <Card
-                style={{ 
-                  width: "1335px",
-                  height: "600px"
-                  }}
-              >
+              <Card>
                 <div className="flex flex-col h-full">
                   <div className="mt-4 ml-4">
                     <CustomSearchbar style={{ marginRight: "sm-7" }} />
@@ -59,7 +54,6 @@ import CustomTabelKurir from "../../components/ApproveKurir/TableApproveKurir.js
                   </div>
                 </div>
               </Card>
-    
             </div>
       </div>
     );

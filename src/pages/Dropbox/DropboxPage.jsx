@@ -45,13 +45,7 @@ import CustomTabelDropbox from "../../components/Dropbox/TabelDropbox"
             <h2 className="text-lg font-bold">Dropbox</h2>
           </div>
   
-            <Card
-              style={{ 
-                width: "1335px",
-                height: "600px"
-                }}
-            >        
-  
+            <Card>        
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-2">
                   <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700">
