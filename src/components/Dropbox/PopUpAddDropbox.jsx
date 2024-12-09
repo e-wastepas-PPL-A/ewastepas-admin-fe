@@ -7,19 +7,19 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [districtAddress, setDistrictAddress] = useState("");
-  const [longitude, setLongitude] = useState("");
   const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
   const [capacity, setCapacity] = useState("");
-  const [status, setStatus] = useState("");
+  // const [status, setStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
 
   const districtOptions = ["Bandung Utara", "Bandung Selatan", "Bandung Timur", "Bandung Barat", "Cimahi", "Kabupaten Bandung", "Kabupaten Bandung Barat"];
-  const statusOptions = ["Full", "Available"];
+  // const statusOptions = ["Full", "Available"];
 
   const handleSubmit = async () => {
-    if (!name || !address || !districtAddress || !longitude || !latitude || !capacity || !status) {
+    if (!name || !address || !districtAddress || !longitude || !latitude || !capacity) {
       setError("Semua field wajib diisi!");
       return;
     }
@@ -35,7 +35,6 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
         longitude,
         latitude,
         capacity,
-        status,
       });
 
       if (response.data.success) {
@@ -98,20 +97,20 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
                 </select>
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700">Longitude</label>
-                <input
-                type="text"
-                value={longitude}
-                onChange={(e) => setLongitude(e.target.value)}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-            </div>
-            <div>
                 <label className="block text-sm font-medium text-gray-700">Latitude</label>
                 <input
                 type="text"
                 value={latitude}
                 onChange={(e) => setLatitude(e.target.value)}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+            </div>
+            <div>
+                <label className="block text-sm font-medium text-gray-700">Longitude</label>
+                <input
+                type="text"
+                value={longitude}
+                onChange={(e) => setLongitude(e.target.value)}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
             </div>
@@ -124,7 +123,7 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
             </div>
-            <div>
+            {/* <div>
                 <label className="block text-sm font-medium text-gray-700">Status</label>
                 <select
                   value={status}
@@ -138,7 +137,7 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
                     </option>
                   ))}
                 </select>
-            </div>
+            </div> */}
           </div>
         </Modal.Body>
         <Modal.Footer>

@@ -83,7 +83,7 @@ export default function ApproveKurirPopUp({ onClose, courierId, onSuccess }) {
           <Modal.Body>
             <div className="flex flex-col items-center p-6 text-center">
               <img src={StickerImage} alt="Berhasil" className="w-24 h-24 mb-4" />
-              <h2 className="text-lg font-semibold text-green-700 mb-2">Berhasil</h2>
+              <h2 className="text-lg font-semibold text-green-700 mb-2">Berhasil Diterima</h2>
               <p className="text-gray-600 mb-6">Anda telah menerima kurir ini</p>
               <button
                 onClick={handleCloseApproveSuccess}
