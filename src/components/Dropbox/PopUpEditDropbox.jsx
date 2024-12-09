@@ -15,29 +15,25 @@ export default function PopUpEdit({ dropboxId, onClose, onSuccess }) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const statusOptions = ["Full", "Available"];
+    // const statusOptions = ["Full", "Available"];
   
     useEffect(() => {
-      const fetchDropboxData = async () => {
-        try {
-          const response = await axios.get(`http://127.0.0.1:8000/api/dropbox/${dropboxId}`);
-            const { name, address, capacity, status } = response.data.data;
-            setDropboxData({
-                name,
-                address,
-                capacity,
-                status,
-            });
-            setNewName(name);
-            setNewAddress(address);
-            setNewCapacity(capacity);
-            setNewStatus(status);
-        } catch (error) {
-          console.error("Error fetching dropbox data:", error);
-          setError("Failed to fetch dropbox data. Please try again.");
-        }
-      };
-  
+        const fetchDropboxData = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/dropbox/${dropboxId}`, {
+                    headers: { 'Cache-Control': 'no-cache' },
+                });
+                const { name, address, capacity, status } = response.data.data;
+                setDropboxData({ name, address, capacity, status });
+                setNewName(name);
+                setNewAddress(address);
+                setNewCapacity(capacity);
+            } catch (error) {
+                console.error("Error fetching dropbox data:", error);
+                setError("Failed to fetch dropbox data. Please try again.");
+            }
+        };
+        
       fetchDropboxData();
     }, [dropboxId]);
   
@@ -55,12 +51,14 @@ export default function PopUpEdit({ dropboxId, onClose, onSuccess }) {
                 name: newName,
                 address: newAddress,
                 capacity: newCapacity,
-                status: newStatus,
             });
     
             if (response.data.success) {
                 setOpenSuccessModal(true);
                 onSuccess();
+                setNewName("");
+                setNewAddress("");
+                setNewCapacity("");
             } else {
                 setError(response.data.message || "Failed to update data. Please try again.");
             }
@@ -71,6 +69,7 @@ export default function PopUpEdit({ dropboxId, onClose, onSuccess }) {
             setIsLoading(false);
         }
     };
+    
   
     if (!dropboxData) {
       return (
@@ -118,18 +117,12 @@ export default function PopUpEdit({ dropboxId, onClose, onSuccess }) {
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Status</label>
-                    <select
-                    value={newStatus}
-                    onChange={(e) => setNewStatus(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    >
-                    <option value="">Pilih Status</option>
-                    {statusOptions.map((option, index) => (
-                        <option key={index} value={option}>
-                        {option}
-                        </option>
-                    ))}
-                    </select>
+                    <input
+                        type="text"
+                        value={dropboxData.status}
+                        readOnly
+                        className="mt-1 block w-full rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
                 </div>
             </div>
             </Modal.Body>

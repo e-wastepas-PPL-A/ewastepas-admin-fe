@@ -50,8 +50,10 @@ export default function CourierApprovalTable() {
       setIsLoading(true);
       const response = await axios.get(`http://127.0.0.1:8000/api/courier/?page=${page}`);
       if (response.data.success) {
-        const courierData = response.data.data.Courier.data;
-        // const formattedData = Object.values(courierData); // Konversi objek ke array
+        // const courierData = response.data.data.Courier.data;
+        const courierData = response.data.data.Courier.data.filter(
+          (courier) => courier.status === "Pending" || courier.status === "Reject"
+        );
         
         setDataKurir(courierData);
         setTotalPages(Math.ceil(response.data.data.Courier.total / itemsPerPage));
@@ -110,7 +112,7 @@ export default function CourierApprovalTable() {
   };
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg overflow-y-auto max-h-[500px]">
       <Table className="w-full text-sm text-left rtl:text-right text-black dark:text-black">
         <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
           <tr>
@@ -131,26 +133,29 @@ export default function CourierApprovalTable() {
             </tr>
           ) : (
             currentData.map((courier) => (
-              <tr key={courier.courier_id} className="bg-white border-b border-grey hover:bg-green-100">
+              <tr
+                key={courier.courier_id}
+                className={`bg-white border-b border-grey hover:bg-green-100 ${courier.status === "Reject" ? "text-red-500" : ""}`}
+              >
                 <td className="py-2 px-4 border-b">{courier.name}</td>
                 <td className="py-2 px-4 border-b">{courier.phone}</td>
                 <td className="py-2 px-4 border-b">{courier.date_of_birth}</td>
                 <td className="py-2 px-4 border-b">{courier.address}</td>
                 <td className="py-2 px-4 border-b">{courier.account_number}</td>
                 <td className="py-2 px-4 border-b text-center">
-                  <button 
-                    onClick={() => handleViewImageClick("Kartu Keluarga", courier.kk_url ||"https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E")}
+                  <button
+                    onClick={() => handleViewImageClick("Kartu Keluarga", courier.kk_url)}
                     className="text-blue-500 hover:text-blue-600 p-0 m-0 bg-transparent border-none"
                   >
-                     <HiEye size={24} />
+                    <HiEye size={24} />
                   </button>
                 </td>
                 <td className="py-2 px-4 border-b text-center">
-                  <button 
-                    onClick={() => handleViewImageClick("KTP", courier.ktp_url || "https://c4.wallpaperflare.com/wallpaper/224/829/129/digital-digital-art-artwork-illustration-simple-hd-wallpaper-preview.jpg")}
+                  <button
+                    onClick={() => handleViewImageClick("KTP", courier.ktp_url)}
                     className="text-blue-500 hover:text-blue-600 p-0 m-0 bg-transparent border-none"
                   >
-                     <HiEye size={24} />
+                    <HiEye size={24} />
                   </button>
                 </td>
                 <td className="py-2 px-4 border-b text-center flex items-center justify-center">
@@ -177,21 +182,21 @@ export default function CourierApprovalTable() {
 
       {/* Tombol Pagination */}
       <div className="flex justify-center mt-4">
-        <button
-          onClick={goToPreviousPage}
-          disabled={currentPage === 1}
-          className="px-4 py-2 mx-1 bg-gray-300 text-gray-700 rounded disabled:opacity-50"
-        >
-          Previous
-        </button>
-        <span className="px-4 py-2 mx-1">{`Page ${currentPage} of ${totalPages}`}</span>
-        <button
-          onClick={goToNextPage}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 mx-1 bg-gray-300 text-gray-700 rounded disabled:opacity-50"
-        >
-          Next
-        </button>
+          <button
+            onClick={goToPreviousPage}
+            disabled={currentPage === 1}
+            className="px-4 py-2 mx-1 bg-gray-300 text-gray-700 rounded disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="px-4 py-2 mx-1">{`Page ${currentPage} of ${totalPages}`}</span>
+          <button
+            onClick={goToNextPage}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 mx-1 bg-gray-300 text-gray-700 rounded disabled:opacity-50"
+          >
+            Next
+          </button>
       </div>
 
       {isModalOpen && modalType === "approval" && (
