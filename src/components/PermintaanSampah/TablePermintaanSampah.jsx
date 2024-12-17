@@ -9,6 +9,7 @@ import axios from "axios";
 export default function CustomTable() {
     const [pickups, setPickups] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPickup, setSelectedPickup] = useState(null);
 
     useEffect(() => {
         axios.get("http://34.16.66.175:8031/api/dashboard/pickup/user")
@@ -21,6 +22,19 @@ export default function CustomTable() {
                 console.error("Error fetching pickup data:", error);
             });
     }, []);
+
+    const handleEyeClick = (pickupId) => {
+        axios.get(`http://34.16.66.175:8031/api/dashboard/pickup/${pickupId}`)
+            .then(response => {
+                if (response.data.success) {
+                    setSelectedPickup(response.data.data);
+                    setIsModalOpen(true);
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching pickup details:", error);
+            });
+    };
 
     return (
         <div className="overflow-x-auto shadow-md sm:rounded-lg">
@@ -54,7 +68,7 @@ export default function CustomTable() {
                                 {pickup.pickup_status}
                             </td>
                             <td className="px-6 py-4">
-                                <a href="#" className="font-medium text-black hover:underline" onClick={() => setIsModalOpen(true)}>
+                                <a href="#" className="font-medium text-black hover:underline" onClick={() => handleEyeClick(pickup.pickup_id)}>
                                     <HiEye className="w-5 h-5" />
                                 </a>
                             </td>
@@ -62,7 +76,7 @@ export default function CustomTable() {
                     ))}
                 </tbody>
             </table>
-            {isModalOpen && <CustomPopUp onClose={() => setIsModalOpen(false)} />}
+            {isModalOpen && <CustomPopUp onClose={() => setIsModalOpen(false)} pickupData={selectedPickup} />}
         </div>
     );
 }

@@ -1,17 +1,17 @@
 "use client";
 
-import { Button, Modal, Select } from "flowbite-react";
+import { Button, Modal, Timeline } from "flowbite-react";
 import { useState, useEffect } from "react";
-import { HiChat, HiEye, HiLocationMarker, HiPhone } from "react-icons/hi";
+import { HiChat, HiEye, HiLocationMarker, HiPhone, HiCheck, HiTruck } from "react-icons/hi";
 import axios from "axios";
 
-export default function CustomPopUp({ onClose }) {
+export default function CustomPopUp({ onClose, pickupData }) {
   const [openModal, setOpenModal] = useState(true);
   const [modalPlacement, setModalPlacement] = useState('center');
 
   const handleClose = () => {
     setOpenModal(false);
-    onClose(); // Panggil fungsi onClose dari props
+    onClose(); // Call the onClose function from props
   };
 
   return (
@@ -27,7 +27,7 @@ export default function CustomPopUp({ onClose }) {
               <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
                 <img src="https://via.placeholder.com/32" alt="Profile" className="w-full h-full object-cover" />
               </div>
-              <span className="text-xl font-bold">Faqih</span>
+              <span className="text-xl font-bold">{pickupData?.community.name || "Community Name"}</span>
             </div>
           </div>
         </Modal.Header>
@@ -36,9 +36,9 @@ export default function CustomPopUp({ onClose }) {
           <div className="border-b border-gray-200 pb-4 mb-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <span className="text-xl font-bold">#1</span>
+                <span className="text-xl font-bold">#{pickupData?.pickup_id}</span>
               </div>
-              <button className="bg-green-500 text-white px-4 py-2 rounded-md">Accepted</button>
+              <button className="bg-green-500 text-white px-4 py-2 rounded-md">{pickupData?.pickup_status}</button>
             </div>
           </div>
 
@@ -46,47 +46,27 @@ export default function CustomPopUp({ onClose }) {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="font-bold">Phone Number</p>
-                <p>0812343567</p>
+                <p>{pickupData?.community.phone}</p>
               </div>
               <div>
-                <p className="font-bold">Category</p>
-                <p>Electronic</p>
+                <p className="font-bold">Pickup Date</p>
+                <p>{pickupData?.pickup_date}</p>
               </div>
               <div>
-                <p className="font-bold">Purchase Date</p>
-                <p>20/10/2024</p>
+                <p className="font-bold">Pickup Time</p>
+                <p>{pickupData?.pickup_time}</p>
               </div>
               <div>
-                <p className="font-bold">Quantity</p>
-                <p>5</p>
+                <p className="font-bold">Pickup Address</p>
+                <p>{pickupData?.pickup_address}</p>
               </div>
               <div>
-                <p className="font-bold">Address</p>
-                <p>Jl. Ngawi no 111</p>
+                <p className="font-bold">Courier Name</p>
+                <p>{pickupData?.courier.name}</p>
               </div>
               <div>
-                <p className="font-bold">Destination</p>
-                <p>Dropbox Setiabudhi</p>
-              </div>
-            </div>
-
-            <div className="border-t border-gray-200 pt-4 mt-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <span className="text-xl font-bold mr-2">John</span>
-                  <p>(Driver)</p>
-                </div>
-                <div>
-                  <button className="bg-green-500 text-white px-4 py-2 rounded-md mr-2">
-                    <HiPhone className="w-5 h-5" />
-                  </button>
-                  <button className="bg-green-500 text-white px-4 py-2 rounded-md">
-                    <HiChat className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-              <div className="flex items-center">
-                <p>08123456789</p>
+                <p className="font-bold">Courier Phone</p>
+                <p>{pickupData?.courier.phone}</p>
               </div>
             </div>
 
@@ -96,81 +76,70 @@ export default function CustomPopUp({ onClose }) {
               </div>
             </div>
 
+            {pickupData?.pickup_detail.map((detail) => (
+              <div key={detail.waste_id} className="flex items-center justify-between mt-4">
+                <div className="flex items-center">
+                  <div className="mr-4">
+                    <img src="monitor.png" alt={detail.waste.waste_name} className="w-20 h-20" />
+                  </div>
+                  <div>
+                    <p className="font-bold">{detail.waste.waste_name}</p>
+                    <p className="text-sm">Qty: {detail.quantity}</p>
+                  </div>
+                </div>
+                <button className="bg-green-500 text-white px-4 py-2 rounded-md">
+                  <span className="font-bold">{detail.points} Points</span>
+                </button>
+              </div>
+            ))}
+
             <div className="mt-4">
-              <div className="flex items-center justify-between mt-4">
-                <div className="flex items-center">
-                  <div className="mr-4">
-                    <img src="monitor.png" alt="" className="w-20 h-20" />
-                  </div>
-                  <div>
-                    <p className="font-bold">Handphone</p>
-                    <p className="text-sm">Qty: 2</p>
-                  </div>
-                </div>
-                <button className="bg-green-500 text-white px-4 py-2 rounded-md">
-                  <span className="font-bold">20 Point</span>
-                </button>
-              </div>              
-              <div className="flex items-center justify-between mt-4">
-                <div className="flex items-center">
-                  <div className="mr-4">
-                    <img src="monitor.png" alt="" className="w-20 h-20" />
-                  </div>
-                  <div>
-                    <p className="font-bold">Monitor</p>
-                    <p className="text-sm">Qty: 2</p>
-                  </div>
-                </div>
-                <button className="bg-green-500 text-white px-4 py-2 rounded-md">
-                  <span className="font-bold">20 Point</span>
-                </button>
-              </div>
-
-              <div className="border-t border-gray-200 pt-4 mt-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <span className="text-xl font-bold mr-2">Total Points</span>
-                  </div>
-                  <div>
-                    <button className="bg-green-500 text-white px-4 py-2 rounded-md">
-                      <span className="font-bold">40 Point</span>
-                    </button>
-                  </div>
-                </div>
-              </div>      
-
-              <div className="border-t border-gray-200 pt-4 mt-4">
-              </div>   
-
-              <div className="mt-4">
-                <div className="bg-[#005B96] text-white py-2 px-4">
-                  <p className="font-bold">TRACKING</p>
-                </div>
-              </div>      
-
-              <div class="flex items-center p-4">
-                <button className="bg-[#005B96] text-white px-4 py-2 rounded-md mr-5">
-                  <HiLocationMarker className="w-5 h-5" />
-                </button>
-                <div>
-                  <p class="font-bold">Courier to the location</p>
-                  <p>Waiting for Pickup</p>
-                </div>
-              </div>
-              <div class="flex items-center p-4">
-                <button className="bg-[#005B96] text-white px-4 py-2 rounded-md mr-5">
-                  <HiLocationMarker className="w-5 h-5" />
-                </button>
-                <div>
-                  <p class="font-bold">In Delivery</p>
-                  <p>On the way</p>
-                </div>
+              <div className="bg-[#005B96] text-white py-2 px-4">
+                <p className="font-bold">TRACKING</p>
               </div>
             </div>
+
+            <Timeline className="mt-4">
+              <Timeline.Item>
+                <Timeline.Point icon={HiLocationMarker} />
+                <Timeline.Content>
+                  <Timeline.Title>Courier to the location</Timeline.Title>
+                  <Timeline.Body>
+                    Waiting for pickup
+                  </Timeline.Body>
+                </Timeline.Content>
+              </Timeline.Item>
+              <Timeline.Item>
+                <Timeline.Point icon={HiTruck} />
+                <Timeline.Content>
+                  <Timeline.Title>In Delivery</Timeline.Title>
+                  <Timeline.Body>
+                    On the way
+                  </Timeline.Body>
+                </Timeline.Content>
+              </Timeline.Item>
+              <Timeline.Item>
+                <Timeline.Point icon={HiTruck} />
+                <Timeline.Content>
+                  <Timeline.Title>In Delivery</Timeline.Title>
+                  <Timeline.Body>
+                    The trash has been picked up
+                  </Timeline.Body>
+                </Timeline.Content>
+              </Timeline.Item>
+              <Timeline.Item>
+                <Timeline.Point icon={HiCheck} />
+                <Timeline.Content>
+                  <Timeline.Title>Success</Timeline.Title>
+                  <Timeline.Body>
+                    Order completed
+                  </Timeline.Body>
+                </Timeline.Content>
+              </Timeline.Item>
+            </Timeline>
           </div>
         </Modal.Body>
       </Modal>
-
     </>
   );
 }
