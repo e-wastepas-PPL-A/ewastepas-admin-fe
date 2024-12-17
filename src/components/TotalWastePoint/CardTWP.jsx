@@ -1,43 +1,36 @@
-import { Card } from "flowbite-react";
+import { useEffect, useState } from "react";
+import { Card } from "flowbite-react"; // Ensure you have the Card component imported
+import axios from "axios";
 
 export function CardTWP() {
+  const [dropboxes, setDropboxes] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://34.16.66.175:8031/api/dashboard/waste-point/")
+      .then(response => {
+        if (response.data.success) {
+          setDropboxes(response.data.data.dropboxs);
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching dropbox data:", error);
+      });
+  }, []);
+
   return (
-    <div className="flex gap-10">
-      <Card href="#" className="w-60 h-32 flex flex-col justify-center items-center max-w-sm">
-        <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Dropbox Setiabudhi
-        </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
-          120 Electronics Waste
-        </p>
-      </Card>
-
-      <Card href="#" className="w-60 h-32 flex flex-col justify-center items-center max-w-sm">
-        <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Dropbox Sukajadi
-        </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
-          56 Electronics Waste
-        </p>
-      </Card>
-
-      <Card href="#" className="w-60 h-32 flex flex-col justify-center items-center max-w-sm">
-        <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Dropbox Dago
-        </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
-          119 Electronics Waste
-        </p>
-      </Card>
-
-      <Card href="#" className="w-60 h-32 flex flex-col justify-center items-center max-w-sm">
-        <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Dropbox Cihampelas
-        </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
-          27 Electronics Waste
-        </p>
-      </Card>
+    <div className="overflow-x-auto">
+      <div className="flex gap-4">
+        {dropboxes.map(dropbox => (
+          <Card key={dropbox.dropbox_id} href="#" className="w-60 h-32 flex flex-col justify-center items-center max-w-sm">
+            <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {dropbox.name}
+            </h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              {dropbox.capacity} Electronics Waste
+            </p>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }
