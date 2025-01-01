@@ -19,7 +19,7 @@ export default function RejectKurirPopUp({ onClose, courierId, onSuccess }) {
     setIsLoading(true);
     try {
       const formData = new FormData();
-      formData.append("status", "Reject");
+      formData.append("is_verified", "0");
 
       const response = await axios.post(`http://127.0.0.1:8000/api/courier/update-status/${courierId}`, formData);
       if (response.data.success) {
