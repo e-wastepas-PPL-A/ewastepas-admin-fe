@@ -1,6 +1,6 @@
 "use client";
 
-import { HiPencil, HiTrash } from "react-icons/hi";
+import { HiPencil, HiTrash, HiUser } from "react-icons/hi";
 import { Table } from "flowbite-react";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -101,8 +101,9 @@ export default function CustomTable() {
                 {/* <th scope="col" className="px-4 py-2">
                   <input type="checkbox" />
                 </th> */}
-                <th scope="col" className="px-6 py-3">Jenis Sampah Elektronik</th>
-                <th scope="col" className="px-6 py-3">Kategori Sampah Elektronik</th>
+                <th scope="col" className="px-6 py-3 text-center">Gambar</th>
+                <th scope="col" className="px-6 py-3">Nama Sampah</th>
+                <th scope="col" className="px-6 py-3">Kategori Sampah</th>
                 <th scope="col" className="px-6 py-3">Poin</th>
                 <th scope="col" className="px-6 py-3 text-center">Aksi</th>
               </tr>
@@ -118,6 +119,17 @@ export default function CustomTable() {
                     {/* <td className="py-2 px-4 text-center">
                       <input type="checkbox" />
                     </td> */}
+                    <td className="py-2 px-4 border-b text-center">
+                      {waste.image ? (
+                        <img
+                          src={waste.image}
+                          alt="Foto"
+                          className="w-10 h-10 rounded-full inline-block"
+                        />
+                      ) : (
+                        <HiUser className="inline-block text-gray-600" size={40} />
+                      )}
+                    </td>
                     <td className="py-2 px-4">{waste.waste_name}</td>
                     <td className="py-2 px-4">{categories[waste.waste_type_id] || "Loading..."}</td>
                     <td className="py-2 px-4">{waste.point}</td>
