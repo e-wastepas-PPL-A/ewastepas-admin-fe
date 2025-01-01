@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import LoginForm from "../../components/Login/LoginForm";
+import "./LoginPage.css";
+import LogoRecycle from "../../assets/recycleImage.png";
+import LogoEwhale from "../../assets/logo1.png";
 
 const LoginPage = () => {
   const [error, setError] = useState(null);
@@ -22,10 +25,7 @@ const LoginPage = () => {
 
       const data = await response.json();
       if (response.ok) {
-        // Simpan session_id ke cookie
         Cookies.set("session_id", data.session_id);
-
-        // Redirect ke halaman utama
         window.location.href = "http://localhost:5173/";
       } else {
         setError(data.message || "Login failed");
@@ -36,10 +36,17 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <h3 className="text-center mb-4">Login</h3>
+    <div className="login-container">
+      <div className="login-box">
+        <div className="left-box">
+          <img src={LogoRecycle} alt="Recycle" className="recycle-image" />
+          <h2>Masuk sekarang dan mulai perjalananmu sebagai kurir sampah elektronik!</h2>
+          <p>Kelola sampah elektronik dan ciptakan lingkungan bersih!</p>
+        </div>
+        <div className="right-box">
+          <img src={LogoEwhale} alt="Ewhale Logo" className="logo-image" />
+          <h3>Masuk</h3>
+          <p className="mb-3">Masuk untuk mengakses akun Anda</p>
           <LoginForm onSubmit={handleSubmit} error={error} />
         </div>
       </div>
