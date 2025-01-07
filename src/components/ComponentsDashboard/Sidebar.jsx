@@ -1,5 +1,19 @@
 "use client";
 
+import {
+  ClipboardList,
+  CircuitBoard,
+  MapPin,
+  Clock,
+  LayoutDashboard,
+  Menu,
+  X,
+  CircleDollarSign,
+  ChartBarStacked,
+  Users,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { Sidebar } from "flowbite-react";
 import { SiDropbox } from "react-icons/si";
@@ -44,50 +58,74 @@ export default function CustomSidebar() {
           <h2 className="text-lg font-semibold my-2 text-white">REGISTRASI</h2>
           <Sidebar.Item
             href="#"
-            icon={HiUser}
+            icon={() => <Users className="text-white group-hover:text-black" />}
             onClick={() => toggleItem('approval')}
-            className="flex items-center justify-between"
+            className="group flex items-center justify-between"
           >
             <div className="flex items-center">
-              <span className="text-white">Approval Registrasi</span>
-              <HiChevronDown style={{ color: '#FFFFFF'}} className={`ml-2 transition-transform ${openItems.approval ? 'rotate-180' : ''}`} />
+              <h1 className="text-white hover:text-black hover:no-underline">Approval Registrasi</h1>
+              <HiChevronDown
+                className={`ml-2 text-white group-hover:text-black transition-transform ${openItems.approval ? 'rotate-180' : ''}`}
+              />
             </div>
           </Sidebar.Item>
           {openItems.approval && (
             <Sidebar.ItemGroup className="pl-4">
-              <Sidebar.Item className="text-white" href="/register-masyarakat" icon={HiUserGroup}>
+              <Sidebar.Item 
+                className="group text-white hover:text-black hover:no-underline flex items-center" 
+                href="/register-masyarakat" 
+                icon={() => <Users className="text-white group-hover:text-black" />}
+              >
                 Registrasi Masyarakat
               </Sidebar.Item>
-              <Sidebar.Item className="text-white" href="/register-kurir" icon={HiTruck}>
+              <Sidebar.Item 
+                className="group text-white hover:text-black hover:no-underline flex items-center" 
+                href="/register-kurir" 
+                icon={() => <Users className="text-white group-hover:text-black" />}
+              >
                 Registrasi Kurir
               </Sidebar.Item>
-            </Sidebar.ItemGroup>
+            </Sidebar.ItemGroup>          
           )}
 
           {/* Title DATAMASTER */}
-          <h2 className="text-lg font-semibold my-2 text-white">DATAMASTER</h2>
+            <h2 className="text-lg font-semibold my-2 text-white">DATAMASTER</h2>
+            <Sidebar.Item
+              href="#"
+              icon={() => <CircuitBoard className="text-white group-hover:text-black" />}
+              onClick={() => toggleItem('ewaste')}
+              className="group flex items-center justify-between"
+            >
+              <div className="flex items-center">
+                <span className="text-white hover:text-black hover:no-underline">E-waste</span>
+                <HiChevronDown
+                  className={`ml-2 text-white group-hover:text-black transition-transform ${openItems.ewaste ? 'rotate-180' : ''}`}
+                />
+              </div>
+            </Sidebar.Item>
+            {openItems.ewaste && (
+              <Sidebar.ItemGroup className="pl-4">
+                <Sidebar.Item 
+                  className="group text-white hover:text-black hover:no-underline flex items-center" 
+                  href="/jenis-kategori" 
+                  icon={() => <ChartBarStacked className="text-white group-hover:text-black" />}
+                >
+                  Jenis & Kategori
+                </Sidebar.Item>
+                <Sidebar.Item 
+                  className="group text-white hover:text-black hover:no-underline flex items-center" 
+                  href="/konversi-poin" 
+                  icon={() => <CircleDollarSign className="text-white group-hover:text-black" />}
+                >
+                  Konversi Poin
+                </Sidebar.Item>
+              </Sidebar.ItemGroup>
+            )}
           <Sidebar.Item
-            href="#"
-            icon={HiOutlineTrash}
-            onClick={() => toggleItem('ewaste')}
-            className="flex items-center justify-between"
+            href="/dropbox"
+            icon={() => <MapPin className="text-white group-hover:text-black" />}
+            className="group text-white hover:text-black hover:no-underline flex items-center mt-2"
           >
-            <div className="flex items-center">
-              <span className="text-white">E-waste</span>
-              <HiChevronDown style={{ color: '#FFFFFF'}} className={`ml-2 transition-transform ${openItems.ewaste ? 'rotate-180' : ''}`} />
-            </div>
-          </Sidebar.Item>
-          {openItems.ewaste && (
-            <Sidebar.ItemGroup className="pl-4">
-              <Sidebar.Item className="text-white" href="/jenis-kategori" icon={HiChip}>
-                Jenis & Kategori
-              </Sidebar.Item>
-              <Sidebar.Item className="text-white" href="/konversi-poin" icon={HiCurrencyDollar}>
-                Konversi Poin
-              </Sidebar.Item>
-            </Sidebar.ItemGroup>
-          )}
-          <Sidebar.Item href="/dropbox" icon={FaBoxOpen} className="text-white mt-2">
             Dropbox
           </Sidebar.Item>
 

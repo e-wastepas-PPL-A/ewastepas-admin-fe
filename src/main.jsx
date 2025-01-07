@@ -12,12 +12,14 @@ import Dropbox from './pages/Dropbox/DropboxPage.jsx'
 import TotalWastePoint from './pages/TotalWastePoint/TotalWastePoint.jsx'
 import DetailPoint from './pages/DetailPoint/DetailPoint.jsx'
 import RiwayatPenjemputan from './pages/RiwayatPenjemputan/RiwayatPenjemputan.jsx'
+import LoginPage from "./pages/Login/LoginPage.jsx";
+import RequireAuth from "./utils/RequireAuth";
 import './style/index.css'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard />,
+    element: <RequireAuth><Dashboard /></RequireAuth>,
   },
   {
     path: "/test",
@@ -66,6 +68,10 @@ const router = createBrowserRouter([
   {
     path: "/back-to-point",
     element: <TotalWastePoint />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   }
 ]);
 

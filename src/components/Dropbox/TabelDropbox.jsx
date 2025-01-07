@@ -1,6 +1,6 @@
 "use client";
 
-import { HiPencil, HiTrash } from "react-icons/hi";
+import { HiPencil, HiTrash, HiEye } from "react-icons/hi";
 import { Table } from "flowbite-react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -8,6 +8,7 @@ import PopUpDelete from "./PopUpDeleteDropbox"
 import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
 import PopUpAddDropbox from "./PopUpAddDropbox";
 import PopUpEditDropbox from "./PopUpEditDropbox";
+import PopUpDetailDropbox from "./PopUpDetailDropbox";
 
 export default function CustomTable() {
   const [modalType, setModalType] = useState(null);
@@ -47,6 +48,12 @@ export default function CustomTable() {
 
   const handleDelete = (dropboxId) => {
     setModalType("delete");
+    setIsModalOpen(true);
+    setSelectedDropboxId(dropboxId);
+  };
+
+  const handleViewDetail = (dropboxId) => {
+    setModalType("view");
     setIsModalOpen(true);
     setSelectedDropboxId(dropboxId);
   };
@@ -117,6 +124,13 @@ export default function CustomTable() {
                   <td className="py-2 px-4">{dropbox.status}</td>
                   <td className="py-2 px-4 text-center flex items-center justify-center space-x-2">
                     <button
+                      onClick={() => handleViewDetail(dropbox.dropbox_id)}
+                      className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-blue-700"
+                      title="View"
+                    >
+                      <HiEye size={20} />
+                    </button>
+                    <button
                       onClick={() => handleEdit(dropbox.dropbox_id)}
                       className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-700"
                       title="Edit"
@@ -179,6 +193,14 @@ export default function CustomTable() {
             dropboxId={selectedDropboxId}
             onClose={() => setIsModalOpen(false)}
             onSuccess={fetchUpdatedData}
+          />
+        )}
+        {/* PopUpDetail */}
+        {isModalOpen && modalType === "view" && (
+          <PopUpDetailDropbox
+            dropboxId={selectedDropboxId}
+            onClose={() => setIsModalOpen(false)}
+            // onSuccess={fetchUpdatedData}
           />
         )}
       </div>
