@@ -24,7 +24,7 @@ export default function CustomTable() {
   const fetchDataDropbox = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://127.0.0.1:8000/api/dropbox/?page=${page}`);
+      const response = await axios.get(`http://34.16.66.175:8031/api/dropbox/?page=${page}`);
       if (response.data.success) {
         // Ubah objek Community menjadi array
         const dropboxData = response.data.data.dropbox.data;
@@ -82,7 +82,7 @@ export default function CustomTable() {
 
   return (
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-6">
           <button
             onClick={() => setIsAddModalOpen(true)}
             className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700"
@@ -90,9 +90,9 @@ export default function CustomTable() {
             Tambah Data
           </button>
         </div>
-        <div className="mt-4 ml-4">
+        {/* <div className="mt-4 ml-4">
           <CustomSearchbar style={{ marginRight: "sm-7" }} />
-        </div>
+        </div> */}
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg overflow-y-auto max-h-[500px]">
           <Table className="w-full text-sm text-left rtl:text-right text-black dark:text-black">
             <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>

@@ -37,7 +37,7 @@ export default function PopUpAddJenisKategori({ onClose, onSuccess }) {
       formData.append("point", point);
       formData.append("image", image);
 
-      const response = await axios.post("http://127.0.0.1:8000/api/waste/create", formData, {
+      const response = await axios.post("http://34.16.66.175:8031/api/waste/create", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

@@ -11,7 +11,7 @@ export default function DetailDropbox({ dropboxId, onClose }) {
   const fetchDetailDropbox = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://127.0.0.1:8000/api/dropbox/${dropboxId}`);
+      const response = await axios.get(`http://34.16.66.175:8031/api/dropbox/${dropboxId}`);
       if (response.data.success) {
         setDetail(response.data.data);
       } else {
@@ -81,7 +81,7 @@ export default function DetailDropbox({ dropboxId, onClose }) {
               <th className="p-2 border border-gray-300">Jenis Sampah</th>
               <th className="p-2 border border-gray-300">Jumlah</th>
               <th className="p-2 border border-gray-300">Point</th>
-              <th className="p-2 border border-gray-300">Aksi</th>
+              {/* <th className="p-2 border border-gray-300">Aksi</th> */}
             </tr>
           </thead>
           <tbody>
@@ -92,15 +92,14 @@ export default function DetailDropbox({ dropboxId, onClose }) {
               <td className="p-2 border border-gray-300">{detail.jenis_sampah}</td>
               <td className="p-2 border border-gray-300">{detail.jumlah}</td>
               <td className="p-2 border border-gray-300">{detail.point}</td>
-              <td className="p-2 border border-gray-300">
-                {/* Tombol Hapus */}
+              {/* <td className="p-2 border border-gray-300">
                 <button
                   className="text-red-600 hover:text-red-800"
                   title="Hapus"
                 >
                   <HiTrash size={24} />
                 </button>
-              </td>
+              </td> */}
             </tr>
           </tbody>
         </table>
