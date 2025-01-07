@@ -19,7 +19,7 @@ export default function CustomTable() {
   const fetchDataMasyarakat = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://127.0.0.1:8000/api/community/?page=${page}`);
+      const response = await axios.get(`http://34.16.66.175:8031/api/community/?page=${page}`);
       if (response.data.success) {
         const communityData = response.data.data.Community.data;
   
@@ -119,15 +119,15 @@ export default function CustomTable() {
                     <HiUser className="inline-block text-gray-600" size={40} />
                   )}
                 </td>
-                <td className="py-2 px-4 border-b">{masyarakat.name}</td>
-                <td className="py-2 px-4 border-b">{masyarakat.phone}</td>
-                <td className="py-2 px-4 border-b">{masyarakat.address}</td>
-                <td className="py-2 px-4 border-b">
+                <td className="py-2 px-4 border-b max-w-[200px] overflow-x-auto">{masyarakat.name}</td>
+                <td className="py-2 px-4 border-b max-w-[100px] overflow-x-auto">{masyarakat.phone}</td>
+                <td className="py-2 px-4 border-b max-w-[200px] overflow-x-auto">{masyarakat.address}</td>
+                <td className="py-2 px-4 border-b max-w-[100px] overflow-x-auto">
                   {masyarakat.date_of_birth
                     ? new Date(masyarakat.date_of_birth).toLocaleDateString("id-ID")
                     : "-"}
                 </td>
-                <td className="py-2 px-4 border-b text-center flex items-center justify-center">
+                <td className="py-2 px-4 text-center flex items-center justify-center">
                   <button
                     className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-700"
                     title="Ceklis (Approval)"

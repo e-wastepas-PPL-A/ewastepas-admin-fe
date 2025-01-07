@@ -49,7 +49,7 @@ export default function CourierApprovalTable() {
   const fetchDataKurir = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://127.0.0.1:8000/api/courier/?page=${page}`);
+      const response = await axios.get(`http://34.16.66.175:8031/api/courier/?page=${page}`);
       if (response.data.success) {
         // const courierData = response.data.data.Courier.data;
         const courierData = response.data.data.Courier.data.filter(
@@ -141,13 +141,22 @@ export default function CourierApprovalTable() {
                   rejectedCourier.includes(courier.courier_id) ? "text-red-500" : ""
                 }`}
               >
-                <td className="py-2 px-4 border-b">{courier.name}</td>
-                <td className="py-2 px-4 border-b">{courier.phone}</td>
-                <td className="py-2 px-4 border-b">{courier.date_of_birth}</td>
-                <td className="py-2 px-4 border-b">{courier.address}</td>
-                <td className="py-2 px-4 border-b">{courier.account_number}</td>
+                <td className="py-2 px-4 border-b max-w-[200px] overflow-x-auto" >{courier.name}</td>
+                <td className="py-2 px-4 border-b max-w-[100px] overflow-x-auto">{courier.phone}</td>
+                <td className="py-2 px-4 border-b max-w-[100px] overflow-x-auto">{courier.date_of_birth}</td>
+                {/* <td
+                  className="py-2 px-4 border-b break-words max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap"
+                  title={courier.address}
+                >
+                  {courier.address}
+                </td> */}
+                <td className="py-2 px-4 border-b max-w-[200px] overflow-x-auto">
+                  {courier.address}
+                </td>
+                <td className="py-2 px-4 border-b max-w-[200px] overflow-x-auto">{courier.account_number}</td>
                 <td className="py-2 px-4 border-b text-center">
                   <button
+                    onClick={() => handleViewImageClick("Kartu Keluarga", courier.kk_url || "https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E")}
                     className="text-blue-500 hover:text-blue-600 p-0 m-0 bg-transparent border-none"
                   >
                     <HiEye size={24} />
@@ -155,12 +164,13 @@ export default function CourierApprovalTable() {
                 </td>
                 <td className="py-2 px-4 border-b text-center">
                   <button
+                    onClick={() => handleViewImageClick("KTP", courier.ktp_url || "https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E")}
                     className="text-blue-500 hover:text-blue-600 p-0 m-0 bg-transparent border-none"
                   >
                     <HiEye size={24} />
                   </button>
                 </td>
-                <td className="py-2 px-4 border-b text-center flex items-center justify-center">
+                <td className="py-2 px-4 text-center flex items-center justify-center">
                   <button
                     className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-700"
                     title="Ceklis (Approval)"
