@@ -146,19 +146,13 @@ export default function CourierApprovalTable() {
                 <td className="py-2 px-4 border-b max-w-[200px] overflow-x-auto" >{courier.name}</td>
                 <td className="py-2 px-4 border-b max-w-[100px] overflow-x-auto">{courier.phone}</td>
                 <td className="py-2 px-4 border-b max-w-[100px] overflow-x-auto">{courier.date_of_birth}</td>
-                {/* <td
-                  className="py-2 px-4 border-b break-words max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap"
-                  title={courier.address}
-                >
-                  {courier.address}
-                </td> */}
-                <td className="py-2 px-4 border-b max-w-[200px] overflow-x-auto">
+                <td className="py-2 px-4 border-b max-w-[200px] break-words overflow-x-auto">
                   {courier.address}
                 </td>
                 <td className="py-2 px-4 border-b max-w-[200px] overflow-x-auto">{courier.account_number}</td>
                 <td className="py-2 px-4 border-b text-center">
                   <button
-                    onClick={() => handleViewImageClick("Kartu Keluarga", courier.kk_url || {KK})}
+                    onClick={() => handleViewImageClick("Kartu Keluarga", courier.kk_url || KK)}
                     className="text-blue-500 hover:text-blue-600 p-0 m-0 bg-transparent border-none"
                   >
                     <HiEye size={24} />
@@ -166,7 +160,7 @@ export default function CourierApprovalTable() {
                 </td>
                 <td className="py-2 px-4 border-b text-center">
                   <button
-                    onClick={() => handleViewImageClick("KTP", courier.ktp_url || {Ktp})}
+                    onClick={() => handleViewImageClick("KTP", courier.ktp_url || Ktp)}
                     className="text-blue-500 hover:text-blue-600 p-0 m-0 bg-transparent border-none"
                   >
                     <HiEye size={24} />
