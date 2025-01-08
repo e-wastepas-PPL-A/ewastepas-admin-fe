@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import CustomPopUp from "./PopUpApprovalKurir";
 import { Modal, Button } from "flowbite-react";
 import CustomPopUpReject from "./PopUpRejectKurir";
+import Ktp from "../../assets/KTP.png";
+import KK from "../../assets/KK.png";
 import axios from "axios";
 
 function ImageModal({ url, onClose }) {
@@ -156,7 +158,7 @@ export default function CourierApprovalTable() {
                 <td className="py-2 px-4 border-b max-w-[200px] overflow-x-auto">{courier.account_number}</td>
                 <td className="py-2 px-4 border-b text-center">
                   <button
-                    onClick={() => handleViewImageClick("Kartu Keluarga", courier.kk_url || "https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E")}
+                    onClick={() => handleViewImageClick("Kartu Keluarga", courier.kk_url || {KK})}
                     className="text-blue-500 hover:text-blue-600 p-0 m-0 bg-transparent border-none"
                   >
                     <HiEye size={24} />
@@ -164,7 +166,7 @@ export default function CourierApprovalTable() {
                 </td>
                 <td className="py-2 px-4 border-b text-center">
                   <button
-                    onClick={() => handleViewImageClick("KTP", courier.ktp_url || "https://media.licdn.com/dms/image/v2/D4E03AQHANo4jv-Uzyg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666154152263?e=2147483647&v=beta&t=hMI8RIHcLSp_h2cwpg3sjv-smjPxUKEf1ZazdyDPv_E")}
+                    onClick={() => handleViewImageClick("KTP", courier.ktp_url || {Ktp})}
                     className="text-blue-500 hover:text-blue-600 p-0 m-0 bg-transparent border-none"
                   >
                     <HiEye size={24} />
