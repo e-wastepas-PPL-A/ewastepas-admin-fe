@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 export default function PageName() {
   const { pickup_id } = useParams();
   const [pickupDetails, setPickupDetails] = useState(null);
+  const [pickup, setPickup] = useState(null);
 
   useEffect(() => {
     document.title = "E-Wastepas | Permintaan Sampah";
@@ -19,6 +20,7 @@ export default function PageName() {
       .then(response => {
         if (response.data.success) {
           setPickupDetails(response.data.data); 
+          setPickup(response.data); 
         }
       })
       .catch(error => {
@@ -30,7 +32,7 @@ export default function PageName() {
     return <div>Loading...</div>; 
   }
 
-  const { community, total_point } = pickupDetails;
+  const { community, total_point, pickup_detail } = pickupDetails;
 
   return (
     <div 
@@ -102,10 +104,10 @@ export default function PageName() {
             <Card className="h-full">
               <div className="flex flex-col h-full">
                 <div className="mt-4 ml-4">
-                  <CustomSearchbar style={{ marginRight: "sm-7" }} />
+                  {/* <CustomSearchbar style={{ marginRight: "sm-7" }} /> */}
                 </div>
                 <div className="flex-grow overflow-auto">
-                  <CustomTableDetailPoint />
+                <CustomTableDetailPoint pickupDetail={pickup_detail} />
                 </div>
               </div>
             </Card>
