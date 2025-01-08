@@ -26,7 +26,7 @@ const LoginPage = () => {
       const data = await response.json();
       if (response.ok) {
         Cookies.set("session_id", data.session_id);
-        window.location.href = "http://localhost:5173/";
+        window.location.href = "http://34.16.66.175:8030/";
       } else {
         setError(data.message || "Login failed");
       }
