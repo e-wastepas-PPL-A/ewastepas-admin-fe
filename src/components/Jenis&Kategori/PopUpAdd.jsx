@@ -20,7 +20,7 @@ export default function PopUpAddJenisKategori({ onClose, onSuccess }) {
   };
 
   const handleSubmit = async () => {
-    if (!wasteName || !wasteTypeId || !description || !point || !image) {
+    if (!wasteName || !wasteTypeId || !description || !image) {
       setError("Semua field wajib diisi!");
       return;
     }
@@ -93,7 +93,7 @@ export default function PopUpAddJenisKategori({ onClose, onSuccess }) {
                 ))}
               </select>
             </div>
-            <div>
+            {/* <div>
               <label className="block text-sm font-medium text-gray-700">Poin</label>
               <input
                 type="text"
@@ -101,7 +101,7 @@ export default function PopUpAddJenisKategori({ onClose, onSuccess }) {
                 onChange={(e) => setPoint(e.target.value)}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
-            </div>
+            </div> */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Deskripsi</label>
               <input
