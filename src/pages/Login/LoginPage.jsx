@@ -15,7 +15,7 @@ const LoginPage = () => {
     const password = formData.get("password");
 
     try {
-      const response = await fetch("http://34.16.66.175:8031/api/auth/login", {
+      const response = await fetch("http://127.0.0.1:8000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const LoginPage = () => {
       const data = await response.json();
       if (response.ok) {
         Cookies.set("session_id", data.session_id);
-        window.location.href = "http://34.16.66.175:8030/";
+        window.location.href = "http://localhost:5173/";
       } else {
         setError(data.message || "Login failed");
       }

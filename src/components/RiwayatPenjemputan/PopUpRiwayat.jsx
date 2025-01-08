@@ -2,11 +2,11 @@
 
 import { Button, Modal, Timeline } from "flowbite-react";
 import { useState } from "react";
-import { HiChat, HiEye, HiLocationMarker, HiPhone, HiCheck, HiTruck } from "react-icons/hi";
+import { HiLocationMarker, HiCheck, HiTruck } from "react-icons/hi";
 
 export default function CustomPopUp({ onClose, pickupData }) {
   const [openModal, setOpenModal] = useState(true);
-  const [modalPlacement, setModalPlacement] = useState('center');
+  const [modalPlacement, setModalPlacement] = useState("center");
 
   const handleClose = () => {
     setOpenModal(false);
@@ -21,7 +21,7 @@ export default function CustomPopUp({ onClose, pickupData }) {
   ];
 
   const currentStatusIndex = trackingSteps.findIndex(step => 
-    pickupData?.status.includes(step.title)
+    pickupData?.status.includes(step.title) || pickupData?.status === "Sampah telah dijemput"
   );
 
   return (
