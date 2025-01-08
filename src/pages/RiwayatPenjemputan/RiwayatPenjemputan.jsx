@@ -4,7 +4,6 @@ import React from "react";
 import CustomSidebar from "../../components/ComponentsDashboard/Sidebar";
 import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
 import CustomTable from "../../components/RiwayatPenjemputan/TableRiwayatPenjemputan";
-import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
 import CustomTableRiwayat from "../../components/RiwayatPenjemputan/TableRiwayatPenjemputan";
 
 export default function PageName() {
@@ -48,7 +47,7 @@ export default function PageName() {
         <Card>
           <div className="flex flex-col h-full">
             <div className="mt-4 ml-4">
-              <CustomSearchbar style={{ marginRight: "sm-7" }} />
+              {/* <CustomSearchbar style={{ marginRight: "sm-7" }} /> */}
             </div>
             <div className="flex-grow overflow-auto">
               <CustomTableRiwayat />

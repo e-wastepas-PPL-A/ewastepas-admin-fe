@@ -22,7 +22,7 @@ export default function CustomPopUp({ onClose, masyarakatId, onSuccess }) {
         is_verified: 1,
       };
 
-      const response = await axios.post(`http://34.16.66.175:8031/api/community/update-status/${masyarakatId}`, updateData);
+      const response = await axios.post(`http://127.0.0.1:8000/api/community/update-status/${masyarakatId}`, updateData);
       if (response.data.success) {
         // Tutup modal konfirmasi dan buka modal sukses
         setOpenConfirmationModal(false);
@@ -34,12 +34,7 @@ export default function CustomPopUp({ onClose, masyarakatId, onSuccess }) {
       }
     } catch (error) {
       console.error("Terjadi kesalahan saat mengirim permintaan approval:", error);
-
-      // Cek apakah ada respons dari server dan tampilkan pesan error-nya
-      const errorMessage =
-        error.response.data.message ||
-        "Terjadi kesalahan saat menyetujui masyarakat.";
-      alert(errorMessage);
+      alert("Terjadi kesalahan saat menyetujui masyarakat.");
     } finally {
       setIsLoading(false);
     }

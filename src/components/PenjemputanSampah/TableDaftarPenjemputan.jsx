@@ -4,6 +4,7 @@
 import { Table } from "flowbite-react";
 import { HiBell, HiEye } from "react-icons/hi";
 import CustomPopUp from "../PermintaanSampah/PopUpPermintaanSampah";
+import CustomSearchbar from "../PenjemputanSampah/SearchPenjemputanSampah"; 
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -11,12 +12,14 @@ export default function CustomTableKurir() {
     const [pickups, setPickups] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPickup, setSelectedPickup] = useState(null);
+    const [filteredPickups, setFilteredPickups] = useState([]);
 
     useEffect(() => {
         axios.get("http://34.16.66.175:8031/api/dashboard/pickup/courier")
             .then(response => {
                 if (response.data.success) {
                     setPickups(response.data.data.pickups.data);
+                    setFilteredPickups(response.data.data.pickups.data);
                 }
             })
             .catch(error => {
@@ -38,8 +41,16 @@ export default function CustomTableKurir() {
             });
     };
 
+    const handleSearch = (searchTerm) => {
+        const filtered = pickups.filter(pickup =>
+            pickup.customer_name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredPickups(filtered);
+    };
+
     return (
         <div className="overflow-x-auto shadow-md sm:rounded-lg">
+            <CustomSearchbar onSearch={handleSearch} />
             <table className="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
                 <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
                     <tr>

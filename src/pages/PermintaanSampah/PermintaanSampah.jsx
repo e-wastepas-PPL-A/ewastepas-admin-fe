@@ -48,7 +48,6 @@ export default function PageName() {
         <Card>
           <div className="flex flex-col h-full">
             <div className="mt-4 ml-4">
-              <CustomSearchbar style={{ marginRight: "sm-7" }} />
             </div>
             <div className="flex-grow overflow-auto">
               <CustomTable />

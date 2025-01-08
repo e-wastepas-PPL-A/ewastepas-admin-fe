@@ -1,120 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "flowbite-react";
-import React from "react";
 import CustomSidebar from "../../components/ComponentsDashboard/Sidebar";
 import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
 import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
-import { useParams } from 'react-router-dom';
+import { HiArrowLeft } from "react-icons/hi";
 import CustomTableDetailPoint from "../../components/DetailPoint/TableDetailPoint";
-import { HiArrowLeft, HiBackspace, HiChat, HiEye, HiLocationMarker, HiPhone } from "react-icons/hi";
-
-// Sidebar component
-// export function Sidebar1() {
-//   return (
-//     <div className="Sidebar" style={{
-//       position: "fixed", 
-//       left: 0, 
-//       top: 0, 
-//       width: "260px", 
-//       height: "100vh", 
-//       backgroundColor: "#f8f9fa" 
-//     }}>
-//       <CustomSidebar />
-//     </div>
-//   );
-// }
-
-// // Navbar component
-// export function Navbar1() {
-//   return (
-//     <div style={{ position: "fixed", top: 0, left: "260px", right: 0, height: "60px", backgroundColor: "#343a40", color: "#fff" }}>
-//       <CustomNavbar />
-//     </div>
-//   );
-// }
-
-// export default function PageName() {
-//     const { pickup_id } = useParams();
-//     useEffect(() => {
-//         document.title = "E-Wastepas | Detail Point";
-//     }, []);
-
-
-//     return (
-//         <div className="bg-gray-100">
-//         <Navbar1 />
-//         <Sidebar1 />
-
-//         <h1 style={{
-//             marginLeft: "300px", 
-//             marginTop: "60px", 
-//             marginBottom: "-100px",
-//             padding: "20px",
-//             fontSize: "24px", 
-//             fontWeight: "bold" 
-//             }}>
-//                 <a 
-//                     href="/back-to-point" 
-//                     className="flex items-center text-black px-4 py-2 rounded-md"
-//                 >
-//                     <HiArrowLeft className="w-5 h-5 mr-2" />
-//                     Detail Point
-//                 </a>
-
-//         </h1>
-
-//         {/* Konten utama Permintaan Sampah */}
-//         <div className="content" 
-//             style={{ 
-//             marginLeft: "260px",
-//             marginTop: "60px",
-//             padding: "20px", 
-//             minHeight: "calc(100vh - 60px)", 
-//             display: "flex", 
-//             justifyContent: "center", 
-//             alignItems: "center" 
-//             }}>
-                
-
-        
-//             <div className="flex flex-col h-full" style={{ width: '1300px', height: '600px' }}>
-//             <div class="border-t border-gray-300 my-4"></div>
-//             <div className="grid grid-cols-2 gap-4">
-//               <div>
-//                 <p className="font-bold">Name</p>
-//                 <p>Faqih</p>
-//               </div>
-//               <div>
-//                 <p className="font-bold">Address</p>
-//                 <p>Jl. Ngawi no 111</p>
-//               </div>
-//               <div>
-//                 <p className="font-bold">Phone Number</p>
-//                 <p>0823456789</p>
-//               </div>
-//               <div>
-//                 <p className="font-bold">Total Point</p>
-//                 <p>50</p>
-//               </div>
-//             </div>
-//             <div class="border-t border-gray-300 my-4"></div>
-//                 <div className="flex-grow overflow-auto mt-5">
-//                     <CustomTableDetailPoint />
-//                 </div>
-//             </div>
-
-        
-//         </div>
-//         </div>
-//     );
-// }
-
+import axios from "axios";
+import { useParams } from "react-router-dom"; 
 
 export default function PageName() {
+  const { pickup_id } = useParams();
+  const [pickupDetails, setPickupDetails] = useState(null);
+
   useEffect(() => {
     document.title = "E-Wastepas | Permintaan Sampah";
-  }, []);
+    
+    axios.get(`http://34.16.66.175:8031/api/total-poin/${pickup_id}`)
+      .then(response => {
+        if (response.data.success) {
+          setPickupDetails(response.data.data); 
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching pickup details:", error);
+      });
+  }, [pickup_id]);
 
+  if (!pickupDetails) {
+    return <div>Loading...</div>; 
+  }
+
+  const { community, total_point } = pickupDetails;
 
   return (
     <div 
@@ -131,71 +47,71 @@ export default function PageName() {
     >
       <CustomSidebar />
 
-        <div 
-          className="flex-1"
-          style={{ position: "fixed", top: 0, left: "260px", right: 0, height: "60px" }}
-        >
-          <CustomNavbar/>
+      <div 
+        className="flex-1"
+        style={{ position: "fixed", top: 0, left: "260px", right: 0, height: "100vh" }}
+      >
+        <CustomNavbar/>
 
-          <div
-            className="flex justify-between items-center w-full"
-            style={{
-              marginBottom: "20px",
-              paddingLeft: "20px",
-              paddingRight: "20px",
-              paddingTop: "20px"
-            }}
-          >
-            <h1 style={{
+        <div
+          className="flex justify-between items-center w-full"
+          style={{
+            marginBottom: "20px",
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            paddingTop: "20px"
+          }}
+        >
+          <h1 style={{
             fontSize: "24px", 
             fontWeight: "bold" 
-            }}>
-                <a 
-                    href="/back-to-point" 
-                    className="flex items-center text-black px-4 py-2 rounded-md"
-                >
-                    <HiArrowLeft className="w-5 h-5 mr-2" />
-                    Detail Point
-                </a>
-
-        </h1>
+          }}>
+            <a 
+              href="/back-to-point" 
+              className="flex items-center text-black px-4 py-2 rounded-md"
+            >
+              <HiArrowLeft className="w-5 h-5 mr-2" />
+              Detail Point
+            </a>
+          </h1>
         </div>
-        <div class="border-t border-gray-300 my-4"></div>
+        
+        <div className="border-t border-gray-300 my-4"></div>
+        
         <div className="grid grid-cols-2 gap-4 ml-6">
-               <div>
-                 <p className="font-bold">Name</p>
-                 <p>Faqih</p>
-               </div>
-               <div>
-                 <p className="font-bold">Address</p>
-                 <p>Jl. Ngawi no 111</p>
-               </div>
-               <div>
-                 <p className="font-bold">Phone Number</p>
-                 <p>0823456789</p>
-               </div>
-               <div>
-                 <p className="font-bold">Total Point</p>
-                 <p>50</p>
-               </div>
-             </div>
-             
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            
-            <div className="mt-8">
-              <Card style={{ width: "1200px", height: "600px" }}>
-                <div className="flex flex-col h-full">
-                  <div className="mt-4 ml-4">
-                    <CustomSearchbar style={{ marginRight: "sm-7" }} />
-                  </div>
-                  <div className="flex-grow overflow-auto">
-                    <CustomTableDetailPoint />
-                  </div>
-                </div>
-              </Card>
-            </div>
+          <div>
+            <p className="font-bold">Name</p>
+            <p>{community.name}</p>
+          </div>
+          <div>
+            <p className="font-bold">Address</p>
+            <p>{community.address}</p>
+          </div>
+          <div>
+            <p className="font-bold">Phone Number</p>
+            <p>{community.phone}</p>
+          </div>
+          <div>
+            <p className="font-bold">Total Point</p>
+            <p>{total_point}</p>
           </div>
         </div>
+        
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", height: "calc(100% - 60px - 80px)" }}>
+          <div className="mt-8 w-full">
+            <Card className="h-full">
+              <div className="flex flex-col h-full">
+                <div className="mt-4 ml-4">
+                  <CustomSearchbar style={{ marginRight: "sm-7" }} />
+                </div>
+                <div className="flex-grow overflow-auto">
+                  <CustomTableDetailPoint />
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

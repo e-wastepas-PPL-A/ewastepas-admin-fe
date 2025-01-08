@@ -2,28 +2,28 @@ import { HiBell } from "react-icons/hi";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import NotificationPopup from '../ComponentsDashboard/PopUpNotif';
 
 const CustomNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [notificationOpen, setNotificationOpen] = useState(false); // State for notification dropdown
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const [selectedPickupData, setSelectedPickupData] = useState(null);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://34.16.66.175:8031/api/auth/logout", {
+      const response = await fetch("http://127.0.0.1:8000/api/auth/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: 'include', // Sertakan cookie dalam permintaan
+        credentials: 'include',
       });
   
       if (response.ok) {
-        // Hapus cookie sesi
         Cookies.remove("session_id");
-  
-        // Redirect ke halaman login
-        window.location.href = "http://localhost:5173/login"; // Ganti dengan URL login Anda
+        window.location.href = "http://localhost:5173/login";
       } else {
         console.error("Logout failed");
       }
@@ -43,12 +43,65 @@ const CustomNavbar = () => {
     }
   };
 
+  const fetchNotifications = async () => {
+    try {
+      const response = await fetch("http://34.16.66.175:8031/api/notifikasi-penjemputan", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (data.success) {
+        // Limit to the 5 most recent notifications
+        const recentNotifications = data.data.notifications.slice(0, 5);
+        setNotifications(recentNotifications);
+      }
+    } catch (err) {
+      console.error("Error fetching notifications:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+    
+    if (diffInSeconds < 60) return `${diffInSeconds} seconds ago`;
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+    
+    return date.toLocaleDateString();
+  };
+
+  const handleNotificationClick = async (pickupId) => {
+    try {
+      const response = await fetch(`http://34.16.66.175:8031/api/notifikasi-penjemputan/${pickupId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (data.success) {
+        setSelectedPickupData(data.data);
+        setNotificationOpen(true);
+      }
+    } catch (err) {
+      console.error("Error fetching pickup data:", err);
+    }
+  };
+
   return (
     <>
       <nav className="text-revamp-neutral-10 p-4 border-b border-revamp-neutral-10/20">
         <div className="mx-auto flex justify-between items-center">   
           <div className="text-xl font-bold">
-            {greetings()},{"Rusdi Sigma"}
+            {greetings()}, {"Rusdi Sigma"}
           </div>
           <div className="flex items-center gap-3">
             {/* Notification Dropdown */}
@@ -66,26 +119,22 @@ const CustomNavbar = () => {
                 } transition-all duration-200 absolute end-0 z-10 mt-2 w-56 rounded-md border-1 border-revamp-neutral-8 bg-white shadow-lg`}
                 role="menu">
                 <div className="p-2">
-                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
-                    Order No. 1 is waiting for collection
-                    <p className="text-gray-500 text-sm mt-1 text-left">15 Minutes ago</p>
-                  </div>
-                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
-                    Order No. 2 is on its way
-                    <p className="text-gray-500 text-sm mt-1 text-left">15 Minutes ago</p>
-                  </div>
-                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
-                    Order No. 3 trash has been picked up
-                    <p className="text-gray-500 text-sm mt-1 text-left">15 Minutes ago</p>
-                  </div>
-                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
-                    Order No. 4 trash has been picked up
-                    <p className="text-gray-500 text-sm mt-1 text-left">15 Minutes ago</p>
-                  </div>
-                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
-                    Order No. 1 has been completed
-                    <p className="text-gray-500 text-sm mt-1 text-left">15 menit yang lalu</p>
-                  </div>
+                  {notifications.length > 0 ? (
+                    notifications.map(notification => (
+                      <div 
+                        key={notification.pickup_id} 
+                        className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 cursor-pointer"
+                        onClick={() => handleNotificationClick(notification.pickup_id)}
+                      >
+                        Order No. {notification.pickup_id} is {notification.status}
+                        <p className="text-gray-500 text-sm mt-1 text-left">{formatDate(notification.created_at)}</p>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="block rounded-lg px-4 py-2 text-sm text-gray-500">
+                      No notifications available.
+                    </div>
+                  )}
                   <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
                     See All
                   </div>
@@ -147,6 +196,13 @@ const CustomNavbar = () => {
           </div>
         </div>
       </nav>
+
+      {notificationOpen && selectedPickupData && (
+        <NotificationPopup 
+          pickupData={selectedPickupData} // Pass the pickup data
+          onClose={() => setNotificationOpen(false)} 
+        />
+      )}
     </>
   );
 };

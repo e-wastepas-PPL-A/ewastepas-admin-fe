@@ -49,9 +49,9 @@ export default function Register() {
 
           <Card> 
             <div className="flex flex-col h-full">
-              {/* <div className="mt-4 ml-4">
+              <div className="mt-4 ml-4">
                 <CustomSearchbar style={{ marginRight: "sm-7" }} />
-              </div> */}
+              </div>
               <div className="flex-grow overflow-auto">
                 <CustomTableMasyarakat/> 
               </div>
