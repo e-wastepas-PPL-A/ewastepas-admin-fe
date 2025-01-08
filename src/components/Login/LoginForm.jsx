@@ -62,7 +62,7 @@ const LoginForm = ({ onSubmit, error }) => {
         </div>
       </div>
 
-      <div className="my-3 flex justify-between items-center">
+      {/* <div className="my-3 flex justify-between items-center">
         <div className="flex items-center">
           <input
             type="checkbox"
@@ -79,7 +79,7 @@ const LoginForm = ({ onSubmit, error }) => {
         <a href="#" className="text-sm xl:text-base text-red-500 text-md">
           Lupa kata sandi
         </a>
-      </div>
+      </div> */}
 
       <button
         type="submit"
@@ -89,14 +89,14 @@ const LoginForm = ({ onSubmit, error }) => {
         Masuk
       </button>
 
-      <div className="text-sm xl:text-base text-center mt-2">
+      {/* <div className="text-sm xl:text-base text-center mt-2">
         <p>
           Anda sudah memiliki akun?{" "}
           <a href="#" className="text-red-500">
             Registrasi
           </a>
         </p>
-      </div>
+      </div> */}
     </form>
   );
 };
