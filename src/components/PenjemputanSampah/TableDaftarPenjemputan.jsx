@@ -41,7 +41,8 @@ export default function CustomTableKurir() {
 
     const handleSearch = (searchTerm) => {
         const filtered = pickups.filter(pickup =>
-            pickup.customer_name.toLowerCase().includes(searchTerm.toLowerCase())
+            pickup.customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            pickup.courier_name.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredPickups(filtered);
     };
