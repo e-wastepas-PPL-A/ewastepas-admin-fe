@@ -20,7 +20,7 @@ export default function PopUpEdit({ dropboxId, onClose, onSuccess }) {
     useEffect(() => {
         const fetchDropboxData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/dropbox/${dropboxId}`, {
+                const response = await axios.get(`http://34.16.66.175:8031/api/dropbox/${dropboxId}`, {
                     headers: { 'Cache-Control': 'no-cache' },
                 });
                 const { name, address, capacity, status } = response.data.data;
@@ -47,7 +47,7 @@ export default function PopUpEdit({ dropboxId, onClose, onSuccess }) {
         setError(null);
     
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/api/dropbox/update/${dropboxId}`, {
+            const response = await axios.post(`http://34.16.66.175:8031/api/dropbox/update/${dropboxId}`, {
                 name: newName,
                 address: newAddress,
                 capacity: newCapacity,

@@ -23,12 +23,12 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
       setError("Semua field wajib diisi!");
       return;
     }
-
+  
     setIsLoading(true);
     setError(null);
-
+  
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/dropbox/create/", {
+      const response = await axios.post("http://34.16.66.175:8031/api/dropbox/create/", {
         name,
         address,
         district_address: districtAddress,
@@ -36,20 +36,25 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
         latitude,
         capacity,
       });
-
-      if (response.data.success) {
+  
+    if (response.data.success) {
         setOpenSuccessModal(true);
         onSuccess();
       } else {
         setError(response.data.message || "Terjadi kesalahan saat menambah data dropbox.");
       }
     } catch (err) {
-      setError("Gagal menambah data dropbox. Silakan coba lagi.");
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message); // Pesan error dari API
+      } else {
+        setError("Gagal menambah data dropbox. Silakan coba lagi."); // Pesan default jika tidak ada pesan dari API
+      }
       console.error(err);
     } finally {
       setIsLoading(false);
     }
   };
+  
 
   const handleCloseSuccess = () => {
     setOpenSuccessModal(false);

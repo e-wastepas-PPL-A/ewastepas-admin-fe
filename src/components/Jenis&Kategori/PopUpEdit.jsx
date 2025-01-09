@@ -19,7 +19,7 @@ export default function PopUpEdit({ onClose, onSuccess, wasteId }) {
     // Fetch current waste data
     const fetchWasteData = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/waste/${wasteId}`);
+        const response = await axios.get(`http://34.16.66.175:8031/api/waste/${wasteId}`);
         const data = response.data.data;
         setWasteName(data.waste_name);
         setWasteTypeId(data.waste_type_id);
@@ -56,7 +56,7 @@ export default function PopUpEdit({ onClose, onSuccess, wasteId }) {
         formData.append("image", image);
       }
 
-      const response = await axios.post(`http://127.0.0.1:8000/api/waste/update/${wasteId}`, formData, {
+      const response = await axios.post(`http://34.16.66.175:8031/api/waste/update/${wasteId}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

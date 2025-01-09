@@ -22,14 +22,14 @@ export default function CustomTable() {
   const fetchListWaste = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://127.0.0.1:8000/api/waste/?page=${page}`);
+      const response = await axios.get(`http://34.16.66.175:8031/api/waste/?page=${page}`);
       const wasteData = response.data.data.waste.data;
       const totalItems = response.data.data.waste.total;
 
       const categoryPromises = wasteData.map(async (waste) => {
         if (waste.waste_type_id) {
           const categoryResponse = await axios.get(
-            `http://127.0.0.1:8000/api/waste_type/${waste.waste_type_id}`
+            `http://34.16.66.175:8031/api/waste_type/${waste.waste_type_id}`
           );
           return { id: waste.waste_type_id, name: categoryResponse.data.data.waste_type_name };
         }
@@ -86,21 +86,10 @@ export default function CustomTable() {
 
   return (
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        {/* <div className="flex justify-between items-center mb-2">
-          <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700">
-            Tambah Data
-          </button>
-        </div> */}
-        <div className="mt-4 ml-4">
-          <CustomSearchbar style={{ marginRight: "sm-7" }} />
-        </div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg overflow-y-auto max-h-[500px]">
           <Table className="ww-full text-sm text-left rtl:text-right text-black dark:text-black">
             <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
               <tr>
-                {/* <th scope="col" className="px-4 py-2">
-                  <input type="checkbox" />
-                </th> */}
                 <th scope="col" className="px-6 py-3 text-center">Gambar</th>
                 <th scope="col" className="px-6 py-3">Nama Sampah</th>
                 <th scope="col" className="px-6 py-3">Kategori Sampah</th>
@@ -116,9 +105,6 @@ export default function CustomTable() {
               ) : (
                 wastes.map((waste, index) => (
                   <tr key={index} className="bg-white border-b hover:bg-green-100">
-                    {/* <td className="py-2 px-4 text-center">
-                      <input type="checkbox" />
-                    </td> */}
                     <td className="py-2 px-4 border-b text-center">
                       {waste.image ? (
                         <img
