@@ -13,7 +13,7 @@ const CustomNavbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/auth/logout", {
+      const response = await fetch("http://34.16.66.175:8031/api/auth/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const CustomNavbar = () => {
   
       if (response.ok) {
         Cookies.remove("session_id");
-        window.location.href = "http://localhost:5173/login";
+        window.location.href = "http://34.16.66.175:8031/login";
       } else {
         console.error("Logout failed");
       }
