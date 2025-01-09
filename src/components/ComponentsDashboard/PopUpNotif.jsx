@@ -2,7 +2,7 @@
 
 import { Button, Modal, Timeline } from "flowbite-react";
 import { useState } from "react";
-import { HiChat, HiEye, HiLocationMarker, HiPhone, HiCheck, HiTruck } from "react-icons/hi";
+import { HiLocationMarker, HiTruck, HiCheck } from "react-icons/hi";
 
 export default function CustomPopUp({ onClose, pickupData }) {
   const [openModal, setOpenModal] = useState(true);

@@ -6,7 +6,7 @@ export function CardTWP() {
   const [dropboxes, setDropboxes] = useState([]);
 
   useEffect(() => {
-    axios.get("http://34.16.66.175:8031/api/dashboard/waste-point/")
+    axios.get("http://34.16.66.175:8031/api/total-poin")
       .then(response => {
         if (response.data.success) {
           setDropboxes(response.data.data.dropboxs);
@@ -19,9 +19,13 @@ export function CardTWP() {
 
   return (
     <div className="overflow-x-auto">
-      <div className="flex gap-4">
-        {dropboxes.map(dropbox => (
-          <Card key={dropbox.dropbox_id} href="#" className="w-60 h-32 flex flex-col justify-center items-center max-w-sm">
+      <div className={`flex gap-4 ${dropboxes.length > 4 ? "flex-wrap" : ""}`}>
+        {dropboxes.slice(0, 4).map(dropbox => ( // Only take the first 4 dropboxes
+          <Card 
+            key={dropbox.dropbox_id} 
+            href="#" 
+            className="w-60 h-32 flex flex-col justify-center items-center max-w-sm"
+          >
             <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
               {dropbox.name}
             </h5>
