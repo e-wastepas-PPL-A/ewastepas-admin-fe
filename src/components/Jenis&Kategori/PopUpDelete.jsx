@@ -20,7 +20,7 @@ export default function PopUpDelete({ onClose, wasteId, onSuccess }) {
 
     try {
       const deleteJenisSampah = axios.delete(
-        `http://127.0.0.1:8000/api/waste/delete/${wasteId}`
+        `http://34.16.66.175:8031/api/waste/delete/${wasteId}`
       );
 
       const [responseJenis] = await Promise.all([

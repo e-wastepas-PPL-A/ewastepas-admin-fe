@@ -21,7 +21,7 @@ export default function ApproveKurirPopUp({ onClose, courierId, onSuccess }) {
       const formData = new FormData();
       formData.append("is_verified", "1");
 
-      const response = await axios.post(`http://127.0.0.1:8000/api/courier/update-status/${courierId}`, formData);
+      const response = await axios.post(`http://34.16.66.175:8031/api/courier/update-status/${courierId}`, formData);
       if (response.data.success) {
         // Tutup modal konfirmasi dan buka modal sukses
         setOpenConfirmationModal(false);
@@ -33,7 +33,12 @@ export default function ApproveKurirPopUp({ onClose, courierId, onSuccess }) {
       }
     } catch (error) {
       console.error("Terjadi kesalahan saat mengirim permintaan approval:", error);
-      alert("Terjadi kesalahan saat menyetujui data kurir.");
+
+      // Cek apakah ada respons dari server dan tampilkan pesan error-nya
+      const errorMessage =
+        error.response.data.message ||
+        "Terjadi kesalahan saat menyetujui data kurir.";
+      alert(errorMessage);
     } finally {
       setIsLoading(false);
     }
