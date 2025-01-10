@@ -60,6 +60,14 @@ export default function DetailDropbox({ dropboxId, onClose }) {
               <td className="p-2 border border-gray-300">{detail.address}</td>
             </tr>
             <tr className="bg-gray-100">
+              <td className="p-2 font-semibold border border-gray-300">Longitude</td>
+              <td className="p-2 border border-gray-300">{detail.longitude}</td>
+            </tr>
+            <tr>
+              <td className="p-2 font-semibold border border-gray-300">Latitude</td>
+              <td className="p-2 border border-gray-300">{detail.latitude}</td>
+            </tr>
+            <tr className="bg-gray-100">
               <td className="p-2 font-semibold border border-gray-300">Kuantitas</td>
               <td className="p-2 border border-gray-300">{detail.capacity}/100</td>
             </tr>
