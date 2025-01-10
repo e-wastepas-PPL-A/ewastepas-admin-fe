@@ -2,6 +2,28 @@ import { useState } from "react";
 import { Modal } from "flowbite-react";
 import axios from "axios";
 import StickerImage from "../../assets/Sticker.png";
+import L from "leaflet";
+import 'leaflet/dist/leaflet.css';
+import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+
+// Icon untuk marker peta
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+});
+
+function LocationPicker({ setCoordinates }) {
+  useMapEvents({
+    click(e) {
+      const { lat, lng } = e.latlng;
+      setCoordinates({ lat, lng });
+    },
+  });
+
+  return null;
+}
 
 export default function PopUpAddDropbox({ onClose, onSuccess }) {
   const [name, setName] = useState("");
@@ -10,23 +32,29 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [capacity, setCapacity] = useState("");
-  // const [status, setStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const [openMapModal, setOpenMapModal] = useState(false);
 
   const districtOptions = ["Bandung Utara", "Bandung Selatan", "Bandung Timur", "Bandung Barat", "Cimahi", "Kabupaten Bandung", "Kabupaten Bandung Barat"];
   // const statusOptions = ["Full", "Available"];
+
+  const handleMapSelection = ({ lat, lng }) => {
+    setLatitude(lat);
+    setLongitude(lng);
+    setOpenMapModal(false);
+  };
 
   const handleSubmit = async () => {
     if (!name || !address || !districtAddress || !longitude || !latitude || !capacity) {
       setError("Semua field wajib diisi!");
       return;
     }
-  
+
     setIsLoading(true);
     setError(null);
-  
+
     try {
       const response = await axios.post("http://34.16.66.175:8031/api/dropbox/create/", {
         name,
@@ -36,19 +64,15 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
         latitude,
         capacity,
       });
-  
-    if (response.data.success) {
+
+      if (response.data.success) {
         setOpenSuccessModal(true);
         onSuccess();
       } else {
         setError(response.data.message || "Terjadi kesalahan saat menambah data dropbox.");
       }
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.message) {
-        setError(err.response.data.message); // Pesan error dari API
-      } else {
-        setError("Gagal menambah data dropbox. Silakan coba lagi."); // Pesan default jika tidak ada pesan dari API
-      }
+      setError(err.response?.data?.message || "Gagal menambah data dropbox. Silakan coba lagi.");
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -102,22 +126,29 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
                 </select>
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700">Longitude</label>
+              <label className="block text-sm font-medium text-gray-700">Koordinat</label>
+              <div className="flex space-x-2">
                 <input
-                type="text"
-                value={longitude}
-                onChange={(e) => setLongitude(e.target.value)}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  type="text"
+                  value={latitude}
+                  readOnly
+                  placeholder="Latitude"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 />
-            </div>
-            <div>
-                <label className="block text-sm font-medium text-gray-700">Latitude</label>
                 <input
-                type="text"
-                value={latitude}
-                onChange={(e) => setLatitude(e.target.value)}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  type="text"
+                  value={longitude}
+                  readOnly
+                  placeholder="Longitude"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 />
+              </div>
+              <button
+                onClick={() => setOpenMapModal(true)}
+                className="mt-2 px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+              >
+                Pilih Titik di Peta
+              </button>
             </div>
             <div>
                 <label className="block text-sm font-medium text-gray-700">Kapasitas</label>
@@ -179,6 +210,24 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
                     </div>
                 </Modal.Body>
             </Modal>
+        )}
+
+        {openMapModal && (
+          <Modal show={true} position="center" onClose={() => setOpenMapModal(false)}>
+            <Modal.Header>Pilih Titik di Peta</Modal.Header>
+            <Modal.Body>
+              <div className="h-96">
+                <MapContainer center={[-6.917464, 107.619123]} zoom={13} style={{ height: "100%", width: "100%" }}>
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  />
+                  <Marker position={[latitude || -6.917464, longitude || 107.619123]} />
+                  <LocationPicker setCoordinates={(coords) => handleMapSelection(coords)} />
+                </MapContainer>
+              </div>
+            </Modal.Body>
+          </Modal>
         )}
     </>
   );
