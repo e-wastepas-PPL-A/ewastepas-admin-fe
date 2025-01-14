@@ -82,19 +82,19 @@ export default function PageName() {
         
         <div className="grid grid-cols-2 gap-4 ml-6">
           <div>
-            <p className="font-bold">Name</p>
+            <p className="font-bold">Nama</p>
             <p>{community.name}</p>
           </div>
           <div>
-            <p className="font-bold">Address</p>
+            <p className="font-bold">Alamat</p>
             <p>{community.address}</p>
           </div>
           <div>
-            <p className="font-bold">Phone Number</p>
+            <p className="font-bold">Nomor HP</p>
             <p>{community.phone}</p>
           </div>
           <div>
-            <p className="font-bold">Total Point</p>
+            <p className="font-bold">Total Poin</p>
             <p>{total_point}</p>
           </div>
         </div>

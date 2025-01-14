@@ -17,7 +17,7 @@ export default function CustomSearchbar({ onSearch }) {
     <div className="max-w-full">
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
-          <span className="mr-2">Show</span>
+          {/* <span className="mr-2">Show</span>
           <select
             value={entries}
             onChange={(e) => setEntries(e.target.value)}
@@ -27,15 +27,15 @@ export default function CustomSearchbar({ onSearch }) {
             <option value="20">20</option>
             <option value="30">30</option>
           </select>
-          <span className="ml-2">entries</span>
+          <span className="ml-2">entries</span> */}
         </div>
         <div className="max-w-md">
-          <Label htmlFor="search" value="Search" />
+          <Label htmlFor="search" value="Cari" />
           <TextInput
             id="search"
             type="text"
             icon={HiSearch}
-            placeholder="Search by driver's name..."
+            placeholder="Cari..."
             value={searchTerm}
             onChange={handleSearch}
             required

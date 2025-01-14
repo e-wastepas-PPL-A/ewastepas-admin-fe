@@ -50,11 +50,11 @@ export default function CustomTableDetailPoint({ pickupDetail }) {
             <table className="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
                 <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
                     <tr>
-                        <th scope="col" className="px-6 py-3">Pickup ID</th>
-                        <th scope="col" className="px-6 py-3">Total Waste</th>
-                        <th scope="col" className="px-6 py-3">Pickup Date</th>
+                        <th scope="col" className="px-6 py-3">ID Pickup</th>
+                        <th scope="col" className="px-6 py-3">Total Sampah</th>
+                        <th scope="col" className="px-6 py-3">Tanggal Pengambilan</th>
                         <th scope="col" className="px-6 py-3">Status</th>
-                        <th scope="col" className="px-6 py-3">Action</th>
+                        <th scope="col" className="px-6 py-3">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -82,7 +82,7 @@ export default function CustomTableDetailPoint({ pickupDetail }) {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="5" className="text-center text-black">No data available</td>
+                            <td colSpan="5" className="text-center text-black">Tidak ada data tersedia</td>
                         </tr>
                     )}
                 </tbody>

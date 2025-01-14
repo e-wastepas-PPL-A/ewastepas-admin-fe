@@ -55,12 +55,12 @@ export default function CustomTableRiwayat() {
                 <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
                     <tr>
                         <th scope="col" className="px-6 py-3">ID</th>
-                        <th scope="col" className="px-6 py-3">Customer Name</th>
-                        <th scope="col" className="px-6 py-3">Driver Name</th>
-                        <th scope="col" className="px-6 py-3">Total Waste Picked Up</th>
-                        <th scope="col" className="px-6 py-3">Pick Up Date</th>
+                        <th scope="col" className="px-6 py-3">Nama Pelanggan</th>
+                        <th scope="col" className="px-6 py-3">Nama Kurir</th>
+                        <th scope="col" className="px-6 py-3">Total Sampah Di Ambil</th>
+                        <th scope="col" className="px-6 py-3">Tanggal Pengambilan</th>
                         <th scope="col" className="px-6 py-3">Status</th>
-                        <th scope="col" className="px-6 py-3">Action</th>
+                        <th scope="col" className="px-6 py-3">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
