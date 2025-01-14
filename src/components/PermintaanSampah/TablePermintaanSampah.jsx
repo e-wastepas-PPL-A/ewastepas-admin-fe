@@ -54,11 +54,11 @@ export default function CustomTable() {
                     <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
                         <tr>
                             <th scope="col" className="px-6 py-3">ID</th>
-                            <th scope="col" className="px-6 py-3">Customer Name</th>
-                            <th scope="col" className="px-6 py-3">Total Waste</th>
-                            <th scope="col" className="px-6 py-3">Pick Up Location</th>
+                            <th scope="col" className="px-6 py-3">Nama Pelanggan</th>
+                            <th scope="col" className="px-6 py-3">Total Sampah</th>
+                            <th scope="col" className="px-6 py-3">Lokasi Pengambilan</th>
                             <th scope="col" className="px-6 py-3">Status</th>
-                            <th scope="col" className="px-6 py-3">Action</th>
+                            <th scope="col" className="px-6 py-3">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

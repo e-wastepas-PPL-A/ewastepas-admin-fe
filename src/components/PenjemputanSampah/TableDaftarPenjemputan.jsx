@@ -54,12 +54,12 @@ export default function CustomTableKurir() {
                 <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
                     <tr>
                         <th scope="col" className="px-6 py-3">ID</th>
-                        <th scope="col" className="px-6 py-3">Customer Name</th>
-                        <th scope="col" className="px-6 py-3">Courier Name</th>
-                        <th scope="col" className="px-6 py-3">Pickup Address</th>
-                        <th scope="col" className="px-6 py-3">Phone Number</th>
+                        <th scope="col" className="px-6 py-3">Nama Pelanggan</th>
+                        <th scope="col" className="px-6 py-3">Nama Kurir</th>
+                        <th scope="col" className="px-6 py-3">Alamat</th>
+                        <th scope="col" className="px-6 py-3">Nomor HP</th>
                         <th scope="col" className="px-6 py-3">Status</th>
-                        <th scope="col" className="px-6 py-3">Action</th>
+                        <th scope="col" className="px-6 py-3">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

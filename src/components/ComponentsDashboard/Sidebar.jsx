@@ -13,6 +13,11 @@ import {
   Users,
   ChevronDown,
   ChevronUp,
+  Trash2,
+  Truck,
+  BadgeDollarSign,
+  Box,
+  ArchiveRestore,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Sidebar } from "flowbite-react";
@@ -130,32 +135,40 @@ export default function CustomSidebar() {
           </Sidebar.Item>
 
           {/* Dropdown for Permintaan Sampah and Daftar Penjemputan */}
-      <h2 className="text-lg font-semibold my-2 text-white">REQUEST</h2>
+      <h2 className="text-lg font-semibold my-2 text-white">PENJEMPUTAN</h2>
       <Sidebar.Item
         href="#"
-        icon={HiArchive}
         onClick={() => toggleItem('permintaan')}
-        className="flex items-center justify-between"
+        className="flex items-center justify-between group-hover:text-black"
       >
         <div className="flex items-center">
-          <span className="text-white">E-Waste Data</span>
+          <ArchiveRestore className="text-white group-hover:text-black" />
+          <span className="text-white group-hover:text-black ml-2"> E-Waste Data</span>
           <HiChevronDown style={{ color: '#FFFFFF'}} className={`ml-2 transition-transform ${openItems.permintaan ? 'rotate-180' : ''}`} />
         </div>
       </Sidebar.Item>
       {openItems.permintaan && (
         <Sidebar.ItemGroup className="pl-4">
-          <Sidebar.Item className="text-white" href="/permintaan-sampah" icon={HiTrash}>
-            Pick Up Request
-          </Sidebar.Item>
-          <Sidebar.Item className="text-white" href="/daftar-penjemputan" icon={HiTruck}>
-            Pick Up Reception
-          </Sidebar.Item>
-          <Sidebar.Item className="text-white" href="/total-waste-point" icon={HiCurrencyDollar}>
-            Total Waste & Point
-          </Sidebar.Item>
-          <Sidebar.Item className="text-white" href="/riwayat-penjemputan" icon={HiViewList}>
-            Pick Up History
-          </Sidebar.Item>
+          <Sidebar.Item 
+            className="group text-white hover:text-black hover:no-underline flex items-center" 
+            href="/permintaan-sampah" 
+            icon={() => <Trash2 className="text-white group-hover:text-black" />}
+          >Permintaan</Sidebar.Item>
+          <Sidebar.Item 
+            className="group text-white hover:text-black hover:no-underline flex items-center" 
+            href="/daftar-penjemputan" 
+            icon={() => <Truck className="text-white group-hover:text-black" />}
+          >Penjemputan</Sidebar.Item>
+          <Sidebar.Item 
+            className="group text-white hover:text-black hover:no-underline flex items-center" 
+            href="/total-waste-point" 
+            icon={() => <BadgeDollarSign className="text-white group-hover:text-black" />}
+          >Total Sampah & Poin</Sidebar.Item>
+          <Sidebar.Item 
+            className="group text-white hover:text-black hover:no-underline flex items-center" 
+            href="/riwayat-penjemputan" 
+            icon={() => <ClipboardList className="text-white group-hover:text-black" />}
+          >Riwayat Transaksi</Sidebar.Item>
         </Sidebar.ItemGroup>
       )}
 
