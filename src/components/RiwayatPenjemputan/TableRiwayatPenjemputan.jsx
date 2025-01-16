@@ -14,7 +14,7 @@ export default function CustomTableRiwayat() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://34.16.66.175:8031/api/riwayat-penjemputan");
+                const response = await axios.get("http://103.41.247.215:8031/api/riwayat-penjemputan");
                 if (response.data.success) {
                     const pickupsData = response.data.data.pickups.data;
                     setPickups(pickupsData);
@@ -37,7 +37,7 @@ export default function CustomTableRiwayat() {
 
     const handleDetailClick = async (pickupId) => {
         try {
-            const response = await axios.get(`http://34.16.66.175:8031/api/riwayat-penjemputan/${pickupId}`);
+            const response = await axios.get(`http://103.41.247.215:8031/api/riwayat-penjemputan/${pickupId}`);
             if (response.data.success) {
                 console.log("Pickup Detail Data: ", response.data.data); // Debugging line
                 setSelectedPickupDetail(response.data.data);

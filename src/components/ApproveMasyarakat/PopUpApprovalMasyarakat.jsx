@@ -22,7 +22,7 @@ export default function CustomPopUp({ onClose, masyarakatId, onSuccess }) {
         is_verified: 1,
       };
 
-      const response = await axios.post(`http://34.16.66.175:8031/api/community/update-status/${masyarakatId}`, updateData);
+      const response = await axios.post(`http://103.41.247.215:8031/api/community/update-status/${masyarakatId}`, updateData);
       if (response.data.success) {
         // Tutup modal konfirmasi dan buka modal sukses
         setOpenConfirmationModal(false);

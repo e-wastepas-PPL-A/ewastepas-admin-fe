@@ -11,7 +11,7 @@ export default function DetailDropbox({ dropboxId, onClose }) {
   const fetchDetailDropbox = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://34.16.66.175:8031/api/dropbox/${dropboxId}`);
+      const response = await axios.get(`http://103.41.247.215:8031/api/dropbox/${dropboxId}`);
       if (response.data.success) {
         setDetail(response.data.data);
       } else {
