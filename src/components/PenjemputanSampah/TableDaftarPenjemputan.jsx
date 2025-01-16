@@ -14,7 +14,7 @@ export default function CustomTableKurir() {
     const [filteredPickups, setFilteredPickups] = useState([]);
 
     useEffect(() => {
-        axios.get("http://34.16.66.175:8031/api/penerimaan-penjemputan/")
+        axios.get("http://103.41.247.215:8031/api/penerimaan-penjemputan/")
             .then(response => {
                 if (response.data.success) {
                     setPickups(response.data.data.pickups.data);
@@ -27,7 +27,7 @@ export default function CustomTableKurir() {
     }, []);
 
     const handleEyeClick = (pickupId) => {
-        axios.get(`http://34.16.66.175:8031/api/penerimaan-penjemputan/${pickupId}`)
+        axios.get(`http://103.41.247.215:8031/api/penerimaan-penjemputan/${pickupId}`)
             .then(response => {
                 if (response.data.success) {
                     setSelectedPickup(response.data.data);

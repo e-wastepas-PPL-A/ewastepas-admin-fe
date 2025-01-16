@@ -51,7 +51,7 @@ export default function CourierApprovalTable() {
   const fetchDataKurir = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://34.16.66.175:8031/api/courier/?page=${page}`);
+      const response = await axios.get(`http://103.41.247.215:8031/api/courier/?page=${page}`);
       if (response.data.success) {
         // const courierData = response.data.data.Courier.data;
         const courierData = response.data.data.Courier.data.filter(
