@@ -2,7 +2,7 @@
 
 import { Button, Modal, Timeline } from "flowbite-react";
 import { useState } from "react";
-import { HiLocationMarker, HiCheck, HiTruck } from "react-icons/hi";
+import { HiLocationMarker, HiCheck, HiTruck, HiOutlineX } from "react-icons/hi";
 
 export default function CustomPopUp({ onClose, pickupData }) {
   const [openModal, setOpenModal] = useState(true);
@@ -14,14 +14,15 @@ export default function CustomPopUp({ onClose, pickupData }) {
   };
 
   const trackingSteps = [
-    { title: "Courier to the location", body: "Waiting for pickup", icon: HiLocationMarker },
-    { title: "In Delivery", body: "On the way", icon: HiTruck },
-    { title: "In Delivery", body: "The trash has been picked up", icon: HiTruck },
-    { title: "Success", body: "Order completed", icon: HiCheck }
+    { title: "Menunggu Penjemputan", body: "Waiting for pickup", icon: HiLocationMarker },
+    { title: "Dalam Perjalanan", body: "On the way", icon: HiTruck },
+    { title: "Sampah telah dijemput", body: "Waste has been picked up", icon: HiTruck },
+    { title: "Pesanan Selesai", body: "Order completed", icon: HiCheck },
+    { title: "Penjemputan Gagal", body: "Pickup failed", icon: HiOutlineX }
   ];
 
   const currentStatusIndex = trackingSteps.findIndex(step => 
-    pickupData?.status.includes(step.title) || pickupData?.status === "Sampah telah dijemput"
+    pickupData?.status === step.title
   );
 
   return (
@@ -106,14 +107,12 @@ export default function CustomPopUp({ onClose, pickupData }) {
             </div>
 
             <Timeline className="mt-4">
-              {trackingSteps.map((step, index) => (
+              {trackingSteps.slice(0, currentStatusIndex + 1).map((step, index) => (
                 <Timeline.Item key={index} className={index <= currentStatusIndex ? "text-green-500" : ""}>
                   <Timeline.Point icon={step.icon} />
                   <Timeline.Content>
                     <Timeline.Title>{step.title}</Timeline.Title>
-                    <Timeline.Body>
-                      {step.body}
-                    </Timeline.Body>
+                    <Timeline.Body>{step.body}</Timeline.Body>
                   </Timeline.Content>
                 </Timeline.Item>
               ))}

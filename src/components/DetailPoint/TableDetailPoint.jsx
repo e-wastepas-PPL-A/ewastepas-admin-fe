@@ -9,15 +9,13 @@ import CustomSearchbar from "../DetailPoint/SearchDetailPoin";
 export default function CustomTableDetailPoint({ pickupDetail }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPickup, setSelectedPickup] = useState(null);
-    const [filteredPickups, setFilteredPickups] = useState(pickupDetail); // Store filtered pickups
-    const [searchTerm, setSearchTerm] = useState(""); // Store the search term
+    const [filteredPickups, setFilteredPickups] = useState(pickupDetail);
+    const [searchTerm, setSearchTerm] = useState("");
 
-    // If no data, show a message
     if (!pickupDetail || pickupDetail.length === 0) {
         return <div>No data available</div>;
     }
 
-    // Handle eye icon click
     const handleEyeClick = (pickupId) => {
         axios.get(`http://103.41.247.215:8031/api/total-poin/${pickupId}/customer`)
             .then(response => {
@@ -31,29 +29,26 @@ export default function CustomTableDetailPoint({ pickupDetail }) {
             });
     };
 
-    // Handle search input change and filter based on pickup_id
     const handleSearch = (searchTerm) => {
-        setSearchTerm(searchTerm); // Update search term
-        // Filter by pickup_id (ensure it matches the type, either string or number)
+        setSearchTerm(searchTerm);
         const filtered = pickupDetail.filter(pickup =>
-            pickup.pickup_id.toString().toLowerCase().includes(searchTerm.toLowerCase()) // Filter by pickup_id
+            pickup.pickup_id.toString().toLowerCase().includes(searchTerm.toLowerCase())
         );
-        setFilteredPickups(filtered); // Update filtered pickups
+        setFilteredPickups(filtered);
     };
 
     return (
         <div className="overflow-x-auto shadow-md sm:rounded-lg">
             <CustomSearchbar
-                searchTerm={searchTerm} // Pass the search term to the search bar component
-                onSearch={handleSearch} // Pass the handleSearch function to the search bar component
+                searchTerm={searchTerm}
+                onSearch={handleSearch}
             />
             <table className="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
                 <thead className="text-xs text-white uppercase" style={{ backgroundColor: '#42A444', borderBottom: '2px solid #42A444' }}>
                     <tr>
                         <th scope="col" className="px-6 py-3">ID Pickup</th>
                         <th scope="col" className="px-6 py-3">Total Sampah</th>
-                        <th scope="col" className="px-6 py-3">Tanggal Pengambilan</th>
-                        <th scope="col" className="px-6 py-3">Status</th>
+                        <th scope="col" className="px-6 py-3">Poin</th>
                         <th scope="col" className="px-6 py-3">Aksi</th>
                     </tr>
                 </thead>
@@ -65,13 +60,10 @@ export default function CustomTableDetailPoint({ pickupDetail }) {
                                     {detail.pickup_id}
                                 </th>
                                 <td className="px-6 py-4 text-black">
-                                    {detail.waste && detail.waste.length > 0 ? detail.waste[0].waste_name : "N/A"}
+                                    {detail.quantity || "N/A"}
                                 </td>
                                 <td className="px-6 py-4 text-black">
-                                    {detail.date || "N/A"}
-                                </td>
-                                <td className="px-6 py-4 text-black">
-                                    {detail.status || "N/A"}
+                                    {detail.points || "N/A"}
                                 </td>
                                 <td className="px-6 py-4">
                                     <a href="#" className="font-medium text-black hover:underline" onClick={() => handleEyeClick(detail.pickup_id)}>
