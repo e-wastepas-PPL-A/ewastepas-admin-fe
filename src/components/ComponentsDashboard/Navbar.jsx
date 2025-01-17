@@ -126,7 +126,7 @@ const CustomNavbar = () => {
                         className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 cursor-pointer"
                         onClick={() => handleNotificationClick(notification.pickup_id)}
                       >
-                        Order No. {notification.pickup_id} is {notification.status}
+                        Order No. {notification.pickup_id} {notification.status}
                         <p className="text-gray-500 text-sm mt-1 text-left">{formatDate(notification.created_at)}</p>
                       </div>
                     ))
@@ -135,9 +135,9 @@ const CustomNavbar = () => {
                       No notifications available.
                     </div>
                   )}
-                  <div className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
+                  <a href="/riwayat-penjemputan" className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700">
                     See All
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>

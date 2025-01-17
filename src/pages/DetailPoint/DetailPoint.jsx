@@ -16,7 +16,7 @@ export default function PageName() {
   useEffect(() => {
     document.title = "E-Wastepas | Permintaan Sampah";
     
-    axios.get(`http://34.16.66.175:8031/api/total-poin/${pickup_id}`)
+    axios.get(`http://103.41.247.215:8031/api/total-poin/${pickup_id}`)
       .then(response => {
         if (response.data.success) {
           setPickupDetails(response.data.data); 
