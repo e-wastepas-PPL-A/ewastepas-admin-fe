@@ -13,7 +13,7 @@ const CustomNavbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://103.41.247.215:8031/api/auth/logout", {
+      const response = await fetch("https://admin-api.ewhale.my.id/api/auth/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const CustomNavbar = () => {
   
       if (response.ok) {
         Cookies.remove("session_id");
-        window.location.href = "http://103.41.247.215:8030/login";
+        window.location.href = "https://admin.ewhale.my.id/login";
       } else {
         console.error("Logout failed");
       }
@@ -45,7 +45,7 @@ const CustomNavbar = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await fetch("http://103.41.247.215:8031/api/notifikasi-penjemputan", {
+      const response = await fetch("https://admin-api.ewhale.my.id/api/notifikasi-penjemputan", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const CustomNavbar = () => {
 
   const handleNotificationClick = async (pickupId) => {
     try {
-      const response = await fetch(`http://103.41.247.215:8031/api/notifikasi-penjemputan/${pickupId}`, {
+      const response = await fetch(`https://admin-api.ewhale.my.id/api/notifikasi-penjemputan/${pickupId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

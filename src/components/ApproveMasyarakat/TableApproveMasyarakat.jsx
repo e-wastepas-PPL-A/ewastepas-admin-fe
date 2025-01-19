@@ -19,7 +19,7 @@ export default function CustomTable() {
   const fetchDataMasyarakat = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://103.41.247.215:8031/api/community/?page=${page}`);
+      const response = await axios.get(`https://admin-api.ewhale.my.id/api/community/?page=${page}`);
       if (response.data.success) {
         const communityData = response.data.data.Community.data;
   

@@ -19,7 +19,7 @@ export default function PopUpEdit({ onClose, onSuccess, wasteId }) {
     // Fetch current waste data
     const fetchWasteData = async () => {
       try {
-        const response = await axios.get(`http://103.41.247.215:8031/api/waste/${wasteId}`);
+        const response = await axios.get(`https://admin-api.ewhale.my.id/api/waste/${wasteId}`);
         const data = response.data.data;
         setWasteName(data.waste_name);
         setWasteTypeId(data.waste_type_id);

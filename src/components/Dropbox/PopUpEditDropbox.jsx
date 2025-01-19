@@ -42,7 +42,7 @@ export default function PopUpEdit({ dropboxId, onClose, onSuccess }) {
     useEffect(() => {
         const fetchDropboxData = async () => {
             try {
-                const response = await axios.get(`http://103.41.247.215:8031/api/dropbox/${dropboxId}`, {
+                const response = await axios.get(`https://admin-api.ewhale.my.id/api/dropbox/${dropboxId}`, {
                     headers: { 'Cache-Control': 'no-cache' },
                 });
                 const { name, address, capacity, status, longitude, latitude } = response.data.data;
@@ -77,7 +77,7 @@ export default function PopUpEdit({ dropboxId, onClose, onSuccess }) {
         setError(null);
     
         try {
-            const response = await axios.post(`http://103.41.247.215:8031/api/dropbox/update/${dropboxId}`, {
+            const response = await axios.post(`https://admin-api.ewhale.my.id/api/dropbox/update/${dropboxId}`, {
                 name: newName,
                 address: newAddress,
                 capacity: newCapacity,

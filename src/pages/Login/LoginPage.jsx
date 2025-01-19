@@ -15,7 +15,7 @@ const LoginPage = () => {
     const password = formData.get("password");
 
     try {
-      const response = await fetch("http://103.41.247.215:8031/api/auth/login", {
+      const response = await fetch("https://admin-api.ewhale.my.id/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const LoginPage = () => {
       const data = await response.json();
       if (response.ok) {
         Cookies.set("session_id", data.session_id);
-        window.location.href = "http://103.41.247.215:8030/";
+        window.location.href = "https://admin.ewhale.my.id/login";
       } else {
         setError(data.message || "Login failed");
       }

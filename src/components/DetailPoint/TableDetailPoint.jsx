@@ -17,7 +17,7 @@ export default function CustomTableDetailPoint({ pickupDetail }) {
     }
 
     const handleEyeClick = (pickupId) => {
-        axios.get(`http://103.41.247.215:8031/api/total-poin/${pickupId}/customer`)
+        axios.get(`https://admin-api.ewhale.my.id/api/total-poin/${pickupId}/customer`)
             .then(response => {
                 if (response.data.success) {
                     setSelectedPickup(response.data.data);

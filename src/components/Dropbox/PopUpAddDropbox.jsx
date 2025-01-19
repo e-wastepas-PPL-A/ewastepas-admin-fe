@@ -56,7 +56,7 @@ export default function PopUpAddDropbox({ onClose, onSuccess }) {
     setError(null);
 
     try {
-      const response = await axios.post("http://103.41.247.215:8031/api/dropbox/create/", {
+      const response = await axios.post("https://admin-api.ewhale.my.id/api/dropbox/create/", {
         name,
         address,
         district_address: districtAddress,
