@@ -38,7 +38,7 @@ export default function CustomTableDetailPoint({ pickupDetail }) {
     };
 
     return (
-        <div className="overflow-x-auto shadow-md sm:rounded-lg">
+        <div className="overflow-x-auto shadow-md sm:rounded-lg" style={{ maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}>
             <CustomSearchbar
                 searchTerm={searchTerm}
                 onSearch={handleSearch}
