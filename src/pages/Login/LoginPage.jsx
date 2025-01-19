@@ -26,7 +26,7 @@ const LoginPage = () => {
       const data = await response.json();
       if (response.ok) {
         Cookies.set("session_id", data.session_id);
-        window.location.href = "https://admin.ewhale.my.id/login";
+        window.location.href = "https://admin.ewhale.my.id/";
       } else {
         setError(data.message || "Login failed");
       }
