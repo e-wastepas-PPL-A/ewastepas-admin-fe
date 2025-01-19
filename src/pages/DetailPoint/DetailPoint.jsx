@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Card } from "flowbite-react";
 import CustomSidebar from "../../components/ComponentsDashboard/Sidebar";
 import CustomNavbar from "../../components/ComponentsDashboard/Navbar";
-import CustomSearchbar from "../../components/ComponentsDashboard/Searchbar";
 import { HiArrowLeft } from "react-icons/hi";
 import CustomTableDetailPoint from "../../components/DetailPoint/TableDetailPoint";
 import axios from "axios";
@@ -32,7 +31,8 @@ export default function PageName() {
     return <div>Loading...</div>; 
   }
 
-  const { community, total_point, pickup_detail } = pickupDetails;
+  const { community, total_point, pickup_wastes } = pickupDetails;
+  const pickup_detail = pickup_wastes?.data || [];  // Use optional chaining and default to an empty array
 
   return (
     <div 
@@ -107,7 +107,7 @@ export default function PageName() {
                   {/* <CustomSearchbar style={{ marginRight: "sm-7" }} /> */}
                 </div>
                 <div className="flex-grow overflow-auto">
-                <CustomTableDetailPoint pickupDetail={pickup_detail} />
+                  <CustomTableDetailPoint pickupDetail={pickup_detail} />
                 </div>
               </div>
             </Card>

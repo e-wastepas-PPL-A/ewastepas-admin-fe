@@ -47,7 +47,7 @@ export default function PageName() {
             <h1 className="text-lg font-bold">Total Waste & Point</h1>
         </div>
 
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}>
             <CardTWP />
             <div className="mt-8">
               <Card style={{ width: "1000px", height: "600px" }}>

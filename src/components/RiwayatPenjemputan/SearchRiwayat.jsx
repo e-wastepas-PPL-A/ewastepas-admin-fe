@@ -30,12 +30,12 @@ export default function CustomSearchbar({ onSearch }) {
           <span className="ml-2">entries</span>
         </div>
         <div className="max-w-md">
-          <Label htmlFor="search" value="Search" />
+          <Label htmlFor="search" value="Cari" />
           <TextInput
             id="search"
             type="text"
             icon={HiSearch}
-            placeholder="Search by Transaction ID..."
+            placeholder="Cari..."
             value={searchTerm}
             onChange={handleSearch}
             required
