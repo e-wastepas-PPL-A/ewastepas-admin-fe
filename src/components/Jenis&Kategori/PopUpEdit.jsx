@@ -56,7 +56,7 @@ export default function PopUpEdit({ onClose, onSuccess, wasteId }) {
         formData.append("image", image);
       }
 
-      const response = await axios.post(`http://103.41.247.215:8031/api/waste/update/${wasteId}`, formData, {
+      const response = await axios.post(`https://admin-api.ewhale.my.id/api/waste/update/${wasteId}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
