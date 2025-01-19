@@ -6,7 +6,7 @@ export function CardTWP() {
   const [dropboxes, setDropboxes] = useState([]);
 
   useEffect(() => {
-    axios.get("http://103.41.247.215:8031/api/total-poin")
+    axios.get("https://admin-api.ewhale.my.id/api/total-poin")
       .then(response => {
         if (response.data.success) {
           setDropboxes(response.data.data.dropboxs);

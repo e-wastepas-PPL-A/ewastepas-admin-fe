@@ -24,7 +24,7 @@ export default function CustomTable() {
   const fetchDataDropbox = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://103.41.247.215:8031/api/dropbox/?page=${page}`);
+      const response = await axios.get(`https://admin-api.ewhale.my.id/api/dropbox/?page=${page}`);
       if (response.data.success) {
         // Ubah objek Community menjadi array
         const dropboxData = response.data.data.dropbox.data;

@@ -21,7 +21,7 @@ export default function ApproveKurirPopUp({ onClose, courierId, onSuccess }) {
       const formData = new FormData();
       formData.append("is_verified", "1");
 
-      const response = await axios.post(`http://103.41.247.215:8031/api/courier/update-status/${courierId}`, formData);
+      const response = await axios.post(`https://admin-api.ewhale.my.id/api/courier/update-status/${courierId}`, formData);
       if (response.data.success) {
         // Tutup modal konfirmasi dan buka modal sukses
         setOpenConfirmationModal(false);

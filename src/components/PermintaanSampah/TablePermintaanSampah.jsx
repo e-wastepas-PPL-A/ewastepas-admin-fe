@@ -14,7 +14,7 @@ export default function CustomTable() {
     const [selectedPickup, setSelectedPickup] = useState(null);
 
     useEffect(() => {
-        axios.get("http://103.41.247.215:8031/api/permintaan-penjemputan")
+        axios.get("https://admin-api.ewhale.my.id/api/permintaan-penjemputan")
             .then(response => {
                 if (response.data.success) {
                     setPickups(response.data.data.pickups.data);
@@ -27,7 +27,7 @@ export default function CustomTable() {
     }, []);
 
     const handleEyeClick = (pickupId) => {
-        axios.get(`http://103.41.247.215:8031/api/permintaan-penjemputan/${pickupId}`)
+        axios.get(`https://admin-api.ewhale.my.id/api/permintaan-penjemputan/${pickupId}`)
             .then(response => {
                 if (response.data.success) {
                     setSelectedPickup(response.data.data);

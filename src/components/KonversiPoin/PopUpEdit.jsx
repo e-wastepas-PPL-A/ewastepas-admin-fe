@@ -15,7 +15,7 @@ export default function PopUpEdit({ wasteId, onClose, onSuccess }) {
   useEffect(() => {
     const fetchWasteData = async () => {
       try {
-        const response = await axios.get(`http://103.41.247.215:8031/api/waste/${wasteId}`);
+        const response = await axios.get(`https://admin-api.ewhale.my.id/api/waste/${wasteId}`);
         const { waste_name, waste_type_id, point } = response.data.data;
         setWasteData({
           waste_name,
@@ -42,7 +42,7 @@ export default function PopUpEdit({ wasteId, onClose, onSuccess }) {
     setError(null);
 
     try {
-      const response = await axios.post(`http://103.41.247.215:8031/api/waste_convert/update/${wasteId}`, {
+      const response = await axios.post(`https://admin-api.ewhale.my.id/api/waste_convert/update/${wasteId}`, {
         point: newPoint,
       });
 

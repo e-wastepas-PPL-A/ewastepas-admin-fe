@@ -12,7 +12,7 @@ export default function TableTWP() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://103.41.247.215:8031/api/total-poin")
+        axios.get("https://admin-api.ewhale.my.id/api/total-poin")
             .then(response => {
                 if (response.data.success) {
                     // Accessing the pickups data correctly

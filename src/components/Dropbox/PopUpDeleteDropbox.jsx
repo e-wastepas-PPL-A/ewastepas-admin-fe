@@ -18,7 +18,7 @@ export default function PopUpDelete({ onClose, dropboxId, onSuccess }) {
   
       try {
         const deleteDropbox = axios.delete(
-          `http://103.41.247.215:8031/api/dropbox/delete/${dropboxId}`
+          `https://admin-api.ewhale.my.id/api/dropbox/delete/${dropboxId}`
         );
         const [responseDropbox] = await Promise.all([
             deleteDropbox,

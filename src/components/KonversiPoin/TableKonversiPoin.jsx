@@ -22,14 +22,14 @@ export default function CustomTable() {
   const fetchListWaste = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://103.41.247.215:8031/api/waste/?page=${page}`);
+      const response = await axios.get(`https://admin-api.ewhale.my.id/api/waste/?page=${page}`);
       const wasteData = response.data.data.waste.data;
       const totalItems = response.data.data.waste.total;
 
       const categoryPromises = wasteData.map(async (waste) => {
         if (waste.waste_type_id) {
           const categoryResponse = await axios.get(
-            `http://103.41.247.215:8031/api/waste_type/${waste.waste_type_id}`
+            `https://admin-api.ewhale.my.id/api/waste_type/${waste.waste_type_id}`
           );
           return { id: waste.waste_type_id, name: categoryResponse.data.data.waste_type_name };
         }
